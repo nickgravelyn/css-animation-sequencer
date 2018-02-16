@@ -2,7 +2,7 @@
 
 CSS animations are pretty great but often one wants to chain together some animations on one or more elements. Enter the CSS Animation Sequencer.
 
-Checkout the [example](https://nickgravelyn.github.io/css-animation-sequencer) or the [API docs](https://nickgravelyn.github.io/css-animation-sequencer/api.html).
+Checkout the [example](https://nickgravelyn.github.io/css-animation-sequencer) or the [API docs](https://nickgravelyn.github.io/css-animation-sequencer/api).
 
 # Get It
 
