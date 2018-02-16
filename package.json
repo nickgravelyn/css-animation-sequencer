@@ -2,6 +2,16 @@
   "name": "css-animation-sequencer",
   "version": "0.1.0",
   "description": "Helpers for sequencing CSS animations.",
+  "main": "dist/css-animation-sequencer.cjs.js",
+  "module": "dist/css-animation-sequencer.esm.js",
+  "browser": "dist/css-animation-sequencer.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "pretty": "prettier-standard *.js src/*.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nickgravelyn/css-animation-sequencer.git"
@@ -11,5 +21,31 @@
   "bugs": {
     "url": "https://github.com/nickgravelyn/css-animation-sequencer/issues"
   },
-  "homepage": "https://github.com/nickgravelyn/css-animation-sequencer#readme"
+  "homepage": "https://github.com/nickgravelyn/css-animation-sequencer#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier-standard": "^8.0.0",
+    "rollup": "^0.56.0",
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "ignore": [
+      "dist",
+      "node_modules"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.js": [
+        "prettier-standard",
+        "git add"
+      ]
+    }
+  }
 }
