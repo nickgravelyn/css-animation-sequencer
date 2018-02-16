@@ -21,4 +21,4 @@ Until I get this published, clone the repo, `yarn`, and then `yarn build`. That 
 
 # Development
 
-Use `yarn watch` to build on changes. `yarn example` to run an HTTP server on the example directory.
+Use `yarn watch` to build on changes. `yarn docs` to run an HTTP server on the docs directory which is used for Github Pages.
