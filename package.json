@@ -8,7 +8,6 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "sample": "http-server . -c -1 -a localhost -p 3000",
     "pretty": "prettier-standard *.js src/*.js"
   },
   "repository": {
@@ -23,7 +22,6 @@
   "homepage": "https://github.com/nickgravelyn/css-animation-sequencer#readme",
   "devDependencies": {
     "buble": "^0.19.3",
-    "http-server": "^0.11.1",
     "husky": "^0.15.0-rc.8",
     "lint-staged": "^6.1.0",
     "prettier-standard": "^8.0.0",
