@@ -45,6 +45,17 @@ export default [
     input: 'src/index.js',
     output: [
       {
+        file: 'example/css-animation-sequencer.iife.js',
+        format: 'iife',
+        name: 'CssAnimationSequencer'
+      }
+    ],
+    plugins: [buble()]
+  },
+  {
+    input: 'src/index.js',
+    output: [
+      {
         file: 'dist/css-animation-sequencer.cjs.min.js',
         format: 'cjs'
       },

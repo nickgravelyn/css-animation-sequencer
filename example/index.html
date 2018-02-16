@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS Animation Sequencer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Animations from https://daneden.github.io/animate.css/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script type="text/javascript" src="./css-animation-sequencer.iife.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center">
+        <h1 class="display-4">CSS Animation Sequencer</h1>
+        <p class="m-0">Manage CSS animations in a simple, small library.</p>
+        <p class="m-0">Available on <a href="https://github.com/nickgravelyn/css-animation-sequencer">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.</p>
+        <p class="m-0">Example animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a>.</p>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+        <div class="col-sm">
+          CSS Animation Sequencer helps manage CSS animations in a sequence for more interesting animations through composition of separate animations.
+        </div>
+        <div class="col example">
+          <div id="box1" class="box red animated"></div>
+
+          <script type="text/javascript">
+            (function() {
+              var box1 = document.getElementById('box1')
+              var sequencer = new CssAnimationSequencer()
+              sequencer.add(box1, 'bounce')
+              sequencer.add(box1, 'swing')
+              sequencer.play({loops:-1})
+            })()
+          </script>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+        <div class="col example">
+          <div id="box2" class="box blue animated"></div>
+          <div id="box3" class="box green animated"></div>
+
+          <script type="text/javascript">
+            (function() {
+              var box2 = document.getElementById('box2')
+              var box3 = document.getElementById('box3')
+              var sequencer = new CssAnimationSequencer()
+              sequencer.add(box2, 'rubberBand')
+              sequencer.add(box3, 'shake')
+              sequencer.play({loops:-1})
+            })()
+          </script>
+        </div>
+        <div class="col-sm">
+          Sequences can create relationships between separate DOM elements. When one animation completes, the other begins.
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+        <div class="col-sm">
+          <p>Sequences can repeat once, forever, or any number of times. They can be stopped at any point and can be reused once constructed.</p>
+          <p class="text-center">
+            <button class="btn btn-primary m-1" onclick="playBox4()">Play Once</button>
+            <button class="btn btn-primary m-1" onclick="playBox4(1)">Play Twice</button>
+            <button class="btn btn-primary m-1" onclick="playBox4(-1)">Play Forever</button>
+            <button class="btn btn-primary m-1" onclick="stopBox4()">Stop</button>
+          </p>
+        </div>
+        <div class="col example">
+          <div id="box4" class="box orange animated"></div>
+
+          <script type="text/javascript">
+              var box4 = document.getElementById('box4')
+              var box4Sequencer = new CssAnimationSequencer()
+              box4Sequencer.add(box4, 'wobble')
+              box4Sequencer.add(box4, 'tada')
+
+              function playBox4(loops) {
+                box4Sequencer.play({loops: loops})
+              }
+
+              function stopBox4() {
+                box4Sequencer.stop()
+              }
+          </script>
+        </div>
+      </div>
+
+
+    </div>
+  </body>
+</html>

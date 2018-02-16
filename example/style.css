@@ -1,0 +1,26 @@
+body {
+  font-family: "Avenir Next", Avenir, Arial, sans-serif;
+}
+.example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  width: 125px;
+  height: 125px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.red {
+  background: red;
+}
+.blue {
+  background: blue;
+}
+.green {
+  background: green;
+}
+.orange {
+  background: orange;
+}
