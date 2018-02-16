@@ -6,13 +6,25 @@
 
     <script src="/dist/css-animation-sequencer.iife.js"></script>
     <script>
-      function playSequence() {
-        var box = document.getElementById('box')
+      var sequencer;
 
-        var sequencer = new CssAnimationSequencer()
+      window.onload = function () {
+        var box = document.getElementById('box')
+        sequencer = new CssAnimationSequencer()
         sequencer.add(box, 'bounce')
         sequencer.add(box, 'swing')
+      }
+
+      function playOnce () {
         sequencer.play()
+      }
+
+      function playTwice () {
+        sequencer.play({loops: 1})
+      }
+
+      function playRepeat () {
+        sequencer.play({loops: -1})
       }
     </script>
 
@@ -46,7 +58,9 @@
       <div id="box" class="animated">
       </div>
 
-      <button onclick="playSequence()">Play</button>
+      <button onclick="playOnce()">Play Once</button>
+      <button onclick="playTwice()">Play Twice</button>
+      <button onclick="playRepeat()">Play Looped</button>
     </div>
   </body>
 </html>
