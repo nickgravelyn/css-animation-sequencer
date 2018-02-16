@@ -44,7 +44,6 @@ export default class CssAnimationSequencer {
     if (this._animations.length === this._next) {
       if (this._loops == 0) return
       if (this._loops > 0) this._loops--
-
       this._next = 0
     }
 
