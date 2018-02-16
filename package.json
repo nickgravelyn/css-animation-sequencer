@@ -1,0 +1,15 @@
+{
+  "name": "css-animation-sequencer",
+  "version": "0.1.0",
+  "description": "Helpers for sequencing CSS animations.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickgravelyn/css-animation-sequencer.git"
+  },
+  "author": "Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickgravelyn/css-animation-sequencer/issues"
+  },
+  "homepage": "https://github.com/nickgravelyn/css-animation-sequencer#readme"
+}
