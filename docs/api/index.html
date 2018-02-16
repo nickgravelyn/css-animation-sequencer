@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS Animation Sequencer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center">
+        <h1 class="display-4">CSS Animation Sequencer</h1>
+        <p class="m-0">Manage CSS animations in a simple, small library.</p>
+        <p class="m-0">Available on <a href="https://github.com/nickgravelyn/css-animation-sequencer">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.</p>
+        <p class="m-0">View the <a href="..">examples</a>.</p>
+      </div>
+
+      <hr class="my-4">
+
+      <h2>CssAnimationSequencer</h2>
+      <p>This is the main class that owns a sequence of animations.</p>
+
+      <pre><code>var box1 = document.getElementById('box1')
+var sequencer = new CssAnimationSequencer()
+sequencer.add(box1, 'bounce')
+sequencer.add(box1, 'swing')
+sequencer.play({loops:-1})</code></pre>
+
+      <h3>Methods</h3>
+
+      <h4><code>add(element, "className")</code></h4>
+
+      <p>The <code>add</code> method adds an animation to the sequence. It takes the HTML element to which to apply the animation and the class name of the CSS animation to apply.</p>
+
+      <p><strong>Note:</strong> This is not the name of a <code>@keyframes</code> element, but rather a full CSS class that sets the <code>animation</code> property. This is to allow the animation to also set other properties required for the animation.</p>
+
+      <p><strong>Note:</strong> The animation class should not use any looping. At this time only animations that play once and stop are supported.</p>
+
+      <h4><code>play({options})</code></h4>
+
+      <p>The <code>play</code> method starts animating the sequence. The <code>options</code> object can set any (or none) of the following settings:</p>
+
+      <ul>
+        <li><code>loops</code>: A number indicating the number of times to repeat the sequence. The default value is 0, meaning the sequence will play once through and stop. Setting the value to a negative value will repeat the animation forever.</li>
+      </ul>
+
+      <h4><code>stop()</code></h4>
+
+      <p>The <code>stop</code> method stops the animation. This will clear the animation class from the element, returning it to its original state.</p>
+
+    </div>
+  </body>
+</html>
