@@ -6,12 +6,27 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/css-animation-sequencer.cjs.js',
-        format: 'cjs'
-      },
-      {
         file: 'dist/css-animation-sequencer.esm.js',
         format: 'es'
+      }
+    ]
+  },
+  {
+    input: 'src/index.js',
+    output: [
+      {
+        file: 'dist/css-animation-sequencer.esm.min.js',
+        format: 'es'
+      }
+    ],
+    plugins: [uglify()]
+  },
+  {
+    input: 'src/index.js',
+    output: [
+      {
+        file: 'dist/css-animation-sequencer.cjs.js',
+        format: 'cjs'
       },
       {
         file: 'dist/css-animation-sequencer.umd.js',
@@ -32,10 +47,6 @@ export default [
       {
         file: 'dist/css-animation-sequencer.cjs.min.js',
         format: 'cjs'
-      },
-      {
-        file: 'dist/css-animation-sequencer.esm.min.js',
-        format: 'es'
       },
       {
         file: 'dist/css-animation-sequencer.umd.min.js',
