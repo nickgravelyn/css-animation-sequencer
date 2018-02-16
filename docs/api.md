@@ -9,7 +9,7 @@ This is the main class that owns a sequence of animations.
 
 ### Methods
 
-#### add(<element>, <className>)
+#### `add(element, "className")`
 
 The `add` method adds an animation to the sequence. It takes the HTML element to which to apply the animation and the class name of the CSS animation to apply.
 
@@ -17,12 +17,12 @@ The `add` method adds an animation to the sequence. It takes the HTML element to
 
 **Note:** The animation class should not use any looping. At this time only animations that play once and stop are supported.
 
-#### play(<options>)
+#### `play({options})`
 
 The `play` method starts animating the sequence. The `options` object can set any (or none) of the following settings:
 
   - `loops`: A number indicating the number of times to repeat the sequence. The default value is 0, meaning the sequence will play once through and stop. Setting the value to a negative value will repeat the animation forever.
 
-#### stop()
+#### `stop()`
 
 The `stop` method stops the animation. This will clear the animation class from the element, returning it to its original state.
