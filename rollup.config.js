@@ -7,39 +7,39 @@ export default [
     output: [
       {
         file: 'dist/css-animation-sequencer.esm.js',
-        format: 'es'
-      }
-    ]
+        format: 'es',
+      },
+    ],
   },
   {
     input: 'src/index.js',
     output: [
       {
         file: 'dist/css-animation-sequencer.esm.min.js',
-        format: 'es'
-      }
+        format: 'es',
+      },
     ],
-    plugins: [uglify()]
+    plugins: [uglify()],
   },
   {
     input: 'src/index.js',
     output: [
       {
         file: 'dist/css-animation-sequencer.cjs.js',
-        format: 'cjs'
+        format: 'cjs',
       },
       {
         file: 'dist/css-animation-sequencer.umd.js',
         format: 'umd',
-        name: 'CssAnimationSequencer'
+        name: 'CssAnimationSequencer',
       },
       {
         file: 'dist/css-animation-sequencer.iife.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'CssAnimationSequencer',
+      },
     ],
-    plugins: [buble()]
+    plugins: [buble()],
   },
   {
     input: 'src/index.js',
@@ -47,29 +47,29 @@ export default [
       {
         file: 'example/css-animation-sequencer.iife.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'CssAnimationSequencer',
+      },
     ],
-    plugins: [buble()]
+    plugins: [buble()],
   },
   {
     input: 'src/index.js',
     output: [
       {
         file: 'dist/css-animation-sequencer.cjs.min.js',
-        format: 'cjs'
+        format: 'cjs',
       },
       {
         file: 'dist/css-animation-sequencer.umd.min.js',
         format: 'umd',
-        name: 'CssAnimationSequencer'
+        name: 'CssAnimationSequencer',
       },
       {
         file: 'dist/css-animation-sequencer.iife.min.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'CssAnimationSequencer',
+      },
     ],
-    plugins: [buble(), uglify()]
-  }
+    plugins: [buble(), uglify()],
+  },
 ]
