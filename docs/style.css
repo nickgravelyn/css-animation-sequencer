@@ -1,5 +1,6 @@
 body {
   font-family: "Avenir Next", Avenir, Arial, sans-serif;
+  padding: 50px 10px;
 }
 .example {
   display: flex;
