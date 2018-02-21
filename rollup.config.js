@@ -1,5 +1,12 @@
-import buble from 'rollup-plugin-buble'
+import babel from 'rollup-plugin-babel'
 import uglify from 'rollup-plugin-uglify'
+
+const babelPlugin = babel({
+  exclude: 'node_modules/**',
+  plugins: ['external-helpers'],
+})
+
+const uglifyPlugin = uglify()
 
 export default [
   {
@@ -19,7 +26,7 @@ export default [
         format: 'es',
       },
     ],
-    plugins: [uglify()],
+    plugins: [uglifyPlugin],
   },
   {
     input: 'src/index.js',
@@ -39,7 +46,7 @@ export default [
         name: 'Seashell',
       },
     ],
-    plugins: [buble()],
+    plugins: [babelPlugin],
   },
   {
     input: 'src/index.js',
@@ -50,7 +57,7 @@ export default [
         name: 'Seashell',
       },
     ],
-    plugins: [buble()],
+    plugins: [babelPlugin],
   },
   {
     input: 'src/index.js',
@@ -70,6 +77,6 @@ export default [
         name: 'Seashell',
       },
     ],
-    plugins: [buble(), uglify()],
+    plugins: [babelPlugin, uglifyPlugin],
   },
 ]
