@@ -8,125 +8,44 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Animations from https://daneden.github.io/animate.css/ -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
     <link rel="stylesheet" href="./style.css">
-
     <script type="text/javascript" src="./seashell.iife.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="text-center">
-        <h1 class="display-4">Seashell</h1>
-        <p class="lead">
-            A simple library for CSS animation wrangling.<br>
-            Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.<br>
-            Example animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a>.</p>
-      </div>
-
-      <hr class="my-4">
-
-      <div class="row">
-        <div class="col-sm">
-          Seashell helps manage CSS animations in a Sequence for more interesting animations through composition of separate animations.
+        <div class="text-center">
+            <h1 class="display-4">Seashell</h1>
+            <p class="lead">
+                A small library for dynamic CSS animations.<br>
+                Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.
+            </p>
         </div>
-        <div class="col example">
-          <div id="box1" class="box red animated"></div>
 
-          <script type="text/javascript">
-            (function () {
-              var box1 = document.getElementById('box1')
-              var sequencer = new Seashell.Sequence()
-              sequencer.add(box1, 'bounce')
-              sequencer.add(box1, 'swing')
-              sequencer.play({ loops: -1 })
-            })()
-          </script>
+        <hr class="my-4">
+
+        <div class="row">
+          Seashell provides a simple Timeline class which allows for defining animations in a "tween" style that are then baked into CSS animations and applied in sequence. This allows for dynamic creation of animations while still offloading the animation work to the browser with CSS.
         </div>
-      </div>
 
-      <hr class="my-4">
+        <div class="row example">
+            <div class="big purple box">
+                <div id="box1" class="small pink box absolute"></div>
+            </div>
 
-      <div class="row">
-        <div class="col example">
-          <div id="box2" class="box blue animated"></div>
-          <div id="box3" class="box green animated"></div>
+            <script type="text/javascript">
+                (function () {
+                var box1 = document.getElementById('box1')
 
-          <script type="text/javascript">
-            (function () {
-              var box2 = document.getElementById('box2')
-              var box3 = document.getElementById('box3')
-              var sequencer = new Seashell.Sequence()
-              sequencer.add(box2, 'rubberBand')
-              sequencer.add(box3, 'shake')
-              sequencer.play({ loops: -1 })
-            })()
-          </script>
+                var timeline = new Seashell.Timeline()
+                timeline.set(box1, { left: "0", top: "0" })
+                timeline.to(box1, 1000, { left: "125px", top: "0" })
+                timeline.to(box1, 1000, { left: "125px", top: "125px" })
+                timeline.to(box1, 1000, { left: "0", top: "125px" })
+                timeline.to(box1, 1000, { left: "0", top: "0" })
+                timeline.play({ iterations: Infinity })
+                })()
+            </script>
         </div>
-        <div class="col-sm">
-          Sequences can create relationships between separate DOM elements. When one animation completes, the other begins.
-        </div>
-      </div>
-
-      <hr class="my-4">
-
-      <div class="row">
-        <div class="col-sm">
-          <p>Sequences can repeat once, forever, or any number of times. They can be stopped at any point and can be reused once constructed.</p>
-          <p class="text-center">
-            <button class="btn btn-primary m-1" onclick="playBox4()">Play Once</button>
-            <button class="btn btn-primary m-1" onclick="playBox4(1)">Play Twice</button>
-            <button class="btn btn-primary m-1" onclick="playBox4(-1)">Play Forever</button>
-            <button class="btn btn-primary m-1" onclick="stopBox4()">Stop</button>
-          </p>
-        </div>
-        <div class="col example">
-          <div id="box4" class="box orange animated"></div>
-
-          <script type="text/javascript">
-              var box4 = document.getElementById('box4')
-              var box4Sequencer = new Seashell.Sequence()
-              box4Sequencer.add(box4, 'wobble')
-              box4Sequencer.add(box4, 'tada')
-
-              function playBox4 (loops) {
-                box4Sequencer.play({ loops: loops })
-              }
-
-              function stopBox4 () {
-                box4Sequencer.stop()
-              }
-          </script>
-        </div>
-      </div>
-
-      <hr class="my-4">
-
-      <div class="row">
-        <div class="col example">
-          <div class="box purple">
-            <div id="box6" class="box small pink absolute"></div>
-          </div>
-
-          <script type="text/javascript">
-            (function () {
-              var box6 = document.getElementById('box6')
-
-              var timeline = new Seashell.Timeline()
-              timeline.set(box6, { left: "0", top: "0" })
-              timeline.to(box6, 1000, { left: "125px", top: "0" })
-              timeline.to(box6, 1000, { left: "125px", top: "125px" })
-              timeline.to(box6, 1000, { left: "0", top: "125px" })
-              timeline.to(box6, 1000, { left: "0", top: "0" })
-              timeline.play({ iterations: Infinity })
-            })()
-          </script>
-        </div>
-        <div class="col-sm">
-          <p>Seashell also provides a Timeline which makes it easy to define complicated animations in Javascript that are then executed with CSS animations.</p>
-        </div>
-      </div>
     </div>
   </body>
 </html>
