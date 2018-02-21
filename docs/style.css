@@ -2,26 +2,52 @@ body {
   font-family: "Avenir Next", Avenir, Arial, sans-serif;
   padding: 50px 10px;
 }
+
 .example {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .box {
   width: 125px;
   height: 125px;
   margin: 10px;
   border-radius: 5px;
+  position: relative;
 }
+
+.small {
+  width: 80px;
+  height: 80px;
+}
+
+.absolute {
+  position: absolute;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
 .red {
   background: red;
 }
+
 .blue {
   background: blue;
 }
+
 .green {
   background: green;
 }
+
 .orange {
   background: orange;
+}
+
+.purple {
+  background: purple;
+}
+
+.pink {
+  background: pink;
 }

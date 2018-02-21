@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CSS Animation Sequencer</title>
+    <title>Seashell</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -13,15 +13,14 @@
 
     <link rel="stylesheet" href="./style.css">
 
-    <script type="text/javascript" src="./css-animation-sequencer.iife.js"></script>
+    <script type="text/javascript" src="./seashell.iife.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="text-center">
-        <h1 class="display-4">CSS Animation Sequencer</h1>
-        <p class="m-0">Manage CSS animations in a simple, small library.</p>
-        <p class="m-0">Available on <a href="https://github.com/nickgravelyn/css-animation-sequencer">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.</p>
-        <p class="m-0">View the <a href="./api">API documentation</a> (or view source on this page).</p>
+        <h1 class="display-4">Seashell</h1>
+        <p class="m-0">A simple library for CSS animation wrangling.</p>
+        <p class="m-0">Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.</p>
         <p class="m-0">Example animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a>.</p>
       </div>
 
@@ -29,18 +28,18 @@
 
       <div class="row">
         <div class="col-sm">
-          CSS Animation Sequencer helps manage CSS animations in a sequence for more interesting animations through composition of separate animations.
+          Seashell helps manage CSS animations in a Sequence for more interesting animations through composition of separate animations.
         </div>
         <div class="col example">
           <div id="box1" class="box red animated"></div>
 
           <script type="text/javascript">
-            (function() {
+            (function () {
               var box1 = document.getElementById('box1')
-              var sequencer = new CssAnimationSequencer()
+              var sequencer = new Seashell.Sequence()
               sequencer.add(box1, 'bounce')
               sequencer.add(box1, 'swing')
-              sequencer.play({loops:-1})
+              sequencer.play({ loops: -1 })
             })()
           </script>
         </div>
@@ -54,13 +53,13 @@
           <div id="box3" class="box green animated"></div>
 
           <script type="text/javascript">
-            (function() {
+            (function () {
               var box2 = document.getElementById('box2')
               var box3 = document.getElementById('box3')
-              var sequencer = new CssAnimationSequencer()
+              var sequencer = new Seashell.Sequence()
               sequencer.add(box2, 'rubberBand')
               sequencer.add(box3, 'shake')
-              sequencer.play({loops:-1})
+              sequencer.play({ loops: -1 })
             })()
           </script>
         </div>
@@ -86,18 +85,68 @@
 
           <script type="text/javascript">
               var box4 = document.getElementById('box4')
-              var box4Sequencer = new CssAnimationSequencer()
+              var box4Sequencer = new Seashell.Sequence()
               box4Sequencer.add(box4, 'wobble')
               box4Sequencer.add(box4, 'tada')
 
-              function playBox4(loops) {
-                box4Sequencer.play({loops: loops})
+              function playBox4 (loops) {
+                box4Sequencer.play({ loops: loops })
               }
 
-              function stopBox4() {
+              function stopBox4 () {
                 box4Sequencer.stop()
               }
           </script>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+        <div class="col example">
+          <div id="box5" class="box purple">
+            <div id="box6" class="box small pink absolute"></div>
+          </div>
+
+          <script type="text/javascript">
+            (function () {
+              var box6 = document.getElementById('box6')
+              var builder = new Seashell.AnimationBuilder(
+                'dynamic-animation',
+                {
+                  left: "-100px",
+                  top: "-100px"
+                }
+              )
+              builder.to(100, {
+                left: "100px",
+                top: "-100px"
+              })
+              builder.to(100, {
+                left: "100px",
+                top: "100px"
+              })
+              builder.to(100, {
+                left: "-100px",
+                top: "100px"
+              })
+              builder.to(100, {
+                left: "-100px",
+                top: "-100px"
+              })
+
+              var dynamicStyle = document.createElement('style')
+              dynamicStyle.textContent = builder.buildCss()
+              document.head.appendChild(dynamicStyle)
+
+              var box6Sequence = new Seashell.Sequence()
+              box6Sequence.add('dynamic-animation')
+              box6Sequence.play({ loops: -1 })
+            });
+          </script>
+        </div>
+        <div class="col-sm">
+          <p>Seashell also provides an AnimationBuilder which makes it easy to dynamically build keyframe based CSS animations, great for animating to elements on a page.</p>
         </div>
       </div>
     </div>
