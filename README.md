@@ -6,7 +6,7 @@ Checkout the [example](https://nickgravelyn.github.io/seashell) where you can in
 
 ## Usage
 
-For packges:
+### For Built Apps
 
 ```
 yarn add nickgravelyn/seashell
@@ -28,4 +28,6 @@ timeline.to(...)
 timeline.run(...)
 ```
 
-For websites, use `dist/seashell.iife.js` which is precompiled to work in the browser. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.
+### For Non-Built Apps
+
+Simply take [dist/seashell.iife.js](dist/seashell.iife.js) which is precompiled to work in the browser. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.
