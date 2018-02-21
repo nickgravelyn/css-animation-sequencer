@@ -1,6 +1,6 @@
 {
   "name": "seashell-animation",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A small library for dynamic CSS animations.",
   "main": "dist/seashell.cjs.js",
   "module": "dist/seashell.esm.js",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/nickgravelyn/seashell#readme",
   "dependencies": {},
   "devDependencies": {
-    "@nickgravelyn/eslint-config": "nickgravelyn/eslint-config",
+    "@nickgravelyn/eslint-config": "^1.1.0",
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
