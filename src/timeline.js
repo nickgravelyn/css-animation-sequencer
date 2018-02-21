@@ -5,6 +5,7 @@ import { RunStep } from './run-step'
 export class Timeline {
   constructor () {
     this._steps = []
+    this._childTimelines = []
     this._baked = false
 
     this._nextExecute = () => {
@@ -26,11 +27,13 @@ export class Timeline {
   run (timeline) {
     this._throwIfBaked()
     this._steps.push(new RunStep(timeline))
+
+    timeline._bakedByParent = true
+    this._childTimelines.push(timeline)
   }
 
   play (options = {}) {
-    if (!this._baked) this._bake()
-
+    this._bake()
     this._iterations = options.iterations || 1
     this._stepIndex = 0
     this._runStep()
@@ -38,9 +41,12 @@ export class Timeline {
 
   stop () {
     this._steps[this._stepIndex].stop()
-    this._styleElement.parentNode.removeChild(this._styleElement)
-    this._styleElement = null
-    this._baked = false
+
+    if (!this._bakedByParent) {
+      this._styleElement.parentNode.removeChild(this._styleElement)
+      this._styleElement = null
+      this._baked = false
+    }
   }
 
   _throwIfBaked () {
@@ -68,16 +74,26 @@ export class Timeline {
 
   _bake () {
     if (this._baked) return
+    if (this._bakedByParent) return
 
     this._styleElement = document.createElement('style')
-    for (let i = 0; i < this._steps.length; ++i) {
-      const css = this._steps[i].createCss()
-      if (css) {
-        this._styleElement.textContent += `${css}\n`
-      }
+    this._styleElement.textContent += this._createCss()
+    for (let i = 0; i < this._childTimelines.length; ++i) {
+      this._styleElement.textContent += this._childTimelines[i]._createCss()
     }
     document.head.appendChild(this._styleElement)
 
     this._baked = true
+  }
+
+  _createCss () {
+    let timelineCss = ''
+    for (let i = 0; i < this._steps.length; ++i) {
+      const css = this._steps[i].createCss()
+      if (css) {
+        timelineCss += `${css}\n`
+      }
+    }
+    return timelineCss
   }
 }

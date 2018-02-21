@@ -108,6 +108,7 @@ var Timeline = function () {
     classCallCheck(this, Timeline);
 
     this._steps = [];
+    this._childTimelines = [];
     this._baked = false;
 
     this._nextExecute = function () {
@@ -129,13 +130,15 @@ var Timeline = function () {
   Timeline.prototype.run = function run(timeline) {
     this._throwIfBaked();
     this._steps.push(new RunStep(timeline));
+
+    timeline._bakedByParent = true;
+    this._childTimelines.push(timeline);
   };
 
   Timeline.prototype.play = function play() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    if (!this._baked) this._bake();
-
+    this._bake();
     this._iterations = options.iterations || 1;
     this._stepIndex = 0;
     this._runStep();
@@ -143,9 +146,12 @@ var Timeline = function () {
 
   Timeline.prototype.stop = function stop() {
     this._steps[this._stepIndex].stop();
-    this._styleElement.parentNode.removeChild(this._styleElement);
-    this._styleElement = null;
-    this._baked = false;
+
+    if (!this._bakedByParent) {
+      this._styleElement.parentNode.removeChild(this._styleElement);
+      this._styleElement = null;
+      this._baked = false;
+    }
   };
 
   Timeline.prototype._throwIfBaked = function _throwIfBaked() {
@@ -173,17 +179,27 @@ var Timeline = function () {
 
   Timeline.prototype._bake = function _bake() {
     if (this._baked) return;
+    if (this._bakedByParent) return;
 
     this._styleElement = document.createElement('style');
-    for (var i = 0; i < this._steps.length; ++i) {
-      var css = this._steps[i].createCss();
-      if (css) {
-        this._styleElement.textContent += css + '\n';
-      }
+    this._styleElement.textContent += this._createCss();
+    for (var i = 0; i < this._childTimelines.length; ++i) {
+      this._styleElement.textContent += this._childTimelines[i]._createCss();
     }
     document.head.appendChild(this._styleElement);
 
     this._baked = true;
+  };
+
+  Timeline.prototype._createCss = function _createCss() {
+    var timelineCss = '';
+    for (var i = 0; i < this._steps.length; ++i) {
+      var css = this._steps[i].createCss();
+      if (css) {
+        timelineCss += css + '\n';
+      }
+    }
+    return timelineCss;
   };
 
   return Timeline;
