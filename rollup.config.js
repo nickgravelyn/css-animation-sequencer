@@ -14,6 +14,7 @@ export default [
         format: 'es',
       },
     ],
+    plugins: [babelPlugin],
   },
   {
     input: 'src/index.js',
