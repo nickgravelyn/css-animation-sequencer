@@ -1,4 +1,4 @@
-import { AnimationBuilder } from '../src'
+import { AnimationBuilder } from './animationbuilder'
 
 test('it makes css class for animation', () => {
   const testObj = new AnimationBuilder('anim', {})

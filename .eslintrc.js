@@ -3,7 +3,7 @@ module.exports = {
   extends: ['@nickgravelyn/eslint-config'],
   overrides: [
     {
-      files: ['spec/*.js'],
+      files: ['*.test.js'],
       env: {
         'jest/globals': true,
       },

@@ -19,10 +19,10 @@
     <div class="container">
       <div class="text-center">
         <h1 class="display-4">Seashell</h1>
-        <p class="m-0">A simple library for CSS animation wrangling.</p>
-        <p class="m-0">Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.</p>
-        <p class="m-0">View source to see code for each example. Documentation coming soon.</p>
-        <p class="m-0">Example animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a>.</p>
+        <p class="lead">
+            A simple library for CSS animation wrangling.<br>
+            Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.<br>
+            Example animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a>.</p>
       </div>
 
       <hr class="my-4">
@@ -111,28 +111,20 @@
 
           <script type="text/javascript">
             (function () {
-              var builder = new Seashell.AnimationBuilder(
-                'box6',
-                { left: "-10px", top: "-10px" }
-              )
-              builder.to(1000, { left: "135px", top: "-10px" })
-              builder.to(1000, { left: "135px", top: "135px" })
-              builder.to(1000, { left: "-10px", top: "135px" })
-              builder.to(1000, { left: "-10px", top: "-10px" })
-
-              var dynamicStyle = document.createElement('style')
-              dynamicStyle.textContent = builder.buildCss()
-              document.head.appendChild(dynamicStyle)
-
               var box6 = document.getElementById('box6')
-              var box6Sequence = new Seashell.Sequence()
-              box6Sequence.add(box6, 'box6')
-              box6Sequence.play({ loops: -1 })
+
+              var timeline = new Seashell.Timeline()
+              timeline.set(box6, { left: "0", top: "0" })
+              timeline.to(box6, 1000, { left: "125px", top: "0" })
+              timeline.to(box6, 1000, { left: "125px", top: "125px" })
+              timeline.to(box6, 1000, { left: "0", top: "125px" })
+              timeline.to(box6, 1000, { left: "0", top: "0" })
+              timeline.play({ iterations: Infinity })
             })()
           </script>
         </div>
         <div class="col-sm">
-          <p>Seashell also provides an AnimationBuilder which makes it easy to dynamically build keyframe based CSS animations, for when you can't define animations up front.</p>
+          <p>Seashell also provides a Timeline which makes it easy to define complicated animations in Javascript that are then executed with CSS animations.</p>
         </div>
       </div>
     </div>
