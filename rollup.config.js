@@ -6,70 +6,70 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/css-animation-sequencer.esm.js',
-        format: 'es'
-      }
-    ]
-  },
-  {
-    input: 'src/index.js',
-    output: [
-      {
-        file: 'dist/css-animation-sequencer.esm.min.js',
-        format: 'es'
-      }
+        file: 'dist/seashell.esm.js',
+        format: 'es',
+      },
     ],
-    plugins: [uglify()]
   },
   {
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/css-animation-sequencer.cjs.js',
-        format: 'cjs'
+        file: 'dist/seashell.esm.min.js',
+        format: 'es',
+      },
+    ],
+    plugins: [uglify()],
+  },
+  {
+    input: 'src/index.js',
+    output: [
+      {
+        file: 'dist/seashell.cjs.js',
+        format: 'cjs',
       },
       {
-        file: 'dist/css-animation-sequencer.umd.js',
+        file: 'dist/seashell.umd.js',
         format: 'umd',
-        name: 'CssAnimationSequencer'
+        name: 'Seashell',
       },
       {
-        file: 'dist/css-animation-sequencer.iife.js',
+        file: 'dist/seashell.iife.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'Seashell',
+      },
     ],
-    plugins: [buble()]
+    plugins: [buble()],
   },
   {
     input: 'src/index.js',
     output: [
       {
-        file: 'example/css-animation-sequencer.iife.js',
+        file: 'docs/seashell.iife.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'Seashell',
+      },
     ],
-    plugins: [buble()]
+    plugins: [buble()],
   },
   {
     input: 'src/index.js',
     output: [
       {
-        file: 'dist/css-animation-sequencer.cjs.min.js',
-        format: 'cjs'
+        file: 'dist/seashell.cjs.min.js',
+        format: 'cjs',
       },
       {
-        file: 'dist/css-animation-sequencer.umd.min.js',
+        file: 'dist/seashell.umd.min.js',
         format: 'umd',
-        name: 'CssAnimationSequencer'
+        name: 'Seashell',
       },
       {
-        file: 'dist/css-animation-sequencer.iife.min.js',
+        file: 'dist/seashell.iife.min.js',
         format: 'iife',
-        name: 'CssAnimationSequencer'
-      }
+        name: 'Seashell',
+      },
     ],
-    plugins: [buble(), uglify()]
-  }
+    plugins: [buble(), uglify()],
+  },
 ]

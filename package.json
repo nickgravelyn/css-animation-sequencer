@@ -1,7 +1,7 @@
 {
-  "name": "css-animation-sequencer",
-  "version": "0.1.0",
-  "description": "Helpers for sequencing CSS animations.",
+  "name": "seashell",
+  "version": "0.2.0",
+  "description": "A simple library for CSS animation wrangling.",
   "files": [
     "dist"
   ],
@@ -9,34 +9,29 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "docs": "http-server docs -a localhost -c-1",
-    "pretty": "prettier-standard *.js src/*.js"
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nickgravelyn/css-animation-sequencer.git"
+    "url": "git+https://github.com/nickgravelyn/seashell.git"
   },
   "author": "Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nickgravelyn/css-animation-sequencer/issues"
+    "url": "https://github.com/nickgravelyn/seashell/issues"
   },
-  "homepage": "https://github.com/nickgravelyn/css-animation-sequencer#readme",
+  "homepage": "https://github.com/nickgravelyn/seashell#readme",
   "devDependencies": {
+    "@nickgravelyn/eslint-config": "nickgravelyn/eslint-config",
     "buble": "^0.19.3",
+    "eslint": "^4.18.1",
     "http-server": "^0.11.1",
     "husky": "^0.15.0-rc.8",
     "lint-staged": "^6.1.0",
-    "prettier-standard": "^8.0.0",
     "rollup": "^0.56.0",
     "rollup-plugin-buble": "^0.19.2",
-    "rollup-plugin-uglify": "^3.0.0",
-    "standard": "^10.0.3"
-  },
-  "standard": {
-    "ignore": [
-      "dist",
-      "node_modules"
-    ]
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "husky": {
     "hooks": {
@@ -46,7 +41,7 @@
   "lint-staged": {
     "linters": {
       "*.js": [
-        "prettier-standard",
+        "yarn lint-fix",
         "git add"
       ]
     }
