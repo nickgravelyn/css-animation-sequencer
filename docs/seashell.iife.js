@@ -1,6 +1,14 @@
 var Seashell = (function (exports) {
 'use strict';
 
+var applyState = (function (element, state) {
+  for (var key in state) {
+    if (state.hasOwnProperty(key)) {
+      element.style[key] = state[key];
+    }
+  }
+});
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -25,18 +33,6 @@ var createClass = function () {
   };
 }();
 
-var randomInt = function randomInt() {
-  return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-};
-
-var applyState = function applyState(element, state) {
-  for (var key in state) {
-    if (state.hasOwnProperty(key)) {
-      element.style[key] = state[key];
-    }
-  }
-};
-
 var SetStep = function () {
   function SetStep(element, state) {
     classCallCheck(this, SetStep);
@@ -60,6 +56,10 @@ var SetStep = function () {
   }]);
   return SetStep;
 }();
+
+var randomInt = function randomInt() {
+  return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+};
 
 var ToStep = function () {
   function ToStep(element, duration, state) {
@@ -109,9 +109,34 @@ var ToStep = function () {
   return ToStep;
 }();
 
+var RunStep = function () {
+  function RunStep(timeline) {
+    classCallCheck(this, RunStep);
+
+    this._timeline = timeline;
+  }
+
+  createClass(RunStep, [{
+    key: "start",
+    value: function start(next) {
+      this._timeline.play();
+      next();
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this._timeline.stop();
+    }
+  }, {
+    key: "createCss",
+    value: function createCss() {}
+  }]);
+  return RunStep;
+}();
+
 var Timeline = function () {
   function Timeline() {
-    var _this2 = this;
+    var _this = this;
 
     classCallCheck(this, Timeline);
 
@@ -119,22 +144,28 @@ var Timeline = function () {
     this._baked = false;
 
     this._nextExecute = function () {
-      _this2._toNextStep();
-      _this2._runStep();
+      _this._toNextStep();
+      _this._runStep();
     };
   }
 
   createClass(Timeline, [{
     key: 'set',
     value: function set$$1(element, state) {
-      if (this._baked) throw new Error('Cannot add to a Timeline after play is called');
+      this._throwIfBaked();
       this._steps.push(new SetStep(element, state));
     }
   }, {
     key: 'to',
     value: function to(element, duration, state) {
-      if (this._baked) throw new Error('Cannot add to a Timeline after play is called');
+      this._throwIfBaked();
       this._steps.push(new ToStep(element, duration, state));
+    }
+  }, {
+    key: 'run',
+    value: function run(timeline) {
+      this._throwIfBaked();
+      this._steps.push(new RunStep(timeline));
     }
   }, {
     key: 'play',
@@ -154,6 +185,11 @@ var Timeline = function () {
       this._styleElement.parentNode.removeChild(this._styleElement);
       this._styleElement = null;
       this._baked = false;
+    }
+  }, {
+    key: '_throwIfBaked',
+    value: function _throwIfBaked() {
+      if (this._baked) throw new Error('Cannot add to a Timeline after play is called');
     }
   }, {
     key: '_runStep',

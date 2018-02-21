@@ -34,15 +34,48 @@
 
             <script type="text/javascript">
                 (function () {
-                var box1 = document.getElementById('box1')
+                    var box1 = document.getElementById('box1')
 
-                var timeline = new Seashell.Timeline()
-                timeline.set(box1, { left: "0", top: "0" })
-                timeline.to(box1, 1000, { left: "125px", top: "0" })
-                timeline.to(box1, 1000, { left: "125px", top: "125px" })
-                timeline.to(box1, 1000, { left: "0", top: "125px" })
-                timeline.to(box1, 1000, { left: "0", top: "0" })
-                timeline.play({ iterations: Infinity })
+                    var timeline = new Seashell.Timeline()
+                    timeline.set(box1, { left: "0", top: "0" })
+                    timeline.to(box1, 1000, { left: "125px", top: "0" })
+                    timeline.to(box1, 1000, { left: "125px", top: "125px" })
+                    timeline.to(box1, 1000, { left: "0", top: "125px" })
+                    timeline.to(box1, 1000, { left: "0", top: "0" })
+                    timeline.play({ iterations: Infinity })
+                })()
+            </script>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+          Timelines can start other timelines which then run in parallel to the original timeline. This allows for synchronized but simultaneous animations.
+        </div>
+
+        <div class="row example">
+            <div id="box2" class="big orange box"></div>
+            <div id="box3" class="big red box"></div>
+
+            <script type="text/javascript">
+                (function () {
+                    var box2 = document.getElementById('box2')
+                    var box3 = document.getElementById('box3')
+
+                    var box3Timeline = new Seashell.Timeline()
+                    box3Timeline.to(box3, 200, { transform: 'rotate(-45deg)' })
+                    box3Timeline.to(box3, 400, { transform: 'rotate(45deg)' })
+                    box3Timeline.to(box3, 200, { transform: 'rotate(0)' })
+
+                    var box2Timeline = new Seashell.Timeline()
+                    box2Timeline.to(box2, 1000, { transform: 'translateY(100px)' })
+                    box2Timeline.to(box2, 1000, { transform: 'translateY(0)' })
+                    box2Timeline.run(box3Timeline)
+                    box2Timeline.to(box2, 1000, { transform: 'translateY(-100px)' })
+                    box2Timeline.to(box2, 1000, { transform: 'translateY(0)' })
+                    box2Timeline.run(box3Timeline)
+
+                    box2Timeline.play({ iterations: Infinity })
                 })()
             </script>
         </div>

@@ -1,65 +1,6 @@
-const randomInt = () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
-
-const applyState = (element, state) => {
-  for (const key in state) {
-    if (state.hasOwnProperty(key)) {
-      element.style[key] = state[key]
-    }
-  }
-}
-
-class SetStep {
-  constructor (element, state) {
-    this._element = element
-    this._state = state
-  }
-
-  start (next) {
-    applyState(this._element, this._state)
-    next()
-  }
-
-  stop () {}
-  createCss () {}
-}
-
-class ToStep {
-  constructor (element, duration, state) {
-    this._element = element
-    this._duration = duration
-    this._state = state
-    this._animation = `seashell-${randomInt()}`
-  }
-
-  start (next) {
-    this._listener = () => {
-      this.stop()
-      applyState(this._element, this._state)
-      next()
-    }
-
-    this._element.addEventListener('animationend', this._listener)
-    this._element.classList.add(this._animation)
-  }
-
-  stop () {
-    this._element.removeEventListener('animationend', this._listener)
-    this._element.classList.remove(this._animation)
-  }
-
-  createCss (timelineId) {
-    let css = `.${this._animation} { animation: ${this._animation} ${this._duration / 1000}s both; } `
-    css += `@keyframes ${this._animation} { to { `
-
-    for (const key in this._state) {
-      if (this._state.hasOwnProperty(key)) {
-        css += `${key}: ${this._state[key]}; `
-      }
-    }
-
-    return css + '} }'
-  }
-}
+import { SetStep } from './set-step'
+import { ToStep } from './to-step'
+import { RunStep } from './run-step'
 
 export class Timeline {
   constructor () {
@@ -73,13 +14,18 @@ export class Timeline {
   }
 
   set (element, state) {
-    if (this._baked) throw new Error('Cannot add to a Timeline after play is called')
+    this._throwIfBaked()
     this._steps.push(new SetStep(element, state))
   }
 
   to (element, duration, state) {
-    if (this._baked) throw new Error('Cannot add to a Timeline after play is called')
+    this._throwIfBaked()
     this._steps.push(new ToStep(element, duration, state))
+  }
+
+  run (timeline) {
+    this._throwIfBaked()
+    this._steps.push(new RunStep(timeline))
   }
 
   play (options = {}) {
@@ -95,6 +41,10 @@ export class Timeline {
     this._styleElement.parentNode.removeChild(this._styleElement)
     this._styleElement = null
     this._baked = false
+  }
+
+  _throwIfBaked () {
+    if (this._baked) throw new Error('Cannot add to a Timeline after play is called')
   }
 
   _runStep () {
