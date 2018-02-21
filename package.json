@@ -1,6 +1,6 @@
 {
   "name": "seashell",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A simple library for CSS animation wrangling.",
   "main": "dist/seashell.cjs.js",
   "module": "dist/seashell.esm.js",
