@@ -9,19 +9,19 @@ Checkout the [example](https://nickgravelyn.github.io/seashell) where you can in
 ### For Built Apps
 
 ```
-yarn add nickgravelyn/seashell
+yarn add seashell-animation
 ```
 
 or
-  
+
 ```
-npm add --save nickgravelyn/seashell
+npm add --save seashell-animation
 ```
-  
+
 Then you can import and use the library:
 
 ```js
-import { Timeline } from 'seashell'
+import { Timeline } from 'seashell-animation'
 
 let timeline = new Timeline()
 timeline.to(...)
