@@ -1,5 +1,5 @@
 {
-  "name": "seashell",
+  "name": "seashell-animation",
   "version": "0.5.1",
   "description": "A simple library for CSS animation wrangling.",
   "main": "dist/seashell.cjs.js",
