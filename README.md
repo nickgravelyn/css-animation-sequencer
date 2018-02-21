@@ -1,8 +1,8 @@
-# CSS Animation Sequencer
+# Seashell
 
-CSS animations are pretty great but often one wants to chain together some animations on one or more elements. Enter the CSS Animation Sequencer.
+CSS animations are pretty great. Seashell makes them better by providing a Sequence that lets you chain together animations on multiple objects to create interesting effects and an AnimationBuilder that helps you dynamically generate CSS keyframes animations.
 
-Checkout the [example](https://nickgravelyn.github.io/css-animation-sequencer) or the [API docs](https://nickgravelyn.github.io/css-animation-sequencer/api).
+Checkout the [example](https://nickgravelyn.github.io/seashell) where you can inspect the source to see how the library works.
 
 # Get It
 
@@ -10,7 +10,7 @@ Once the library is more complete I will publish it to NPM, but until then there
 
 ## IIFE Version
 
-You can grab the latest build of the library as an IIFE from [the docs folder](docs/css-animation-sequencer.iife.js).
+You can grab the latest build of the library as an IIFE from [the docs folder](docs/seashell.iife.js).
 
 ## DIY
 
@@ -24,4 +24,4 @@ That will generate a `dist` folder with CommonJS, ES Module, IIFE, and UMD build
 
 # Development
 
-Use `yarn watch` to build on changes. `yarn docs` to run an HTTP server on the docs directory which is used for Github Pages.
+Use `yarn watch` to build on changes. `yarn docs` to run an HTTP server on the docs directory which is used for Github Pages. `yarn test` runs the tests.
