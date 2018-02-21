@@ -1,6 +1,6 @@
 {
   "name": "seashell-animation",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A simple library for making and sequencing CSS animations.",
   "main": "dist/seashell.cjs.js",
   "module": "dist/seashell.esm.js",
@@ -25,6 +25,7 @@
     "url": "https://github.com/nickgravelyn/seashell/issues"
   },
   "homepage": "https://github.com/nickgravelyn/seashell#readme",
+  "dependencies": {},
   "devDependencies": {
     "@nickgravelyn/eslint-config": "nickgravelyn/eslint-config",
     "babel-core": "^6.26.0",
@@ -52,6 +53,5 @@
         "git add"
       ]
     }
-  },
-  "dependencies": {}
+  }
 }
