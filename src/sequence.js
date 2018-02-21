@@ -5,7 +5,7 @@ class Animation {
 
     this._listener = () => {
       this.stop()
-      sequencer._doNextAnimation()
+      setTimeout(() => sequencer._doNextAnimation())
     }
   }
 

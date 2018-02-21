@@ -9,7 +9,7 @@ var Animation = function Animation (element, className, sequencer) {
 
   this._listener = function () {
     this$1.stop();
-    sequencer._doNextAnimation();
+    setTimeout(function () { return sequencer._doNextAnimation(); });
   };
 };
 
@@ -54,16 +54,41 @@ Sequence.prototype._doNextAnimation = function _doNextAnimation () {
   this._animations[this._next++].start();
 };
 
+function keyframeFromState (state) {
+  var keyframe = '';
+
+  for (var key in state) {
+    if (state.hasOwnProperty(key)) {
+      keyframe += key + ": " + (state[key]) + "; ";
+    }
+  }
+
+  return ("{ " + keyframe + "}")
+}
+
 var AnimationBuilder = function AnimationBuilder (name, initialState) {
   this._name = name;
   this._initialState = initialState;
+  this._keyframes = [];
 };
 
-AnimationBuilder.prototype.to = function to (duration, nextState) {
+AnimationBuilder.prototype.to = function to (duration, state) {
+  this._keyframes.push({ duration: duration, state: state });
 };
 
 AnimationBuilder.prototype.buildCss = function buildCss () {
-  return ''
+  var totalDuration = this._keyframes.reduce(function (a, c) { return a + c.duration; }, 0);
+
+  var css = '';
+  css += "@keyframes " + (this._name) + " { 0% " + (keyframeFromState(this._initialState)) + " ";
+  var runningPercentage = 0;
+  this._keyframes.forEach(function (f) {
+    runningPercentage += f.duration / totalDuration * 100;
+    css += runningPercentage + "% " + (keyframeFromState(f.state)) + " ";
+  });
+  css += '}';
+  css += " ." + (this._name) + " { animation-name: " + (this._name) + "; animation-duration: " + (totalDuration / 1000) + "s; animation-fill-mode: both; }";
+  return css
 };
 
 exports.Sequence = Sequence;

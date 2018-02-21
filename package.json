@@ -10,7 +10,8 @@
     "watch": "rollup -c -w",
     "docs": "http-server docs -a localhost -c-1",
     "lint": "eslint .",
-    "lint-fix": "eslint --fix ."
+    "lint-fix": "eslint --fix .",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,13 @@
   "homepage": "https://github.com/nickgravelyn/seashell#readme",
   "devDependencies": {
     "@nickgravelyn/eslint-config": "nickgravelyn/eslint-config",
+    "babel-preset-env": "^1.6.1",
     "buble": "^0.19.3",
     "eslint": "^4.18.1",
+    "eslint-plugin-jest": "^21.12.2",
     "http-server": "^0.11.1",
     "husky": "^0.15.0-rc.8",
+    "jest": "^22.4.0",
     "lint-staged": "^6.1.0",
     "rollup": "^0.56.0",
     "rollup-plugin-buble": "^0.19.2",
