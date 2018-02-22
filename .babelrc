@@ -1,14 +1,14 @@
 {
-    "presets": [
-        ["env", {
-            "modules": false,
-            "spec": false,
-            "loose": true
-        }]
-    ],
-    "env": {
-        "test": {
-            "presets": [["env"]]
-        }
+  "presets": [
+    ["env", {
+      "modules": false,
+      "spec": false,
+      "loose": true
+    }]
+  ],
+  "env": {
+    "test": {
+      "presets": [["env"]]
     }
+  }
 }
