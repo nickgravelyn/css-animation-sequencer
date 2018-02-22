@@ -1,17 +1,20 @@
 export class PredefinedStep {
-  constructor (element, className) {
+  constructor (element, className, { async } = { async: false }) {
     this.element = element
     this.animation = className
+    this.async = async
   }
 
   start (next) {
     this.listener = () => {
       this.stop()
-      next()
+      if (!this.async) { next() }
     }
 
     this.element.addEventListener('animationend', this.listener)
     this.element.classList.add(this.animation)
+
+    if (this.async) { next() }
   }
 
   stop () {

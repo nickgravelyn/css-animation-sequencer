@@ -25,12 +25,24 @@ it('creates a listener that calls stop and next', () => {
   step.stop = jest.fn()
   const next = jest.fn()
   step.start(next)
+
   expect(next).not.toHaveBeenCalled()
   expect(step.stop).not.toHaveBeenCalled()
-
   step.listener()
+  expect(next).toHaveBeenCalled()
+  expect(step.stop).toHaveBeenCalled()
+})
+
+it('creates a listener that calls stop but calls next immediately if async is true', () => {
+  const elem = makeFakeElem()
+  const step = new PredefinedStep(elem, 'anim-class', { async: true })
+  step.stop = jest.fn()
+  const next = jest.fn()
+  step.start(next)
 
   expect(next).toHaveBeenCalled()
+  expect(step.stop).not.toHaveBeenCalled()
+  step.listener()
   expect(step.stop).toHaveBeenCalled()
 })
 

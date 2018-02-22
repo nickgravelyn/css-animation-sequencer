@@ -80,15 +80,18 @@ var TweenStep = function () {
 }();
 
 var TimelineStep = function () {
-  function TimelineStep(timeline, options) {
+  function TimelineStep(timeline) {
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { async: false },
+        async = _ref.async;
+
     classCallCheck(this, TimelineStep);
 
     this.timeline = timeline;
-    this.options = options || {};
+    this.async = async;
   }
 
   TimelineStep.prototype.start = function start(next) {
-    if (this.options.async === true) {
+    if (this.async === true) {
       this.timeline.start();
       next();
     } else {
@@ -109,10 +112,14 @@ var TimelineStep = function () {
 
 var PredefinedStep = function () {
   function PredefinedStep(element, className) {
+    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { async: false },
+        async = _ref.async;
+
     classCallCheck(this, PredefinedStep);
 
     this.element = element;
     this.animation = className;
+    this.async = async;
   }
 
   PredefinedStep.prototype.start = function start(next) {
@@ -120,11 +127,13 @@ var PredefinedStep = function () {
 
     this.listener = function () {
       _this.stop();
-      next();
+      if (!_this.async) next();
     };
 
     this.element.addEventListener('animationend', this.listener);
     this.element.classList.add(this.animation);
+
+    if (this.async) next();
   };
 
   PredefinedStep.prototype.stop = function stop() {
@@ -207,7 +216,9 @@ var Timeline = function () {
   Timeline.prototype.runStep = function runStep() {
     if (this.iterations === 0) {
       this.stop();
-      if (this.onComplete) this.onComplete();
+      if (this.onComplete) {
+        this.onComplete();
+      }
       return;
     }
 

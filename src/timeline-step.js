@@ -1,11 +1,11 @@
 export class TimelineStep {
-  constructor (timeline, options) {
+  constructor (timeline, { async } = { async: false }) {
     this.timeline = timeline
-    this.options = options || {}
+    this.async = async
   }
 
   start (next) {
-    if (this.options.async === true) {
+    if (this.async === true) {
       this.timeline.start()
       next()
     } else {
