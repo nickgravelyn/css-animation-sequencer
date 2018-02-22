@@ -1,21 +1,21 @@
 export class PredefinedStep {
   constructor (element, className) {
-    this._element = element
-    this._animation = className
+    this.element = element
+    this.animation = className
   }
 
   start (next) {
-    this._listener = () => {
+    this.listener = () => {
       this.stop()
       next()
     }
 
-    this._element.addEventListener('animationend', this._listener)
-    this._element.classList.add(this._animation)
+    this.element.addEventListener('animationend', this.listener)
+    this.element.classList.add(this.animation)
   }
 
   stop () {
-    this._element.removeEventListener('animationend', this._listener)
-    this._element.classList.remove(this._animation)
+    this.element.removeEventListener('animationend', this.listener)
+    this.element.classList.remove(this.animation)
   }
 }

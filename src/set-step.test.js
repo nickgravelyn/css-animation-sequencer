@@ -1,15 +1,17 @@
 import { SetStep } from './set-step'
 
-it('applies state and calls next on start', () => {
+it('applies state on start', () => {
   const element = { style: { } }
   const state = { a: 5 }
 
-  let calledNext = false
-  const next = () => { calledNext = true }
-
   const step = new SetStep(element, state)
-  step.start(next)
-
+  step.start(() => {})
   expect(element).toEqual({ style: { a: 5 } })
-  expect(calledNext).toEqual(true)
+})
+
+it('calls next on start', () => {
+  const step = new SetStep({}, {})
+  const next = jest.fn()
+  step.start(next)
+  expect(next).toHaveBeenCalled()
 })

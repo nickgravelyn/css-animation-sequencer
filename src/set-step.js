@@ -2,12 +2,12 @@ import applyState from './apply-state'
 
 export class SetStep {
   constructor (element, state) {
-    this._element = element
-    this._state = state
+    this.element = element
+    this.state = state
   }
 
   start (next) {
-    applyState(this._element, this._state)
+    applyState(this.element, this.state)
     next()
   }
 }

@@ -19,12 +19,12 @@ var SetStep = function () {
   function SetStep(element, state) {
     classCallCheck(this, SetStep);
 
-    this._element = element;
-    this._state = state;
+    this.element = element;
+    this.state = state;
   }
 
   SetStep.prototype.start = function start(next) {
-    applyState(this._element, this._state);
+    applyState(this.element, this.state);
     next();
   };
 
@@ -35,92 +35,96 @@ var randomInt = function randomInt() {
   return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
 };
 
-var ToStep = function () {
-  function ToStep(element, duration, state) {
-    classCallCheck(this, ToStep);
+var TweenStep = function () {
+  function TweenStep(element, duration, state) {
+    classCallCheck(this, TweenStep);
 
-    this._element = element;
-    this._duration = duration;
-    this._state = state;
-    this._animation = 'seashell-' + randomInt();
+    this.element = element;
+    this.duration = duration;
+    this.state = state;
+    this.animation = 'seashell-' + randomInt();
   }
 
-  ToStep.prototype.start = function start(next) {
+  TweenStep.prototype.start = function start(next) {
     var _this = this;
 
-    this._listener = function () {
+    this.listener = function () {
       _this.stop();
-      applyState(_this._element, _this._state);
+      applyState(_this.element, _this.state);
       next();
     };
 
-    this._element.addEventListener('animationend', this._listener);
-    this._element.classList.add(this._animation);
+    this.element.addEventListener('animationend', this.listener);
+    this.element.classList.add(this.animation);
   };
 
-  ToStep.prototype.stop = function stop() {
-    this._element.removeEventListener('animationend', this._listener);
-    this._element.classList.remove(this._animation);
+  TweenStep.prototype.stop = function stop() {
+    this.element.removeEventListener('animationend', this.listener);
+    this.element.classList.remove(this.animation);
   };
 
-  ToStep.prototype.createCss = function createCss(timelineId) {
-    var css = '.' + this._animation + ' { animation: ' + this._animation + ' ' + this._duration / 1000 + 's both; } ';
-    css += '@keyframes ' + this._animation + ' { to { ';
+  TweenStep.prototype.createCss = function createCss(timelineId) {
+    var css = '.' + this.animation + ' { animation: ' + this.animation + ' ' + this.duration / 1000 + 's both; } ';
+    css += '@keyframes ' + this.animation + ' { to { ';
 
-    for (var key in this._state) {
-      if (this._state.hasOwnProperty(key)) {
-        css += key + ': ' + this._state[key] + '; ';
+    for (var key in this.state) {
+      if (this.state.hasOwnProperty(key)) {
+        css += key + ': ' + this.state[key] + '; ';
       }
     }
 
     return css + '} }';
   };
 
-  return ToStep;
+  return TweenStep;
 }();
 
-var RunStep = function () {
-  function RunStep(timeline) {
-    classCallCheck(this, RunStep);
+var TimelineStep = function () {
+  function TimelineStep(timeline) {
+    classCallCheck(this, TimelineStep);
 
-    this._timeline = timeline;
+    this.timeline = timeline;
   }
 
-  RunStep.prototype.start = function start(next) {
-    this._timeline.start();
+  TimelineStep.prototype.start = function start(next) {
+    this.timeline.start();
     next();
   };
 
-  RunStep.prototype.stop = function stop() {
-    this._timeline.stop();
+  TimelineStep.prototype.stop = function stop() {
+    this.timeline.stop();
   };
 
-  return RunStep;
+  TimelineStep.prototype.createCss = function createCss() {
+    return this.timeline.createCss();
+  };
+
+  return TimelineStep;
 }();
 
 var PredefinedStep = function () {
   function PredefinedStep(element, className) {
     classCallCheck(this, PredefinedStep);
 
-    this._element = element;
-    this._animation = className;
+    this.element = element;
+    this.animation = className;
   }
 
   PredefinedStep.prototype.start = function start(next) {
     var _this = this;
 
-    this._listener = function () {
+    this.listener = function () {
       _this.stop();
       next();
     };
 
-    this._element.addEventListener('animationend', this._listener);
-    this._element.classList.add(this._animation);
+    this.element.addEventListener('animationend', this.listener);
+    this.element.classList.add(this.animation);
   };
 
   PredefinedStep.prototype.stop = function stop() {
-    this._element.removeEventListener('animationend', this._listener);
-    this._element.classList.remove(this._animation);
+    this.element.removeEventListener('animationend', this.listener);
+    this.element.classList.remove(this.animation);
   };
 
   return PredefinedStep;
@@ -132,102 +136,98 @@ var Timeline = function () {
 
     classCallCheck(this, Timeline);
 
-    this._steps = [];
-    this._childTimelines = [];
-    this._baked = false;
+    this.steps = [];
+    this.baked = false;
 
-    this._nextExecute = function () {
-      _this._toNextStep();
-      _this._runStep();
+    this.nextExecute = function () {
+      _this.toNextStep();
+      _this.runStep();
     };
   }
 
   Timeline.prototype.set = function set$$1(element, state) {
-    this._throwIfBaked();
-    this._steps.push(new SetStep(element, state));
+    this.throwIfBaked();
+    this.steps.push(new SetStep(element, state));
   };
 
-  Timeline.prototype.to = function to(element, duration, state) {
-    this._throwIfBaked();
-    this._steps.push(new ToStep(element, duration, state));
+  Timeline.prototype.tween = function tween(element, duration, state) {
+    this.throwIfBaked();
+    this.steps.push(new TweenStep(element, duration, state));
   };
 
-  Timeline.prototype.do = function _do(element, animationClass) {
-    this._throwIfBaked();
-    this._steps.push(new PredefinedStep(element, animationClass));
-  };
+  Timeline.prototype.play = function play() {
+    this.throwIfBaked();
 
-  Timeline.prototype.run = function run(timeline) {
-    this._throwIfBaked();
-    this._steps.push(new RunStep(timeline));
+    if (arguments.length === 1) {
+      var timeline = arguments[0];
+      timeline.bakedByParent = true;
+      this.steps.push(new TimelineStep(timeline));
+      return;
+    }
 
-    timeline._bakedByParent = true;
-    this._childTimelines.push(timeline);
+    this.steps.push(new PredefinedStep(arguments[0], arguments[1]));
   };
 
   Timeline.prototype.start = function start() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    this._bake();
-    this._iterations = options.iterations || 1;
-    this._stepIndex = 0;
-    this._runStep();
+    this.bake();
+    this.iterations = options.iterations || 1;
+    this.stepIndex = 0;
+    this.runStep();
   };
 
   Timeline.prototype.stop = function stop() {
-    var current = this._steps[this._stepIndex];
+    var current = this.steps[this.stepIndex];
     if (current && current.stop) {
       current.stop();
     }
 
-    if (!this._bakedByParent) {
+    if (!this.bakedByParent) {
       this._styleElement.parentNode.removeChild(this._styleElement);
       this._styleElement = null;
-      this._baked = false;
+      this.baked = false;
     }
   };
 
-  Timeline.prototype._throwIfBaked = function _throwIfBaked() {
-    if (this._baked) throw new Error('Cannot add to a Timeline after play is called');
+  Timeline.prototype.throwIfBaked = function throwIfBaked() {
+    if (this.baked) throw new Error('Cannot add to a Timeline after play is called');
   };
 
-  Timeline.prototype._runStep = function _runStep() {
-    if (this._iterations === 0) {
+  Timeline.prototype.runStep = function runStep() {
+    if (this.iterations === 0) {
       this.stop();
       return;
     }
 
-    this._steps[this._stepIndex].start(this._nextExecute);
+    this.steps[this.stepIndex].start(this.nextExecute);
   };
 
-  Timeline.prototype._toNextStep = function _toNextStep() {
-    this._stepIndex++;
-    if (this._steps.length <= this._stepIndex) {
-      this._stepIndex = 0;
+  Timeline.prototype.toNextStep = function toNextStep() {
+    this.stepIndex++;
+    if (this.steps.length <= this.stepIndex) {
+      this.stepIndex = 0;
 
-      if (this._iterations === Infinity) return;
-      if (this._iterations > 0) this._iterations--;
+      if (this.iterations === Infinity) return;
+      if (this.iterations > 0) this.iterations--;
     }
   };
 
-  Timeline.prototype._bake = function _bake() {
-    if (this._baked) return;
-    if (this._bakedByParent) return;
+  Timeline.prototype.bake = function bake() {
+    if (this.baked) return;
+    if (this.bakedByParent) return;
 
     this._styleElement = document.createElement('style');
-    this._styleElement.textContent += this._createCss();
-    for (var i = 0; i < this._childTimelines.length; ++i) {
-      this._styleElement.textContent += this._childTimelines[i]._createCss();
-    }
+    this._styleElement.textContent += this.createCss();
     document.head.appendChild(this._styleElement);
 
-    this._baked = true;
+    this.baked = true;
   };
 
-  Timeline.prototype._createCss = function _createCss() {
+  Timeline.prototype.createCss = function createCss() {
     var timelineCss = '';
-    for (var i = 0; i < this._steps.length; ++i) {
-      var step = this._steps[i];
+    for (var i = 0; i < this.steps.length; ++i) {
+      var step = this.steps[i];
       if (!step.createCss) {
         continue;
       }

@@ -1,104 +1,100 @@
 import { SetStep } from './set-step'
-import { ToStep } from './to-step'
-import { RunStep } from './run-step'
+import { TweenStep } from './tween-step'
+import { TimelineStep } from './timeline-step'
 import { PredefinedStep } from './predefined-step'
 
 export class Timeline {
   constructor () {
-    this._steps = []
-    this._childTimelines = []
-    this._baked = false
+    this.steps = []
+    this.baked = false
 
-    this._nextExecute = () => {
-      this._toNextStep()
-      this._runStep()
+    this.nextExecute = () => {
+      this.toNextStep()
+      this.runStep()
     }
   }
 
   set (element, state) {
-    this._throwIfBaked()
-    this._steps.push(new SetStep(element, state))
+    this.throwIfBaked()
+    this.steps.push(new SetStep(element, state))
   }
 
-  to (element, duration, state) {
-    this._throwIfBaked()
-    this._steps.push(new ToStep(element, duration, state))
+  tween (element, duration, state) {
+    this.throwIfBaked()
+    this.steps.push(new TweenStep(element, duration, state))
   }
 
-  do (element, animationClass) {
-    this._throwIfBaked()
-    this._steps.push(new PredefinedStep(element, animationClass))
-  }
+  play () {
+    this.throwIfBaked()
 
-  run (timeline) {
-    this._throwIfBaked()
-    this._steps.push(new RunStep(timeline))
+    if (arguments.length === 1) {
+      const timeline = arguments[0]
+      timeline.bakedByParent = true
+      this.steps.push(new TimelineStep(timeline))
+      return
+    }
 
-    timeline._bakedByParent = true
-    this._childTimelines.push(timeline)
+    this.steps.push(new PredefinedStep(arguments[0], arguments[1]))
   }
 
   start (options = {}) {
-    this._bake()
-    this._iterations = options.iterations || 1
-    this._stepIndex = 0
-    this._runStep()
+    this.bake()
+    this.iterations = options.iterations || 1
+    this.stepIndex = 0
+    this.runStep()
   }
 
   stop () {
-    const current = this._steps[this._stepIndex]
+    const current = this.steps[this.stepIndex]
     if (current && current.stop) {
       current.stop()
     }
 
-    if (!this._bakedByParent) {
+    if (!this.bakedByParent) {
       this._styleElement.parentNode.removeChild(this._styleElement)
       this._styleElement = null
-      this._baked = false
+      this.baked = false
     }
   }
 
-  _throwIfBaked () {
-    if (this._baked) throw new Error('Cannot add to a Timeline after play is called')
+  throwIfBaked () {
+    if (this.baked) throw new Error('Cannot add to a Timeline after play is called')
   }
 
-  _runStep () {
-    if (this._iterations === 0) {
+  runStep () {
+    if (this.iterations === 0) {
       this.stop()
       return
     }
 
-    this._steps[this._stepIndex].start(this._nextExecute)
+    this.steps[this.stepIndex].start(this.nextExecute)
   }
 
-  _toNextStep () {
-    this._stepIndex++
-    if (this._steps.length <= this._stepIndex) {
-      this._stepIndex = 0
+  toNextStep () {
+    this.stepIndex++
+    if (this.steps.length <= this.stepIndex) {
+      this.stepIndex = 0
 
-      if (this._iterations === Infinity) return
-      if (this._iterations > 0) this._iterations--
+      if (this.iterations === Infinity) return
+      if (this.iterations > 0) this.iterations--
     }
   }
 
-  _bake () {
-    if (this._baked) return
-    if (this._bakedByParent) return
+  bake () {
+    if (this.baked) return
+    if (this.bakedByParent) return
 
     this._styleElement = document.createElement('style')
-    this._styleElement.textContent += this._createCss()
-    for (let i = 0; i < this._childTimelines.length; ++i) {
-      this._styleElement.textContent += this._childTimelines[i]._createCss()
-    }
+    this._styleElement.textContent += this.createCss()
     document.head.appendChild(this._styleElement)
 
-    this._baked = true
+    this.baked = true
   }
 
-  _createCss () {
+  createCss () {
     let timelineCss = ''
-    for (let i = 0; i < this._steps.length; ++i) {
-      const step = this._steps[i]
+    for (let i = 0; i < this.steps.length; ++i) {
+      const step = this.steps[i]
       if (!step.createCss) {
         continue
       }
