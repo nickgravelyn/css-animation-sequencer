@@ -26,8 +26,9 @@ import { Timeline } from 'seashell-animation'
 let timeline = new Timeline()
 timeline.to(...)
 timeline.run(...)
+timeline.play(...)
 ```
 
 ### For Non-Built Apps
 
-Simply take [dist/seashell.iife.js](dist/seashell.iife.js) which is precompiled to work in the browser. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.
+Simply take [docs/seashell.iife.js](docs/seashell.iife.js) which is precompiled to work in the browser for the example page. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.

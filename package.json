@@ -5,7 +5,8 @@
   "main": "dist/seashell.cjs.js",
   "module": "dist/seashell.esm.js",
   "files": [
-    "dist"
+    "dist/seashell.cjs.js",
+    "dist/seashell.esm.js"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -13,7 +14,8 @@
     "docs": "http-server docs -a localhost -c-1",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
-    "test": "jest"
+    "test": "jest",
+    "prepack": "yarn build"
   },
   "repository": {
     "type": "git",
