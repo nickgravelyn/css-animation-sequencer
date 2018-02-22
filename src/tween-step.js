@@ -26,7 +26,7 @@ export class TweenStep {
     this.element.classList.remove(this.animation)
   }
 
-  createCss (timelineId) {
+  createCss () {
     let css = `.${this.animation} { animation: ${this.animation} ${this.duration / 1000}s both; } `
     css += `@keyframes ${this.animation} { to { `
 

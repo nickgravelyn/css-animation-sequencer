@@ -42,3 +42,10 @@ it('removes event listener and class on stop', () => {
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', step.listener)
   expect(elem.classList.remove).toHaveBeenCalledWith(step.animation)
 })
+
+it('can create good css', () => {
+  const step = new TweenStep({}, 1234, { opacity: 0 })
+  const css = step.createCss()
+  expect(css).toContain(`.${step.animation} { animation: ${step.animation} 1.234s both; }`)
+  expect(css).toContain(`@keyframes ${step.animation} { to { opacity: 0; } }`)
+})
