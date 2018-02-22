@@ -14,14 +14,14 @@ export class Timeline {
     }
   }
 
-  set (element, state) {
+  set () {
     this.throwIfBaked()
-    this.steps.push(new SetStep(element, state))
+    this.steps.push(new SetStep(arguments))
   }
 
-  tween (element, duration, state) {
+  tween () {
     this.throwIfBaked()
-    this.steps.push(new TweenStep(element, duration, state))
+    this.steps.push(new TweenStep(arguments))
   }
 
   play (...args) {

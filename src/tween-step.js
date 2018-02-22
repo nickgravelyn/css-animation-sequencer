@@ -3,11 +3,12 @@ import applyState from './apply-state'
 const randomInt = () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
 
 export class TweenStep {
-  constructor (element, duration, state) {
+  constructor (element, duration, state, { timingFunction } = { timingFunction: 'ease' }) {
     this.element = element
     this.duration = duration
     this.state = state
     this.animation = `seashell-${randomInt()}`
+    this.timingFunction = timingFunction
   }
 
   start (next) {
@@ -27,7 +28,7 @@ export class TweenStep {
   }
 
   createCss () {
-    let css = `.${this.animation} { animation: ${this.animation} ${this.duration / 1000}s both; } `
+    let css = `.${this.animation} { animation: ${this.animation} ${this.duration / 1000}s both ${this.timingFunction}; } `
     css += `@keyframes ${this.animation} { to { `
 
     for (const key in this.state) {
