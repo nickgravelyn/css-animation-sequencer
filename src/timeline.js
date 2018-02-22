@@ -16,12 +16,12 @@ export class Timeline {
 
   set () {
     this.throwIfBaked()
-    this.steps.push(new SetStep(arguments))
+    this.steps.push(new SetStep(...arguments))
   }
 
   tween () {
     this.throwIfBaked()
-    this.steps.push(new TweenStep(arguments))
+    this.steps.push(new TweenStep(...arguments))
   }
 
   play (...args) {

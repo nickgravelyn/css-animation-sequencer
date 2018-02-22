@@ -37,12 +37,16 @@ var randomInt = function randomInt() {
 
 var TweenStep = function () {
   function TweenStep(element, duration, state) {
+    var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : { timingFunction: 'ease' },
+        timingFunction = _ref.timingFunction;
+
     classCallCheck(this, TweenStep);
 
     this.element = element;
     this.duration = duration;
     this.state = state;
     this.animation = 'seashell-' + randomInt();
+    this.timingFunction = timingFunction;
   }
 
   TweenStep.prototype.start = function start(next) {
@@ -63,17 +67,17 @@ var TweenStep = function () {
     this.element.classList.remove(this.animation);
   };
 
-  TweenStep.prototype.createCss = function createCss(timelineId) {
-    var css = '.' + this.animation + ' { animation: ' + this.animation + ' ' + this.duration / 1000 + 's both; } ';
-    css += '@keyframes ' + this.animation + ' { to { ';
+  TweenStep.prototype.createCss = function createCss() {
+    var css = '.' + this.animation + ' {\n  animation-name: ' + this.animation + ';\n  animation-duration: ' + this.duration / 1000 + 's;\n  animation-fill-mode: both;\n  animation-timing-function: ' + this.timingFunction + ';\n}\n';
+    css += '@keyframes ' + this.animation + ' {\n  to {\n';
 
     for (var key in this.state) {
       if (this.state.hasOwnProperty(key)) {
-        css += key + ': ' + this.state[key] + '; ';
+        css += '    ' + key + ': ' + this.state[key] + ';\n';
       }
     }
 
-    return css + '} }';
+    return css + '  }\n}';
   };
 
   return TweenStep;
@@ -163,14 +167,14 @@ var Timeline = function () {
     };
   }
 
-  Timeline.prototype.set = function set$$1(element, state) {
+  Timeline.prototype.set = function set$$1() {
     this.throwIfBaked();
-    this.steps.push(new SetStep(element, state));
+    this.steps.push(new (Function.prototype.bind.apply(SetStep, [null].concat(Array.prototype.slice.call(arguments))))());
   };
 
-  Timeline.prototype.tween = function tween(element, duration, state) {
+  Timeline.prototype.tween = function tween() {
     this.throwIfBaked();
-    this.steps.push(new TweenStep(element, duration, state));
+    this.steps.push(new (Function.prototype.bind.apply(TweenStep, [null].concat(Array.prototype.slice.call(arguments))))());
   };
 
   Timeline.prototype.play = function play() {
