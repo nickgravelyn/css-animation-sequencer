@@ -80,15 +80,20 @@ var TweenStep = function () {
 }();
 
 var TimelineStep = function () {
-  function TimelineStep(timeline) {
+  function TimelineStep(timeline, options) {
     classCallCheck(this, TimelineStep);
 
     this.timeline = timeline;
+    this.options = options || {};
   }
 
   TimelineStep.prototype.start = function start(next) {
-    this.timeline.start();
-    next();
+    if (this.options.async === true) {
+      this.timeline.start();
+      next();
+    } else {
+      this.timeline.start({ onComplete: next });
+    }
   };
 
   TimelineStep.prototype.stop = function stop() {
@@ -158,14 +163,18 @@ var Timeline = function () {
   Timeline.prototype.play = function play() {
     this.throwIfBaked();
 
-    if (arguments.length === 1) {
-      var timeline = arguments[0];
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    if (args[0] instanceof Timeline) {
+      var timeline = args.shift();
       timeline.bakedByParent = true;
-      this.steps.push(new TimelineStep(timeline));
+      this.steps.push(new (Function.prototype.bind.apply(TimelineStep, [null].concat([timeline], args)))());
       return;
     }
 
-    this.steps.push(new PredefinedStep(arguments[0], arguments[1]));
+    this.steps.push(new (Function.prototype.bind.apply(PredefinedStep, [null].concat(args)))());
   };
 
   Timeline.prototype.start = function start() {
@@ -173,6 +182,7 @@ var Timeline = function () {
 
     this.bake();
     this.iterations = options.iterations || 1;
+    this.onComplete = options.onComplete;
     this.stepIndex = 0;
     this.runStep();
   };
@@ -197,6 +207,7 @@ var Timeline = function () {
   Timeline.prototype.runStep = function runStep() {
     if (this.iterations === 0) {
       this.stop();
+      if (this.onComplete) this.onComplete();
       return;
     }
 

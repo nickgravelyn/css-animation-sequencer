@@ -24,22 +24,23 @@ export class Timeline {
     this.steps.push(new TweenStep(element, duration, state))
   }
 
-  play () {
+  play (...args) {
     this.throwIfBaked()
 
-    if (arguments.length === 1) {
-      const timeline = arguments[0]
+    if (args[0] instanceof Timeline) {
+      const timeline = args.shift()
       timeline.bakedByParent = true
-      this.steps.push(new TimelineStep(timeline))
+      this.steps.push(new TimelineStep(timeline, ...args))
       return
     }
 
-    this.steps.push(new PredefinedStep(arguments[0], arguments[1]))
+    this.steps.push(new PredefinedStep(...args))
   }
 
   start (options = {}) {
     this.bake()
     this.iterations = options.iterations || 1
+    this.onComplete = options.onComplete
     this.stepIndex = 0
     this.runStep()
   }
@@ -64,6 +65,7 @@ export class Timeline {
   runStep () {
     if (this.iterations === 0) {
       this.stop()
+      if (this.onComplete) { this.onComplete() }
       return
     }
 

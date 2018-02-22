@@ -96,7 +96,7 @@
     <hr class="my-4">
 
     <div class="row">
-      Timelines can start other timelines which then run in parallel to the original timeline. This allows for synchronized but simultaneous animations. Here the red box plays its animation whenever the orange box returns to its starting point.
+      Timelines can play other timelines which allows for flexible composition of animations. By default the main timeline waits for the child timeline to finish, but the play method can take in options (whether for timeline or predefined CSS animations) to configure settings, such as whether or not to run the timeline or animation asynchronously.
     </div>
 
     <div class="row">
@@ -122,7 +122,7 @@
   var mainTimeline = new Seashell.Timeline()
   mainTimeline.tween(orangeBox, 1000, { transform: 'translateX(-50px)' })
   mainTimeline.tween(orangeBox, 1000, { transform: 'translateX(0)' })
-  mainTimeline.play(rotateRed)
+  mainTimeline.play(rotateRed, { async: true })
   mainTimeline.tween(orangeBox, 1000, { transform: 'translateY(50px)' })
   mainTimeline.tween(orangeBox, 1000, { transform: 'translateY(0)' })
   mainTimeline.play(rotateRed)
