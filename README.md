@@ -24,9 +24,7 @@ Then you can import and use the library:
 import { Timeline } from 'seashell-animation'
 
 let timeline = new Timeline()
-timeline.to(...)
-timeline.run(...)
-timeline.play(...)
+...
 ```
 
 ### For Non-Built Apps

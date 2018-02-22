@@ -38,7 +38,7 @@ export class Timeline {
     this._childTimelines.push(timeline)
   }
 
-  play (options = {}) {
+  start (options = {}) {
     this._bake()
     this._iterations = options.iterations || 1
     this._stepIndex = 0

@@ -87,7 +87,7 @@ var RunStep = function () {
   }
 
   RunStep.prototype.start = function start(next) {
-    this._timeline.play();
+    this._timeline.start();
     next();
   };
 
@@ -165,7 +165,7 @@ var Timeline = function () {
     this._childTimelines.push(timeline);
   };
 
-  Timeline.prototype.play = function play() {
+  Timeline.prototype.start = function start() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     this._bake();

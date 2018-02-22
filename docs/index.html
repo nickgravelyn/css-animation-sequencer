@@ -57,7 +57,7 @@
   timeline.do(greenBox, 'bounce')
   timeline.do(greenBox, 'swing')
   timeline.do(greenBox, 'tada')
-  timeline.play({ iterations: Infinity })
+  timeline.start({ iterations: Infinity })
 })()
       </script>
     </div>
@@ -88,7 +88,7 @@
   timeline.to(pinkBox, 1000, { left: plus50, top: plus50 })
   timeline.to(pinkBox, 1000, { left: minus50, top: plus50 })
   timeline.to(pinkBox, 1000, { left: minus50, top: minus50 })
-  timeline.play({ iterations: Infinity })
+  timeline.start({ iterations: Infinity })
 })()
       </script>
     </div>
@@ -127,7 +127,7 @@
   mainTimeline.to(orangeBox, 1000, { transform: 'translateY(0)' })
   mainTimeline.run(rotateRed)
 
-  mainTimeline.play({ iterations: Infinity })
+  mainTimeline.start({ iterations: Infinity })
 })()
       </script>
     </div>

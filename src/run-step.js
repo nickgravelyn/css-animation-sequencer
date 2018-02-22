@@ -4,7 +4,7 @@ export class RunStep {
   }
 
   start (next) {
-    this._timeline.play()
+    this._timeline.start()
     next()
   }
 
