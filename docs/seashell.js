@@ -127,13 +127,17 @@ var PredefinedStep = function () {
 
     this.listener = function () {
       _this.stop();
-      if (!_this.async) next();
+      if (!_this.async) {
+        next();
+      }
     };
 
     this.element.addEventListener('animationend', this.listener);
     this.element.classList.add(this.animation);
 
-    if (this.async) next();
+    if (this.async) {
+      next();
+    }
   };
 
   PredefinedStep.prototype.stop = function stop() {
