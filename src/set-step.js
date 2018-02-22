@@ -10,7 +10,4 @@ export class SetStep {
     applyState(this._element, this._state)
     next()
   }
-
-  stop () {}
-  createCss () {}
 }

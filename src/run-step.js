@@ -11,6 +11,4 @@ export class RunStep {
   stop () {
     this._timeline.stop()
   }
-
-  createCss () {}
 }

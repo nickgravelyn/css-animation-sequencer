@@ -1,84 +1,157 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Seashell</title>
+  <title>Seashell</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <link rel="stylesheet" href="./style.css">
-    <script type="text/javascript" src="./seashell.iife.js"></script>
-  </head>
-  <body>
-    <div class="container">
-        <div class="text-center">
-            <h1 class="display-4">Seashell</h1>
-            <p class="lead">
-                A small library for dynamic CSS animations.<br>
-                Available on <a href="https://github.com/nickgravelyn/seashell">Github</a>. Created by <a href="https://github.com/nickgravelyn">Nick Gravelyn</a>.
-            </p>
-        </div>
+  <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript" src="./seashell.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="text-center">
+      <h1 class="display-4">Seashell</h1>
+      <p class="lead">A small library for dynamic CSS animations.</p>
+      <p>
+        <a href="https://www.npmjs.com/package/seashell-animation">
+          <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 18 7">
+            <path fill="#CB3837" d="M0,0v6h5v1h4v-1h9v-6"/>
+            <path fill="#FFF" d="M1,1v4h2v-3h1v3h1v-4h1v5h2v-4h1v2h-1v1h2v-4h1v4h2v-3h1v3h1v-3h1v3h1v-4"/>
+          </svg>
+        </a>
 
-        <hr class="my-4">
-
-        <div class="row">
-          Seashell provides a simple Timeline class which allows for defining animations in a "tween" style that are then baked into CSS animations and applied in sequence. This allows for dynamic creation of animations while still offloading the animation work to the browser with CSS.
-        </div>
-
-        <div class="row example">
-            <div class="big purple box">
-                <div id="box1" class="small pink box absolute"></div>
-            </div>
-
-            <script type="text/javascript">
-                (function () {
-                    var box1 = document.getElementById('box1')
-
-                    var timeline = new Seashell.Timeline()
-                    timeline.set(box1, { left: "0", top: "0" })
-                    timeline.to(box1, 1000, { left: "125px", top: "0" })
-                    timeline.to(box1, 1000, { left: "125px", top: "125px" })
-                    timeline.to(box1, 1000, { left: "0", top: "125px" })
-                    timeline.to(box1, 1000, { left: "0", top: "0" })
-                    timeline.play({ iterations: Infinity })
-                })()
-            </script>
-        </div>
-
-        <hr class="my-4">
-
-        <div class="row">
-          Timelines can start other timelines which then run in parallel to the original timeline. This allows for synchronized but simultaneous animations.
-        </div>
-
-        <div class="row example">
-            <div id="box2" class="big orange box"></div>
-            <div id="box3" class="big red box"></div>
-
-            <script type="text/javascript">
-                (function () {
-                    var box2 = document.getElementById('box2')
-                    var box3 = document.getElementById('box3')
-
-                    var box3Timeline = new Seashell.Timeline()
-                    box3Timeline.to(box3, 200, { transform: 'rotate(-45deg)' })
-                    box3Timeline.to(box3, 400, { transform: 'rotate(45deg)' })
-                    box3Timeline.to(box3, 200, { transform: 'rotate(0)' })
-
-                    var box2Timeline = new Seashell.Timeline()
-                    box2Timeline.to(box2, 1000, { transform: 'translateY(100px)' })
-                    box2Timeline.to(box2, 1000, { transform: 'translateY(0)' })
-                    box2Timeline.run(box3Timeline)
-                    box2Timeline.to(box2, 1000, { transform: 'translateY(-100px)' })
-                    box2Timeline.to(box2, 1000, { transform: 'translateY(0)' })
-                    box2Timeline.run(box3Timeline)
-
-                    box2Timeline.play({ iterations: Infinity })
-                })()
-            </script>
-        </div>
+        <a href="https://github.com/nickgravelyn/seashell">
+          <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 24 24">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </p>
     </div>
-  </body>
+
+    <hr class="my-4">
+
+    <div class="row">
+      <p>At the heart of Seashell is a Timeline class which allows you to build and coordinate CSS animations. The goal of the library is to provide an expressive API that allows scripts to define and drive animations, while leveraging all of the power of CSS animations.</p>
+
+      <p>Here we're just using Timeline to sequence some animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a> on this happy green box.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 example">
+        <div id="green-box" class="green box animated"></div>
+      </div>
+      <div class="col-lg-8">
+        <pre><code class="javascript" data-example="green-box"></code></pre>
+      </div>
+      <script data-example="green-box" type="text/javascript">
+(function () {
+  var greenBox = document.getElementById('green-box')
+  var timeline = new Seashell.Timeline()
+  timeline.do(greenBox, 'bounce')
+  timeline.do(greenBox, 'swing')
+  timeline.do(greenBox, 'tada')
+  timeline.play({ iterations: Infinity })
+})()
+      </script>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+      The power of Seashell starts to kick in when using the Timeline to create new animations from scratch. In this example we define a sequence using Timeline that generates CSS animations which drive all of the motion. The objects are mapped directly to CSS attributes inside the generated @keyframes style so you can use any valid CSS values you want such as calc.
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 example">
+        <div id="pink-box" class="pink box absolute"></div>
+      </div>
+
+      <div class="col-lg-8">
+        <pre><code class="javascript" data-example="pink-box"></code></pre>
+      </div>
+
+      <script data-example="pink-box" type="text/javascript">
+(function () {
+  var pinkBox = document.getElementById('pink-box')
+  var timeline = new Seashell.Timeline()
+  var plus50 = "calc(50% + 50px)"
+  var minus50 = "calc(50% - 50px)"
+  timeline.set(pinkBox, { left: minus50, top: minus50 })
+  timeline.to(pinkBox, 1000, { left: plus50, top: minus50 })
+  timeline.to(pinkBox, 1000, { left: plus50, top: plus50 })
+  timeline.to(pinkBox, 1000, { left: minus50, top: plus50 })
+  timeline.to(pinkBox, 1000, { left: minus50, top: minus50 })
+  timeline.play({ iterations: Infinity })
+})()
+      </script>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+      Timelines can start other timelines which then run in parallel to the original timeline. This allows for synchronized but simultaneous animations. Here the red box plays its animation whenever the orange box returns to its starting point.
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 example">
+        <div id="orange-box" class="orange box"></div>
+        <div id="red-box" class="red box"></div>
+      </div>
+
+      <div class="col-lg-8">
+        <pre><code class="javascript" data-example="orange-red-box"></code></pre>
+      </div>
+
+      <script data-example="orange-red-box" type="text/javascript">
+(function () {
+  var orangeBox = document.getElementById('orange-box')
+  var redBox = document.getElementById('red-box')
+
+  var rotateRed = new Seashell.Timeline()
+  rotateRed.to(redBox, 150, { transform: 'rotate(-45deg)' })
+  rotateRed.to(redBox, 300, { transform: 'rotate(45deg)' })
+  rotateRed.to(redBox, 150, { transform: 'rotate(0)' })
+
+  var mainTimeline = new Seashell.Timeline()
+  mainTimeline.to(orangeBox, 1000, { transform: 'translateX(-50px)' })
+  mainTimeline.to(orangeBox, 1000, { transform: 'translateX(0)' })
+  mainTimeline.run(rotateRed)
+  mainTimeline.to(orangeBox, 1000, { transform: 'translateY(50px)' })
+  mainTimeline.to(orangeBox, 1000, { transform: 'translateY(0)' })
+  mainTimeline.run(rotateRed)
+
+  mainTimeline.play({ iterations: Infinity })
+})()
+      </script>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row footer my-4">
+      <div class="col-12">
+        <p>Made with ❤️ by <a href="https://twitter.com/nickgravelyn">Nick Gravelyn</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var examples = document.querySelectorAll('script[data-example]')
+      for (var i = 0; i < examples.length; ++i) {
+        var example = examples[i].dataset.example
+        var target = document.querySelector('code[data-example="' + example + '"]')
+        target.innerText = examples[i].innerText.trim()
+      }
+
+      hljs.initHighlightingOnLoad()
+    })()
+  </script>
+</body>
 </html>

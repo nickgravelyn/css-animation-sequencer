@@ -1,6 +1,7 @@
 import { SetStep } from './set-step'
 import { ToStep } from './to-step'
 import { RunStep } from './run-step'
+import { PredefinedStep } from './predefined-step'
 
 export class Timeline {
   constructor () {
@@ -24,6 +25,11 @@ export class Timeline {
     this._steps.push(new ToStep(element, duration, state))
   }
 
+  do (element, animationClass) {
+    this._throwIfBaked()
+    this._steps.push(new PredefinedStep(element, animationClass))
+  }
+
   run (timeline) {
     this._throwIfBaked()
     this._steps.push(new RunStep(timeline))
@@ -40,7 +46,10 @@ export class Timeline {
   }
 
   stop () {
-    this._steps[this._stepIndex].stop()
+    const current = this._steps[this._stepIndex]
+    if (current && current.stop) {
+      current.stop()
+    }
 
     if (!this._bakedByParent) {
       this._styleElement.parentNode.removeChild(this._styleElement)
@@ -89,10 +98,11 @@ export class Timeline {
   _createCss () {
     let timelineCss = ''
     for (let i = 0; i < this._steps.length; ++i) {
-      const css = this._steps[i].createCss()
-      if (css) {
-        timelineCss += `${css}\n`
+      const step = this._steps[i]
+      if (!step.createCss) {
+        continue
       }
+      timelineCss += `${step.createCss()}\n`
     }
     return timelineCss
   }

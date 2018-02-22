@@ -1,26 +1,23 @@
 body {
-  padding: 50px 10px;
+  padding: 25px 10px;
+}
+
+pre {
+  margin: 10px auto;
 }
 
 .example {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  min-height: 200px;
 }
 
 .box {
   border-radius: 5px;
-  position: relative;
-}
-
-.small {
-  width: 50px;
-  height: 50px;
-}
-
-.big {
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   margin: 25px;
 }
 
@@ -28,11 +25,6 @@ body {
   position: absolute;
   margin: 0;
   transform: translate(-50%, -50%);
-}
-
-.center {
-    left: 50%;
-    top: 50%;
 }
 
 .red {
@@ -57,4 +49,89 @@ body {
 
 .pink {
   background: pink;
+}
+
+pre {
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  font-size: smaller;
+  font-weight: lighter;
+}
+
+/* Ocean Dark Theme */
+/* https://github.com/gavsiu */
+/* Original theme - https://github.com/chriskempson/base16 */
+
+/* Ocean Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #65737e;
+}
+
+/* Ocean Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #bf616a;
+}
+
+/* Ocean Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #d08770;
+}
+
+/* Ocean Yellow */
+.hljs-attribute {
+  color: #ebcb8b;
+}
+
+/* Ocean Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #a3be8c;
+}
+
+/* Ocean Blue */
+.hljs-title,
+.hljs-section {
+  color: #8fa1b3;
+}
+
+/* Ocean Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #b48ead;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b303b;
+  color: #c0c5ce;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
 }

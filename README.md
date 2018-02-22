@@ -31,4 +31,4 @@ timeline.play(...)
 
 ### For Non-Built Apps
 
-Simply take [docs/seashell.iife.js](docs/seashell.iife.js) which is precompiled to work in the browser for the example page. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.
+Simply take [docs/seashell.js](docs/seashell.js) which is precompiled to work in the browser for the example page. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.

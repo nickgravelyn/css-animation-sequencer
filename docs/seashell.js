@@ -28,10 +28,6 @@ var SetStep = function () {
     next();
   };
 
-  SetStep.prototype.stop = function stop() {};
-
-  SetStep.prototype.createCss = function createCss() {};
-
   return SetStep;
 }();
 
@@ -99,9 +95,35 @@ var RunStep = function () {
     this._timeline.stop();
   };
 
-  RunStep.prototype.createCss = function createCss() {};
-
   return RunStep;
+}();
+
+var PredefinedStep = function () {
+  function PredefinedStep(element, className) {
+    classCallCheck(this, PredefinedStep);
+
+    this._element = element;
+    this._animation = className;
+  }
+
+  PredefinedStep.prototype.start = function start(next) {
+    var _this = this;
+
+    this._listener = function () {
+      _this.stop();
+      next();
+    };
+
+    this._element.addEventListener('animationend', this._listener);
+    this._element.classList.add(this._animation);
+  };
+
+  PredefinedStep.prototype.stop = function stop() {
+    this._element.removeEventListener('animationend', this._listener);
+    this._element.classList.remove(this._animation);
+  };
+
+  return PredefinedStep;
 }();
 
 var Timeline = function () {
@@ -130,6 +152,11 @@ var Timeline = function () {
     this._steps.push(new ToStep(element, duration, state));
   };
 
+  Timeline.prototype.do = function _do(element, animationClass) {
+    this._throwIfBaked();
+    this._steps.push(new PredefinedStep(element, animationClass));
+  };
+
   Timeline.prototype.run = function run(timeline) {
     this._throwIfBaked();
     this._steps.push(new RunStep(timeline));
@@ -148,7 +175,10 @@ var Timeline = function () {
   };
 
   Timeline.prototype.stop = function stop() {
-    this._steps[this._stepIndex].stop();
+    var current = this._steps[this._stepIndex];
+    if (current && current.stop) {
+      current.stop();
+    }
 
     if (!this._bakedByParent) {
       this._styleElement.parentNode.removeChild(this._styleElement);
@@ -197,10 +227,11 @@ var Timeline = function () {
   Timeline.prototype._createCss = function _createCss() {
     var timelineCss = '';
     for (var i = 0; i < this._steps.length; ++i) {
-      var css = this._steps[i].createCss();
-      if (css) {
-        timelineCss += css + '\n';
+      var step = this._steps[i];
+      if (!step.createCss) {
+        continue;
       }
+      timelineCss += step.createCss() + '\n';
     }
     return timelineCss;
   };

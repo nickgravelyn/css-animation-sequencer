@@ -24,7 +24,7 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: 'docs/seashell.iife.js',
+        file: 'docs/seashell.js',
         format: 'iife',
         name: 'Seashell',
       },
