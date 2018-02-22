@@ -28,15 +28,23 @@ export class TweenStep {
   }
 
   createCss () {
-    let css = `.${this.animation} { animation: ${this.animation} ${this.duration / 1000}s both ${this.timingFunction}; } `
-    css += `@keyframes ${this.animation} { to { `
+    let css = `.${this.animation} {
+  animation-name: ${this.animation};
+  animation-duration: ${this.duration / 1000}s;
+  animation-fill-mode: both;
+  animation-timing-function: ${this.timingFunction};
+}
+`
+    css += `@keyframes ${this.animation} {
+  to {\n`
 
     for (const key in this.state) {
       if (this.state.hasOwnProperty(key)) {
-        css += `${key}: ${this.state[key]}; `
+        css += `    ${key}: ${this.state[key]};\n`
       }
     }
 
-    return css + '} }'
+    return css + `  }
+}`
   }
 }

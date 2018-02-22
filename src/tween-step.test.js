@@ -46,12 +46,21 @@ it('removes event listener and class on stop', () => {
 it('can create good css', () => {
   const step = new TweenStep({}, 1234, { opacity: 0 })
   const css = step.createCss()
-  expect(css).toContain(`.${step.animation} { animation: ${step.animation} 1.234s both ease; }`)
-  expect(css).toContain(`@keyframes ${step.animation} { to { opacity: 0; } }`)
+  expect(css).toContain(`.${step.animation} {
+  animation-name: ${step.animation};
+  animation-duration: 1.234s;
+  animation-fill-mode: both;
+  animation-timing-function: ease;
+}`)
+  expect(css).toContain(`@keyframes ${step.animation} {
+  to {
+    opacity: 0;
+  }
+}`)
 })
 
 it('puts easing from an options block into the css', () => {
   const step = new TweenStep({}, 1234, { opacity: 0 }, { timingFunction: 'ease-in-out' })
   const css = step.createCss()
-  expect(css).toContain(`.${step.animation} { animation: ${step.animation} 1.234s both ease-in-out; }`)
+  expect(css).toContain(`animation-timing-function: ease-in-out;`)
 })
