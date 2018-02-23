@@ -1,4 +1,6 @@
-# Seashell
+# Seashell 🐚
+
+A small library for dynamic CSS animations.
 
 CSS animations are pretty great. Seashell makes it easier to generate a timeline of animations, defined in Javascript, so you can have all the power of CSS animations while being able to create and sequence them in script.
 
