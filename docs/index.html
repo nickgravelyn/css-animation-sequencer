@@ -151,7 +151,7 @@
         var target = document.querySelector('code[data-example="' + example + '"]')
         var text = examples[i].innerText.trim()
         text = text.split('\n')
-        text = text.slice(1, text.length - 2).map(l => l.substring(2))
+        text = text.slice(1, text.length - 1).map(l => l.substring(2))
         target.innerText = text.join('\n')
       }
 
