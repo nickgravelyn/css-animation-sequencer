@@ -3,10 +3,10 @@ const defaultOptions = {
 }
 
 export class PredefinedStep {
-  constructor (element, className, options = {}) {
+  constructor (element, className, options) {
     this.element = element
     this.animation = className
-    this.options = Object.assign({}, defaultOptions, options)
+    this.options = options ? Object.assign({}, defaultOptions, options) : defaultOptions
   }
 
   start (next) {

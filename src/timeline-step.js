@@ -3,9 +3,9 @@ const defaultOptions = {
 }
 
 export class TimelineStep {
-  constructor (timeline, options = {}) {
+  constructor (timeline, options) {
     this.timeline = timeline
-    this.options = Object.assign({}, defaultOptions, options)
+    this.options = options ? Object.assign({}, defaultOptions, options) : defaultOptions
   }
 
   start (next) {

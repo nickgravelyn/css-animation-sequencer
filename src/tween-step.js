@@ -8,12 +8,12 @@ const defaultOptions = {
 }
 
 export class TweenStep {
-  constructor (element, duration, state, options = {}) {
+  constructor (element, duration, state, options) {
     this.element = element
     this.duration = duration
     this.state = state
     this.animation = `seashell-${randomInt()}`
-    this.options = Object.assign({}, defaultOptions, options)
+    this.options = options ? Object.assign({}, defaultOptions, options) : defaultOptions
   }
 
   start (next) {

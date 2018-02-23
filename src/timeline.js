@@ -17,11 +17,13 @@ export class Timeline {
   set () {
     this.throwIfBaked()
     this.steps.push(new SetStep(...arguments))
+    return this
   }
 
   tween () {
     this.throwIfBaked()
     this.steps.push(new TweenStep(...arguments))
+    return this
   }
 
   play (...args) {
@@ -31,10 +33,11 @@ export class Timeline {
       const timeline = args.shift()
       timeline.bakedByParent = true
       this.steps.push(new TimelineStep(timeline, ...args))
-      return
+    } else {
+      this.steps.push(new PredefinedStep(...args))
     }
 
-    this.steps.push(new PredefinedStep(...args))
+    return this
   }
 
   start (options = {}) {
