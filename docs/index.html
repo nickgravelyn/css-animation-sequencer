@@ -53,11 +53,11 @@
       <script data-example="green-box" type="text/javascript">
 (function () {
   var greenBox = document.getElementById('green-box')
-  var timeline = new Seashell.Timeline()
-  timeline.play(greenBox, 'bounce')
-  timeline.play(greenBox, 'swing')
-  timeline.play(greenBox, 'tada')
-  timeline.start({ iterations: Infinity })
+  new Seashell.Timeline()
+    .play(greenBox, 'bounce')
+    .play(greenBox, 'swing')
+    .play(greenBox, 'tada')
+    .start({ iterations: Infinity })
 })()
       </script>
     </div>
@@ -80,15 +80,15 @@
       <script data-example="pink-box" type="text/javascript">
 (function () {
   var pinkBox = document.getElementById('pink-box')
-  var timeline = new Seashell.Timeline()
   var plus50 = "calc(50% + 50px)"
   var minus50 = "calc(50% - 50px)"
-  timeline.set(pinkBox, { left: minus50, top: minus50 })
-  timeline.tween(pinkBox, 1000, { left: plus50, top: minus50 })
-  timeline.tween(pinkBox, 1000, { left: plus50, top: plus50 })
-  timeline.tween(pinkBox, 1000, { left: minus50, top: plus50 })
-  timeline.tween(pinkBox, 1000, { left: minus50, top: minus50 })
-  timeline.start({ iterations: Infinity })
+  new Seashell.Timeline()
+    .set(pinkBox, { left: minus50, top: minus50 })
+    .tween(pinkBox, 1000, { left: plus50, top: minus50 })
+    .tween(pinkBox, 1000, { left: plus50, top: plus50 })
+    .tween(pinkBox, 1000, { left: minus50, top: plus50 })
+    .tween(pinkBox, 1000, { left: minus50, top: minus50 })
+    .start({ iterations: Infinity })
 })()
       </script>
     </div>
@@ -115,19 +115,18 @@
   var redBox = document.getElementById('red-box')
 
   var rotateRed = new Seashell.Timeline()
-  rotateRed.tween(redBox, 150, { transform: 'rotate(-45deg)' })
-  rotateRed.tween(redBox, 300, { transform: 'rotate(45deg)' })
-  rotateRed.tween(redBox, 150, { transform: 'rotate(0)' })
+    .tween(redBox, 150, { transform: 'rotate(-45deg)' })
+    .tween(redBox, 300, { transform: 'rotate(45deg)' })
+    .tween(redBox, 150, { transform: 'rotate(0)' })
 
-  var mainTimeline = new Seashell.Timeline()
-  mainTimeline.tween(orangeBox, 1000, { transform: 'translateX(-50px)' })
-  mainTimeline.tween(orangeBox, 1000, { transform: 'translateX(0)' })
-  mainTimeline.play(rotateRed, { async: true })
-  mainTimeline.tween(orangeBox, 1000, { transform: 'translateY(50px)' })
-  mainTimeline.tween(orangeBox, 1000, { transform: 'translateY(0)' })
-  mainTimeline.play(rotateRed)
-
-  mainTimeline.start({ iterations: Infinity })
+  new Seashell.Timeline()
+    .tween(orangeBox, 1000, { transform: 'translateX(-50px)' })
+    .tween(orangeBox, 1000, { transform: 'translateX(0)' })
+    .play(rotateRed, { async: true })
+    .tween(orangeBox, 1000, { transform: 'translateY(50px)' })
+    .tween(orangeBox, 1000, { transform: 'translateY(0)' })
+    .play(rotateRed)
+    .start({ iterations: Infinity })
 })()
       </script>
     </div>

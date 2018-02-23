@@ -35,18 +35,20 @@ var randomInt = function randomInt() {
   return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
 };
 
-var TweenStep = function () {
-  function TweenStep(element, duration, state) {
-    var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : { timingFunction: 'ease' },
-        timingFunction = _ref.timingFunction;
+var defaultOptions = {
+  timingFunction: 'ease',
+  fillMode: 'both'
+};
 
+var TweenStep = function () {
+  function TweenStep(element, duration, state, options) {
     classCallCheck(this, TweenStep);
 
     this.element = element;
     this.duration = duration;
     this.state = state;
     this.animation = 'seashell-' + randomInt();
-    this.timingFunction = timingFunction;
+    this.options = options ? Object.assign({}, defaultOptions, options) : defaultOptions;
   }
 
   TweenStep.prototype.start = function start(next) {
@@ -68,34 +70,39 @@ var TweenStep = function () {
   };
 
   TweenStep.prototype.createCss = function createCss() {
-    var css = '.' + this.animation + ' {\n  animation-name: ' + this.animation + ';\n  animation-duration: ' + this.duration / 1000 + 's;\n  animation-fill-mode: both;\n  animation-timing-function: ' + this.timingFunction + ';\n}\n';
-    css += '@keyframes ' + this.animation + ' {\n  to {\n';
-
+    var css = '.' + this.animation + ' {';
+    css += ' animation-name: ' + this.animation + ';';
+    css += ' animation-duration: ' + this.duration / 1000 + 's;';
+    css += ' animation-fill-mode: ' + this.options.fillMode + ';';
+    css += ' animation-timing-function: ' + this.options.timingFunction + ';';
+    css += ' }\n';
+    css += '@keyframes ' + this.animation + ' { to { ';
     for (var key in this.state) {
       if (this.state.hasOwnProperty(key)) {
-        css += '    ' + key + ': ' + this.state[key] + ';\n';
+        css += key + ': ' + this.state[key] + '; ';
       }
     }
-
-    return css + '  }\n}';
+    css += '} }\n';
+    return css;
   };
 
   return TweenStep;
 }();
 
-var TimelineStep = function () {
-  function TimelineStep(timeline) {
-    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { async: false },
-        async = _ref.async;
+var defaultOptions$1 = {
+  async: false
+};
 
+var TimelineStep = function () {
+  function TimelineStep(timeline, options) {
     classCallCheck(this, TimelineStep);
 
     this.timeline = timeline;
-    this.async = async;
+    this.options = options ? Object.assign({}, defaultOptions$1, options) : defaultOptions$1;
   }
 
   TimelineStep.prototype.start = function start(next) {
-    if (this.async === true) {
+    if (this.options.async) {
       this.timeline.start();
       next();
     } else {
@@ -114,16 +121,17 @@ var TimelineStep = function () {
   return TimelineStep;
 }();
 
-var PredefinedStep = function () {
-  function PredefinedStep(element, className) {
-    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { async: false },
-        async = _ref.async;
+var defaultOptions$2 = {
+  async: false
+};
 
+var PredefinedStep = function () {
+  function PredefinedStep(element, className, options) {
     classCallCheck(this, PredefinedStep);
 
     this.element = element;
     this.animation = className;
-    this.async = async;
+    this.options = options ? Object.assign({}, defaultOptions$2, options) : defaultOptions$2;
   }
 
   PredefinedStep.prototype.start = function start(next) {
@@ -131,7 +139,7 @@ var PredefinedStep = function () {
 
     this.listener = function () {
       _this.stop();
-      if (!_this.async) {
+      if (!_this.options.async) {
         next();
       }
     };
@@ -139,7 +147,7 @@ var PredefinedStep = function () {
     this.element.addEventListener('animationend', this.listener);
     this.element.classList.add(this.animation);
 
-    if (this.async) {
+    if (this.options.async) {
       next();
     }
   };
@@ -170,11 +178,13 @@ var Timeline = function () {
   Timeline.prototype.set = function set$$1() {
     this.throwIfBaked();
     this.steps.push(new (Function.prototype.bind.apply(SetStep, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
   };
 
   Timeline.prototype.tween = function tween() {
     this.throwIfBaked();
     this.steps.push(new (Function.prototype.bind.apply(TweenStep, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
   };
 
   Timeline.prototype.play = function play() {
@@ -188,10 +198,11 @@ var Timeline = function () {
       var timeline = args.shift();
       timeline.bakedByParent = true;
       this.steps.push(new (Function.prototype.bind.apply(TimelineStep, [null].concat([timeline], args)))());
-      return;
+    } else {
+      this.steps.push(new (Function.prototype.bind.apply(PredefinedStep, [null].concat(args)))());
     }
 
-    this.steps.push(new (Function.prototype.bind.apply(PredefinedStep, [null].concat(args)))());
+    return this;
   };
 
   Timeline.prototype.start = function start() {
