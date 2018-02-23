@@ -2,13 +2,18 @@ import applyState from './apply-state'
 
 const randomInt = () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
 
+const defaultOptions = {
+  timingFunction: 'ease',
+  fillMode: 'both',
+}
+
 export class TweenStep {
-  constructor (element, duration, state, { timingFunction } = { timingFunction: 'ease' }) {
+  constructor (element, duration, state, options = {}) {
     this.element = element
     this.duration = duration
     this.state = state
     this.animation = `seashell-${randomInt()}`
-    this.timingFunction = timingFunction
+    this.options = Object.assign({}, defaultOptions, options)
   }
 
   start (next) {
@@ -28,23 +33,19 @@ export class TweenStep {
   }
 
   createCss () {
-    let css = `.${this.animation} {
-  animation-name: ${this.animation};
-  animation-duration: ${this.duration / 1000}s;
-  animation-fill-mode: both;
-  animation-timing-function: ${this.timingFunction};
-}
-`
-    css += `@keyframes ${this.animation} {
-  to {\n`
-
+    let css = `.${this.animation} {`
+    css += ` animation-name: ${this.animation};`
+    css += ` animation-duration: ${this.duration / 1000}s;`
+    css += ` animation-fill-mode: ${this.options.fillMode};`
+    css += ` animation-timing-function: ${this.options.timingFunction};`
+    css += ' }\n'
+    css += `@keyframes ${this.animation} { to { `
     for (const key in this.state) {
       if (this.state.hasOwnProperty(key)) {
-        css += `    ${key}: ${this.state[key]};\n`
+        css += `${key}: ${this.state[key]}; `
       }
     }
-
-    return css + `  }
-}`
+    css += `} }\n`
+    return css
   }
 }

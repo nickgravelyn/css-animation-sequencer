@@ -1,20 +1,28 @@
+const defaultOptions = {
+  async: false,
+}
+
 export class PredefinedStep {
-  constructor (element, className, { async } = { async: false }) {
+  constructor (element, className, options = {}) {
     this.element = element
     this.animation = className
-    this.async = async
+    this.options = Object.assign({}, defaultOptions, options)
   }
 
   start (next) {
     this.listener = () => {
       this.stop()
-      if (!this.async) { next() }
+      if (!this.options.async) {
+        next()
+      }
     }
 
     this.element.addEventListener('animationend', this.listener)
     this.element.classList.add(this.animation)
 
-    if (this.async) { next() }
+    if (this.options.async) {
+      next()
+    }
   }
 
   stop () {

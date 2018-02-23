@@ -1,11 +1,15 @@
+const defaultOptions = {
+  async: false,
+}
+
 export class TimelineStep {
-  constructor (timeline, { async } = { async: false }) {
+  constructor (timeline, options = {}) {
     this.timeline = timeline
-    this.async = async
+    this.options = Object.assign({}, defaultOptions, options)
   }
 
   start (next) {
-    if (this.async === true) {
+    if (this.options.async) {
       this.timeline.start()
       next()
     } else {
