@@ -17,7 +17,7 @@
 <body>
   <div class="container">
     <div class="text-center">
-      <h1 class="display-4">Seashell</h1>
+      <h1 class="display-4">Seashell 🐚</h1>
       <p class="lead">A small library for dynamic CSS animations.</p>
       <p>
         <a href="https://www.npmjs.com/package/seashell-animation">
@@ -55,8 +55,11 @@
   var greenBox = document.getElementById('green-box')
   new Seashell.Timeline()
     .play(greenBox, 'bounce')
+    .delay(200)
     .play(greenBox, 'swing')
+    .delay(400)
     .play(greenBox, 'tada')
+    .delay(800)
     .start({ iterations: Infinity })
 })()
       </script>
@@ -146,7 +149,10 @@
       for (var i = 0; i < examples.length; ++i) {
         var example = examples[i].dataset.example
         var target = document.querySelector('code[data-example="' + example + '"]')
-        target.innerText = examples[i].innerText.trim()
+        var text = examples[i].innerText.trim()
+        text = text.split('\n')
+        text = text.slice(1, text.length - 2).map(l => l.substring(2))
+        target.innerText = text.join('\n')
       }
 
       hljs.initHighlightingOnLoad()

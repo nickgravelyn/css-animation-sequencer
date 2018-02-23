@@ -1,6 +1,26 @@
 var Seashell = (function (exports) {
 'use strict';
 
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var DelayStep = function () {
+  function DelayStep(time) {
+    classCallCheck(this, DelayStep);
+
+    this.time = time;
+  }
+
+  DelayStep.prototype.start = function start(next) {
+    setTimeout(next, this.time);
+  };
+
+  return DelayStep;
+}();
+
 var applyState = (function (element, state) {
   for (var key in state) {
     if (state.hasOwnProperty(key)) {
@@ -8,12 +28,6 @@ var applyState = (function (element, state) {
     }
   }
 });
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
 
 var SetStep = function () {
   function SetStep(element, state) {
@@ -184,6 +198,12 @@ var Timeline = function () {
   Timeline.prototype.tween = function tween() {
     this.throwIfBaked();
     this.steps.push(new (Function.prototype.bind.apply(TweenStep, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+
+  Timeline.prototype.delay = function delay() {
+    this.throwIfBaked();
+    this.steps.push(new (Function.prototype.bind.apply(DelayStep, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
 
