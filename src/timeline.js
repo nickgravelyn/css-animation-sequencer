@@ -1,3 +1,4 @@
+import { DelayStep } from './delay-step'
 import { SetStep } from './set-step'
 import { TweenStep } from './tween-step'
 import { TimelineStep } from './timeline-step'
@@ -23,6 +24,12 @@ export class Timeline {
   tween () {
     this.throwIfBaked()
     this.steps.push(new TweenStep(...arguments))
+    return this
+  }
+
+  delay () {
+    this.throwIfBaked()
+    this.steps.push(new DelayStep(...arguments))
     return this
   }
 
