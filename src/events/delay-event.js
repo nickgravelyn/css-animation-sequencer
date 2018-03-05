@@ -1,9 +1,9 @@
 export class DelayEvent {
   constructor (time) {
-    this.time = time
+    this._time = time
   }
 
   start (complete) {
-    setTimeout(complete, this.time)
+    setTimeout(complete, this._time)
   }
 }
