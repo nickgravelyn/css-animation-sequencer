@@ -78,3 +78,26 @@ test('does not call stop if timeline is complete', () => {
   timeline.stop()
   expect(event.stop).not.toHaveBeenCalled()
 })
+
+test('starts next step immediately if step is async', () => {
+  const timeline = new Timeline()
+  const event1 = createMockEventThatDoesntCompleteAutomatically()
+  const event2 = createMockEvent()
+
+  timeline.add(event1, { async: true })
+  timeline.add(event2)
+
+  timeline.start()
+
+  expect(event1.start).toHaveBeenCalled()
+  expect(event2.start).toHaveBeenCalled()
+})
+
+test('throw error if async event starts before previous iteration completes', () => {
+  const timeline = new Timeline()
+  const event = createMockEventThatDoesntCompleteAutomatically()
+  timeline.add(event, { async: true })
+  expect(() => {
+    timeline.start({ iterations: 2 })
+  }).toThrow()
+})
