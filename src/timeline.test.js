@@ -48,7 +48,7 @@ test('loops the correct number of iterations', () => {
   expect(event.start).toHaveBeenCalledTimes(4)
 })
 
-test('calls stop on the current event when stopped', () => {
+test('calls stop on all events when stopped', () => {
   const timeline = new Timeline()
   const event1 = createMockEvent()
   const event2 = createMockEventThatDoesntCompleteAutomatically()
@@ -59,6 +59,7 @@ test('calls stop on the current event when stopped', () => {
 
   timeline.stop()
 
+  expect(event1.stop).toHaveBeenCalled()
   expect(event2.stop).toHaveBeenCalled()
 })
 
