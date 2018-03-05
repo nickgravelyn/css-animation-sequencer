@@ -13,6 +13,12 @@ test('first event has start called when timeline is started', () => {
   expect(event.start).toHaveBeenCalled()
 })
 
+test('returns self from add for chaining', () => {
+  const timeline = new Timeline()
+  const returned = timeline.add(createMockEvent())
+  expect(returned).toBe(timeline)
+})
+
 test('second event starts after first event completes', () => {
   const timeline = new Timeline()
   const event1 = createMockEventThatDoesntCompleteAutomatically()

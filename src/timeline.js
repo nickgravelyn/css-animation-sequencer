@@ -7,6 +7,7 @@ export class Timeline {
 
   add (event) {
     this._events.push(event)
+    return this
   }
 
   start ({ iterations = 1, onComplete = null } = {}) {

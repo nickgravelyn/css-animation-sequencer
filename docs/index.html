@@ -54,12 +54,12 @@
 (function () {
   var greenBox = document.getElementById('green-box')
   new Seashell.Timeline()
-    .play(greenBox, 'bounce')
-    .delay(200)
-    .play(greenBox, 'swing')
-    .delay(400)
-    .play(greenBox, 'tada')
-    .delay(800)
+    .add(new Seashell.CssAnimationEvent(greenBox, 'bounce'))
+    .add(new Seashell.DelayEvent(200))
+    .add(new Seashell.CssAnimationEvent(greenBox, 'swing'))
+    .add(new Seashell.DelayEvent(400))
+    .add(new Seashell.CssAnimationEvent(greenBox, 'tada'))
+    .add(new Seashell.DelayEvent(800))
     .start({ iterations: Infinity })
 })()
       </script>
