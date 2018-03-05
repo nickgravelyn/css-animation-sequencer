@@ -1,41 +1,41 @@
 export class Timeline {
   constructor () {
-    this.events = []
-    this.playing = false
-    this.startNext = this.startNext.bind(this)
+    this._events = []
+    this._playing = false
+    this._startNext = this._startNext.bind(this)
   }
 
   add (event) {
-    this.events.push(event)
+    this._events.push(event)
   }
 
   start ({ iterations = 1 } = {}) {
-    this.playing = true
-    this.current = -1
-    this.iterations = iterations
-    this.startNext()
+    this._playing = true
+    this._current = -1
+    this._iterations = iterations
+    this._startNext()
   }
 
   stop () {
-    if (!this.playing) {
+    if (!this._playing) {
       return
     }
-    this.events[this.current].stop()
+    this._events[this._current].stop()
   }
 
-  startNext () {
-    this.current++
+  _startNext () {
+    this._current++
 
-    if (this.current >= this.events.length) {
-      if (this.iterations <= 1) {
-        this.playing = false
+    if (this._current >= this._events.length) {
+      if (this._iterations <= 1) {
+        this._playing = false
         return
       }
 
-      this.iterations--
-      this.current = 0
+      this._iterations--
+      this._current = 0
     }
 
-    this.events[this.current].start(this.startNext)
+    this._events[this._current].start(this._startNext)
   }
 }
