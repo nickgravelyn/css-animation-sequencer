@@ -1,6 +1,6 @@
 export class Timeline {
-  constructor () {
-    this._events = []
+  constructor (events = []) {
+    this._events = events.slice(0)
     this._playing = false
     this._startNext = this._startNext.bind(this)
   }
