@@ -2,7 +2,7 @@ import { Timeline } from './timeline'
 
 const createMockEvent = (startImpl) => {
   if (!startImpl) {
-    startImpl = next => { next() }
+    startImpl = complete => { complete() }
   }
   return {
     start: jest.fn().mockImplementation(startImpl),
@@ -10,8 +10,8 @@ const createMockEvent = (startImpl) => {
   }
 }
 
-const createMockEventThatDoesntCallNext = () => {
-  return createMockEvent(function (next) { this.next = next })
+const createMockEventThatDoesntCompleteAutomatically = () => {
+  return createMockEvent(function (complete) { this.complete = complete })
 }
 
 test('first event has start called when timeline is started', () => {
@@ -23,9 +23,9 @@ test('first event has start called when timeline is started', () => {
   expect(event.start).toHaveBeenCalled()
 })
 
-test('second event has start called after first event calls the next fn passed to it', () => {
+test('second event starts after first event completes', () => {
   const timeline = new Timeline()
-  const event1 = createMockEventThatDoesntCallNext()
+  const event1 = createMockEventThatDoesntCompleteAutomatically()
   const event2 = createMockEvent()
   timeline.add(event1)
   timeline.add(event2)
@@ -34,7 +34,7 @@ test('second event has start called after first event calls the next fn passed t
 
   expect(event2.start).not.toHaveBeenCalled()
 
-  event1.next()
+  event1.complete()
 
   expect(event2.start).toHaveBeenCalled()
 })
@@ -51,7 +51,7 @@ test('loops the correct number of iterations', () => {
 test('calls stop on the current event when stopped', () => {
   const timeline = new Timeline()
   const event1 = createMockEvent()
-  const event2 = createMockEventThatDoesntCallNext()
+  const event2 = createMockEventThatDoesntCompleteAutomatically()
   timeline.add(event1)
   timeline.add(event2)
 
