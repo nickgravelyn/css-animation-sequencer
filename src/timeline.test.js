@@ -1,41 +1,80 @@
 import { Timeline } from './timeline'
-import { SetStep } from './set-step'
-import { DelayStep } from './delay-step'
-import { TimelineStep } from './timeline-step'
-import { PredefinedStep } from './predefined-step'
-import { TweenStep } from './tween-step'
 
-it('adds a set step and returns self', () => {
+const createMockEvent = (startImpl) => {
+  if (!startImpl) {
+    startImpl = next => { next() }
+  }
+  return {
+    start: jest.fn().mockImplementation(startImpl),
+    stop: jest.fn(),
+  }
+}
+
+const createMockEventThatDoesntCallNext = () => {
+  return createMockEvent(function (next) { this.next = next })
+}
+
+test('first event has start called when timeline is started', () => {
   const timeline = new Timeline()
-  const returned = timeline.set({}, {})
-  expect(timeline.steps[0]).toBeInstanceOf(SetStep)
-  expect(returned).toBe(timeline)
+  const event = createMockEvent()
+  timeline.add(event)
+  timeline.start()
+
+  expect(event.start).toHaveBeenCalled()
 })
 
-it('adds a delay step and returns self', () => {
+test('second event has start called after first event calls the next fn passed to it', () => {
   const timeline = new Timeline()
-  const returned = timeline.delay(1234)
-  expect(timeline.steps[0]).toBeInstanceOf(DelayStep)
-  expect(returned).toBe(timeline)
+  const event1 = createMockEventThatDoesntCallNext()
+  const event2 = createMockEvent()
+  timeline.add(event1)
+  timeline.add(event2)
+
+  timeline.start()
+
+  expect(event2.start).not.toHaveBeenCalled()
+
+  event1.next()
+
+  expect(event2.start).toHaveBeenCalled()
 })
 
-it('adds a predefined step when play is called given an element and string', () => {
+test('loops the correct number of iterations', () => {
   const timeline = new Timeline()
-  const returned = timeline.play({}, 'cat')
-  expect(timeline.steps[0]).toBeInstanceOf(PredefinedStep)
-  expect(returned).toBe(timeline)
+  const event = createMockEvent()
+  timeline.add(event)
+  timeline.start({ iterations: 4 })
+
+  expect(event.start).toHaveBeenCalledTimes(4)
 })
 
-it('adds a timeline step when play is called given a timeline', () => {
+test('calls stop on the current event when stopped', () => {
   const timeline = new Timeline()
-  const returned = timeline.play(new Timeline())
-  expect(timeline.steps[0]).toBeInstanceOf(TimelineStep)
-  expect(returned).toBe(timeline)
+  const event1 = createMockEvent()
+  const event2 = createMockEventThatDoesntCallNext()
+  timeline.add(event1)
+  timeline.add(event2)
+
+  timeline.start()
+
+  timeline.stop()
+
+  expect(event2.stop).toHaveBeenCalled()
 })
 
-it('adds a tween step', () => {
+test('does not call stop if start not called', () => {
   const timeline = new Timeline()
-  const returned = timeline.tween({}, 10, {})
-  expect(timeline.steps[0]).toBeInstanceOf(TweenStep)
-  expect(returned).toBe(timeline)
+  const event = createMockEvent()
+  timeline.add(event)
+  timeline.stop()
+  expect(event.stop).not.toHaveBeenCalled()
+})
+
+test('does not call stop if timeline is complete', () => {
+  const timeline = new Timeline()
+  const event = createMockEvent()
+  timeline.add(event)
+  timeline.start()
+  timeline.stop()
+  expect(event.stop).not.toHaveBeenCalled()
 })
