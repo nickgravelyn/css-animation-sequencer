@@ -9,10 +9,11 @@ export class Timeline {
     this._events.push(event)
   }
 
-  start ({ iterations = 1 } = {}) {
+  start ({ iterations = 1, onComplete = null } = {}) {
     this._playing = true
     this._current = -1
     this._iterations = iterations
+    this._onComplete = onComplete
     this._startNext()
   }
 
@@ -31,6 +32,9 @@ export class Timeline {
     if (this._current >= this._events.length) {
       if (this._iterations <= 1) {
         this._playing = false
+        if (this._onComplete) {
+          this._onComplete()
+        }
         return
       }
 

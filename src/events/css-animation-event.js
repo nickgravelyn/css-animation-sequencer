@@ -4,10 +4,10 @@ export class CssAnimationEvent {
     this.animation = className
   }
 
-  start (next) {
+  start (complete) {
     this.listener = () => {
       this.stop()
-      next()
+      complete()
     }
 
     this.element.addEventListener('animationend', this.listener)

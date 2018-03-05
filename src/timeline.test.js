@@ -69,3 +69,13 @@ test('does not call stop if timeline is complete', () => {
   timeline.stop()
   expect(event.stop).not.toHaveBeenCalled()
 })
+
+test('invokes complete callback when done', () => {
+  const timeline = new Timeline()
+  const event = createMockEvent()
+  timeline.add(event)
+
+  const complete = jest.fn()
+  timeline.start({ onComplete: complete })
+  expect(complete).toHaveBeenCalled()
+})
