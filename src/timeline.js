@@ -21,9 +21,7 @@ export class Timeline {
     if (!this._playing) {
       return
     }
-    for (const event of this._events) {
-      event.stop()
-    }
+    this._events[this._current].stop()
   }
 
   _startNext () {
