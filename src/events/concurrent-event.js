@@ -12,14 +12,14 @@ export class ConcurrentEvent {
       }
     }
 
-    for (const c of this._children) {
-      c.start(childComplete)
+    for (let i = 0; i < this._children.length; ++i) {
+      this._children[i].start(childComplete)
     }
   }
 
   stop () {
-    for (const c of this._children) {
-      c.stop()
+    for (let i = 0; i < this._children.length; ++i) {
+      this._children[i].stop()
     }
   }
 }
