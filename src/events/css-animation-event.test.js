@@ -14,7 +14,7 @@ function makeFakeElem () {
   }
 }
 
-it('adds event listener and class on start', () => {
+test('adds event listener and class on start', () => {
   const elem = makeFakeElem()
   const step = new CssAnimationEvent(elem, 'anim-class')
   step.start(jest.fn())
@@ -24,7 +24,7 @@ it('adds event listener and class on start', () => {
   expect(elem.classList.add).toHaveBeenCalledWith('anim-class')
 })
 
-it('creates a listener that removes class and listener and calls next', () => {
+test('creates a listener that removes class and listener and calls next', () => {
   const elem = makeFakeElem()
   const step = new CssAnimationEvent(elem, 'anim-class')
   const next = jest.fn()
@@ -43,7 +43,7 @@ it('creates a listener that removes class and listener and calls next', () => {
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', elem.fn)
 })
 
-it('removes event listener and class on stop', () => {
+test('removes event listener and class on stop', () => {
   const elem = makeFakeElem()
   const step = new CssAnimationEvent(elem, 'anim-class')
 
