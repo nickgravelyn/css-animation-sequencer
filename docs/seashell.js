@@ -235,6 +235,8 @@ var Timeline = function () {
   return Timeline;
 }();
 
+function buildCssAnimation() {}
+
 exports.Timeline = Timeline;
 exports.CallbackEvent = CallbackEvent;
 exports.ConcurrentEvent = ConcurrentEvent;
@@ -242,6 +244,7 @@ exports.CssAnimationEvent = CssAnimationEvent;
 exports.DelayEvent = DelayEvent;
 exports.SetStyleEvent = SetStyleEvent;
 exports.TimelineEvent = TimelineEvent;
+exports.buildCssAnimation = buildCssAnimation;
 
 return exports;
 
