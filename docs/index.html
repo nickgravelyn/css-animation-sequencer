@@ -18,7 +18,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="display-4">Seashell 🐚</h1>
-      <p class="lead">A small library built around CSS animations.</p>
+      <p class="lead">A small library for CSS animations.</p>
       <p>
         <a href="https://www.npmjs.com/package/seashell-animation">
           <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 18 7">
@@ -38,7 +38,7 @@
     <hr class="my-4">
 
     <div class="row">
-      <p>The heart of Seashell is a Timeline that plays a series of events. Events can be animations, delays, style changes, or even other timelines. Timeline has a simple enough API that using it directly can work just fine for many uses.</p>
+      <p>The heart of Seashell is a Timeline that plays a series of events. Events can be any object that implements a simple API and Seashell comes included with premade events for CSS animations, delays, style changes, callbacks, running other timelines, and running a number of events concurrently! Timeline has a simple enough API that using it directly can work just fine for many uses.</p>
 
       <p>Here we're just using Timeline to sequence some animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a> on this happy green box.</p>
     </div>
@@ -68,7 +68,7 @@
     <hr class="my-4">
 
     <div class="row">
-      <p>However if you feel like Timeline is a little too verbose there's also TimelineBuilder which adds a simpler API around building Timelines. TimelineBuilder has some additional features which we'll see later.</p>
+      <p>In addition to Timeline there's also TimelineBuilder which adds a simpler API to help build timelines. Aside from just the change in API, TimelineBuilder has some powerful features outside of what Timeline can do which we'll see later.</p>
 
       <p>Here's that same animation but the Timeline is created by a TimelineBuilder instead.</p>
     </div>
@@ -99,7 +99,9 @@
     <hr class="my-4">
 
     <div class="row">
-      The power of Seashell starts to kick in when using the TimelineBuilder to create new animations from scratch. In this example we define an animation using TimelineBuilder that generates a CSS animation to drive all of the motion. The style values are mapped directly to CSS attributes inside the generated @keyframes style so you can use any valid CSS values you want such as calc.
+      <p>Now let's look at some of those powerful TimelineBuilder features. Here we're using TimelineBuilder to create new animations from code. In this example we define an animation using TimelineBuilder that generates CSS animations to drive all of the motion. The style values are mapped directly to CSS attributes inside the generated @keyframes style so you can use any valid CSS values you want such as calc.</p>
+
+      <p>Worth reminding: this is JavaScript code that ultimately creates a CSS animation and applies it to an object. We get all the capability and performance of CSS animations without having to predefined the CSS animation ourselves. This is incredibly helpful when building apps that use variables or other DOM elements to build animations.</p>
     </div>
 
     <div class="row">
@@ -117,12 +119,11 @@
   var plus50 = "calc(50% + 50px)"
   var minus50 = "calc(50% - 50px)"
   new Seashell.TimelineBuilder()
-    .keyframes(pinkBox, { left: minus50, top: minus50 }, [
-      { duration: 1000, to: { left: plus50, top: minus50 } },
-      { duration: 1000, to: { left: plus50, top: plus50 } },
-      { duration: 1000, to: { left: minus50, top: plus50 } },
-      { duration: 1000, to: { left: minus50, top: minus50 } },
-    ])
+    .setStyle(pinkBox, { left: minus50, top: minus50 })
+    .animate(pinkBox, 1000, { left: plus50, top: minus50 })
+    .animate(pinkBox, 1000, { left: plus50, top: plus50 })
+    .animate(pinkBox, 1000, { left: minus50, top: plus50 })
+    .animate(pinkBox, 1000, { left: minus50, top: minus50 })
     .buildTimeline()
     .start({ iterations: Infinity })
 })()
