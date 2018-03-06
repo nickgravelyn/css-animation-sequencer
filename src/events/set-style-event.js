@@ -13,4 +13,7 @@ export class SetStyleEvent {
 
     complete()
   }
+
+  stop () {
+  }
 }

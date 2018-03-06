@@ -7,4 +7,7 @@ export class CallbackEvent {
     this._callback()
     complete()
   }
+
+  stop () {
+  }
 }

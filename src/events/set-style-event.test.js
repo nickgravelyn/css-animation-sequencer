@@ -10,3 +10,8 @@ test('sets style fields and completes', () => {
   expect(element.style).toEqual({ opacity: 0.5, left: '50px', top: '20px' })
   expect(complete).toHaveBeenCalled()
 })
+
+it('has a stop method', () => {
+  const event = new SetStyleEvent({}, {})
+  expect(event.stop).toBeInstanceOf(Function)
+})

@@ -9,3 +9,8 @@ test('it calls the callback and then completes', () => {
   expect(callback).toHaveBeenCalled()
   expect(complete).toHaveBeenCalled()
 })
+
+it('has a stop method', () => {
+  const event = new CallbackEvent(jest.fn())
+  expect(event.stop).toBeInstanceOf(Function)
+})

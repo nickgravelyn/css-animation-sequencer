@@ -4,6 +4,12 @@ export class DelayEvent {
   }
 
   start (complete) {
-    setTimeout(complete, this._time)
+    this._timer = setTimeout(complete, this._time)
+  }
+
+  stop () {
+    if (this._timer) {
+      clearTimeout(this._timer)
+    }
   }
 }

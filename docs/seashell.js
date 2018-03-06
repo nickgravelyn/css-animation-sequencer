@@ -19,6 +19,8 @@ var CallbackEvent = function () {
     complete();
   };
 
+  CallbackEvent.prototype.stop = function stop() {};
+
   return CallbackEvent;
 }();
 
@@ -92,7 +94,13 @@ var DelayEvent = function () {
   }
 
   DelayEvent.prototype.start = function start(complete) {
-    setTimeout(complete, this._time);
+    this._timer = setTimeout(complete, this._time);
+  };
+
+  DelayEvent.prototype.stop = function stop() {
+    if (this._timer) {
+      clearTimeout(this._timer);
+    }
   };
 
   return DelayEvent;
@@ -115,6 +123,8 @@ var SetStyleEvent = function () {
 
     complete();
   };
+
+  SetStyleEvent.prototype.stop = function stop() {};
 
   return SetStyleEvent;
 }();
