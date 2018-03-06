@@ -1,6 +1,4 @@
 export { Timeline } from './timeline'
-export { TimelineBuilder } from './timeline-builder'
-
 export { CallbackEvent } from './events/callback-event'
 export { ConcurrentEvent } from './events/concurrent-event'
 export { CssAnimationEvent } from './events/css-animation-event'
