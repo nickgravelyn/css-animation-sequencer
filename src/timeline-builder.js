@@ -1,25 +1,35 @@
-import {
-  Timeline,
-  CallbackEvent,
-  DelayEvent,
-} from '.'
+import { Timeline } from './timeline'
+import { CallbackEvent } from './events/callback-event'
+import { DelayEvent } from './events/delay-event'
+import { CssAnimationEvent } from './events/css-animation-event'
+import { SetStyleEvent } from './events/set-style-event'
 
 export class TimelineBuilder {
   constructor () {
     this._events = []
   }
 
-  addCallback (fn) {
-    this._events.push(new CallbackEvent(fn))
+  callback () {
+    this._events.push(new CallbackEvent(...arguments))
     return this
   }
 
-  addDelay (time) {
-    this._events.push(new DelayEvent(time))
+  delay () {
+    this._events.push(new DelayEvent(...arguments))
     return this
   }
 
-  build () {
+  cssAnimation () {
+    this._events.push(new CssAnimationEvent(...arguments))
+    return this
+  }
+
+  setStyle () {
+    this._events.push(new SetStyleEvent(...arguments))
+    return this
+  }
+
+  buildTimeline () {
     return new Timeline(this._events)
   }
 }

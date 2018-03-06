@@ -9,9 +9,10 @@ var classCallCheck = function (instance, Constructor) {
 
 var Timeline = function () {
   function Timeline() {
+    var events = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     classCallCheck(this, Timeline);
 
-    this._events = [];
+    this._events = events.slice(0);
     this._playing = false;
     this._startNext = this._startNext.bind(this);
   }
@@ -79,6 +80,103 @@ var CallbackEvent = function () {
   return CallbackEvent;
 }();
 
+var DelayEvent = function () {
+  function DelayEvent(time) {
+    classCallCheck(this, DelayEvent);
+
+    this._time = time;
+  }
+
+  DelayEvent.prototype.start = function start(complete) {
+    setTimeout(complete, this._time);
+  };
+
+  return DelayEvent;
+}();
+
+var CssAnimationEvent = function () {
+  function CssAnimationEvent(element, className) {
+    classCallCheck(this, CssAnimationEvent);
+
+    this._element = element;
+    this._animation = className;
+  }
+
+  CssAnimationEvent.prototype.start = function start(complete) {
+    var _this = this;
+
+    this.listener = function () {
+      _this.stop();
+      complete();
+    };
+
+    this._element.addEventListener('animationend', this.listener);
+    this._element.classList.add(this._animation);
+  };
+
+  CssAnimationEvent.prototype.stop = function stop() {
+    this._element.removeEventListener('animationend', this.listener);
+    this._element.classList.remove(this._animation);
+  };
+
+  return CssAnimationEvent;
+}();
+
+var SetStyleEvent = function () {
+  function SetStyleEvent(element, style) {
+    classCallCheck(this, SetStyleEvent);
+
+    this._element = element;
+    this._style = style;
+  }
+
+  SetStyleEvent.prototype.start = function start(complete) {
+    for (var key in this._style) {
+      if (this._style.hasOwnProperty(key)) {
+        this._element.style[key] = this._style[key];
+      }
+    }
+
+    complete();
+  };
+
+  return SetStyleEvent;
+}();
+
+var TimelineBuilder = function () {
+  function TimelineBuilder() {
+    classCallCheck(this, TimelineBuilder);
+
+    this._events = [];
+  }
+
+  TimelineBuilder.prototype.callback = function callback() {
+    this._events.push(new (Function.prototype.bind.apply(CallbackEvent, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+
+  TimelineBuilder.prototype.delay = function delay() {
+    this._events.push(new (Function.prototype.bind.apply(DelayEvent, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+
+  TimelineBuilder.prototype.cssAnimation = function cssAnimation() {
+    this._events.push(new (Function.prototype.bind.apply(CssAnimationEvent, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+
+  TimelineBuilder.prototype.setStyle = function setStyle() {
+    this._events.push(new (Function.prototype.bind.apply(SetStyleEvent, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+
+  TimelineBuilder.prototype.buildTimeline = function buildTimeline() {
+    return new Timeline(this._events);
+  };
+
+  return TimelineBuilder;
+}();
+
 var ConcurrentEvent = function () {
   function ConcurrentEvent() {
     classCallCheck(this, ConcurrentEvent);
@@ -113,69 +211,6 @@ var ConcurrentEvent = function () {
   return ConcurrentEvent;
 }();
 
-var CssAnimationEvent = function () {
-  function CssAnimationEvent(element, className) {
-    classCallCheck(this, CssAnimationEvent);
-
-    this.element = element;
-    this.animation = className;
-  }
-
-  CssAnimationEvent.prototype.start = function start(complete) {
-    var _this = this;
-
-    this.listener = function () {
-      _this.stop();
-      complete();
-    };
-
-    this.element.addEventListener('animationend', this.listener);
-    this.element.classList.add(this.animation);
-  };
-
-  CssAnimationEvent.prototype.stop = function stop() {
-    this.element.removeEventListener('animationend', this.listener);
-    this.element.classList.remove(this.animation);
-  };
-
-  return CssAnimationEvent;
-}();
-
-var DelayEvent = function () {
-  function DelayEvent(time) {
-    classCallCheck(this, DelayEvent);
-
-    this._time = time;
-  }
-
-  DelayEvent.prototype.start = function start(complete) {
-    setTimeout(complete, this._time);
-  };
-
-  return DelayEvent;
-}();
-
-var SetStyleEvent = function () {
-  function SetStyleEvent(element, style) {
-    classCallCheck(this, SetStyleEvent);
-
-    this._element = element;
-    this._style = style;
-  }
-
-  SetStyleEvent.prototype.start = function start(complete) {
-    for (var key in this._style) {
-      if (this._style.hasOwnProperty(key)) {
-        this._element.style[key] = this._style[key];
-      }
-    }
-
-    complete();
-  };
-
-  return SetStyleEvent;
-}();
-
 var TimelineEvent = function () {
   function TimelineEvent(timeline) {
     classCallCheck(this, TimelineEvent);
@@ -195,6 +230,7 @@ var TimelineEvent = function () {
 }();
 
 exports.Timeline = Timeline;
+exports.TimelineBuilder = TimelineBuilder;
 exports.CallbackEvent = CallbackEvent;
 exports.ConcurrentEvent = ConcurrentEvent;
 exports.CssAnimationEvent = CssAnimationEvent;
