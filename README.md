@@ -1,10 +1,8 @@
 # Seashell 🐚
 
-A small library for dynamic CSS animations.
+A lovely library for web animations.
 
-CSS animations are pretty great. Seashell makes it easier to generate a timeline of animations, defined in Javascript, so you can have all the power of CSS animations while being able to create and sequence them in script.
-
-Checkout the [example](https://nickgravelyn.github.io/seashell) where you can inspect the source to see how the library works.
+Checkout the [examples](https://nickgravelyn.github.io/seashell) to get an idea of what the library can do. More docs coming soon.
 
 ## Usage
 
@@ -26,9 +24,9 @@ Then you can import and use the library:
 import { Timeline } from 'seashell-animation'
 
 let timeline = new Timeline()
-...
+// etc
 ```
 
 ### For Non-Built Apps
 
-Simply take [docs/seashell.js](docs/seashell.js) which is precompiled to work in the browser for the example page. It defines a global Seashell which contains the Timeline class. See the [example](https://nickgravelyn.github.io/seashell) source for a great example of that.
+Simply take [docs/seashell.js](docs/seashell.js) which is precompiled to work in the browser for the example page. It defines a global Seashell which contains the Timeline class. See the [examples](https://nickgravelyn.github.io/seashell) source for more details.
