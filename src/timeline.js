@@ -1,3 +1,10 @@
+import { CallbackEvent } from './events/callback-event'
+import { ConcurrentEvent } from './events/concurrent-event'
+import { CssAnimationEvent } from './events/css-animation-event'
+import { DelayEvent } from './events/delay-event'
+import { SetStyleEvent } from './events/set-style-event'
+import { TimelineEvent } from './events/timeline-event'
+
 export class Timeline {
   constructor (events = []) {
     this._events = events.slice(0)
@@ -7,6 +14,36 @@ export class Timeline {
 
   add (event) {
     this._events.push(event)
+    return this
+  }
+
+  addCallback () {
+    this.add(new CallbackEvent(...arguments))
+    return this
+  }
+
+  addConcurrent () {
+    this.add(new ConcurrentEvent(...arguments))
+    return this
+  }
+
+  addCssAnimation () {
+    this.add(new CssAnimationEvent(...arguments))
+    return this
+  }
+
+  addDelay () {
+    this.add(new DelayEvent(...arguments))
+    return this
+  }
+
+  addSetStyle () {
+    this.add(new SetStyleEvent(...arguments))
+    return this
+  }
+
+  addTimeline () {
+    this.add(new TimelineEvent(...arguments))
     return this
   }
 

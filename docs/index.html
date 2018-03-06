@@ -77,7 +77,7 @@
     <hr class="my-4">
 
     <div class="row">
-      <p>While Timeline can support any event (even custom ones not defined by Seashell) it does expose a simple API for built-in events to reduce typing when making timelines. Here's that same animation using this method.</p>
+      <p>While Timeline can support any event matching the right API to support 3rd party events, it does expose a slightly simpler API for built-in events to reduce typing when making timelines. Here's that same animation using this method.</p>
     </div>
 
     <div class="row">
@@ -91,12 +91,12 @@
 (function () {
   var blueBox = document.getElementById('blue-box')
   new Timeline()
-    .cssAnimation(blueBox, 'bounce')
-    .delay(200)
-    .cssAnimation(blueBox, 'swing')
-    .delay(400)
-    .cssAnimation(blueBox, 'tada')
-    .delay(800)
+    .addCssAnimation(blueBox, 'bounce')
+    .addDelay(200)
+    .addCssAnimation(blueBox, 'swing')
+    .addDelay(400)
+    .addCssAnimation(blueBox, 'tada')
+    .addDelay(800)
     .start({ iterations: Infinity })
 })()
       </script>
