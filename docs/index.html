@@ -21,6 +21,7 @@
     var DelayEvent = Seashell.DelayEvent
     var SetStyleEvent = Seashell.SetStyleEvent
     var TimelineEvent = Seashell.TimelineEvent
+    var DynamicCssAnimation = Seashell.DynamicCssAnimation
   </script>
 </head>
 <body>
@@ -106,6 +107,8 @@
 
     <div class="row">
       <p>So far this is all well and good, but Seashell goes even further in enabling you to create nice animated sequences, starting with the <code>DynamicCssAnimation</code> class. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by a <code>Timeline</code>.</p>
+
+      <p>Note that the object you pass in is expected to have CSS compatible keys and values. No smart translation is done, giving you the most control over the end result. This means you must remember units like <code>px</code> or <code>%</code>, but also means you get to use cool things like <code>calc</code>.</p>
     </div>
 
     <div class="row">
@@ -141,13 +144,13 @@
     <hr class="my-4">
 
     <div class="row">
-      Timelines can play other timelines which allows for flexible composition of animations. By default the main timeline waits for the child timeline to finish, but the play method can take in options (whether for timeline or predefined CSS animations) to configure settings, such as whether or not to run the timeline or animation asynchronously.
+      <p>A more advanced event that can be used is the <code>ConcurrentEvent</code> which allows for running events in parallel. Combined with the <code>TimelineEvent</code>, you have a lot of flexibility in defining and choreographing your animations.</p>
     </div>
 
     <div class="row">
       <div class="col-lg-4 example">
-        <div id="orange-box" class="orange box"></div>
-        <div id="red-box" class="red box"></div>
+        <div id="orange-box" class="orange box animated"></div>
+        <div id="red-box" class="red box animated"></div>
       </div>
 
       <div class="col-lg-8">
@@ -159,18 +162,28 @@
   var orangeBox = document.getElementById('orange-box')
   var redBox = document.getElementById('red-box')
 
-  var rotateRed = new Seashell.Timeline()
-    .tween(redBox, 150, { transform: 'rotate(-45deg)' })
-    .tween(redBox, 300, { transform: 'rotate(45deg)' })
-    .tween(redBox, 150, { transform: 'rotate(0)' })
+  var rotateAnimation = new DynamicCssAnimation()
+    .addKeyFrame(0,    { transform: 'rotate(0)' })
+    .addKeyFrame(0.15, { transform: 'rotate(-45deg)' })
+    .addKeyFrame(0.30, { transform: 'rotate(45deg)' })
+    .addKeyFrame(0.15, { transform: 'rotate(0))' })
+  rotateAnimation.generateStyle()
 
-  new Seashell.Timeline()
-    .tween(orangeBox, 1000, { transform: 'translateX(-50px)' })
-    .tween(orangeBox, 1000, { transform: 'translateX(0)' })
-    .play(rotateRed, { async: true })
-    .tween(orangeBox, 1000, { transform: 'translateY(50px)' })
-    .tween(orangeBox, 1000, { transform: 'translateY(0)' })
-    .play(rotateRed)
+  var translateAnimation = new DynamicCssAnimation()
+    .addKeyFrame(0,    { transform: 'translateY(0)' })
+    .addKeyFrame(0.5, { transform: 'translateY(50px)' })
+    .addKeyFrame(0.5, { transform: 'translateY(0))' })
+  translateAnimation.generateStyle()
+
+  var redTimeline = new Seashell.Timeline()
+    .addCssAnimation(redBox, rotateAnimation.name)
+    .addCssAnimation(redBox, 'flash')
+
+  new Timeline()
+    .addCssAnimation(orangeBox, rotateAnimation.name)
+    .addConcurrent(
+      new CssAnimationEvent(orangeBox, translateAnimation.name),
+      new TimelineEvent(redTimeline))
     .start({ iterations: Infinity })
 })()
       </script>

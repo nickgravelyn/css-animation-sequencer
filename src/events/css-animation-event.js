@@ -18,6 +18,6 @@ export class CssAnimationEvent {
 
   _onAnimationEnd () {
     this.stop()
-    this._complete()
+    setTimeout(this._complete)
   }
 }

@@ -1,5 +1,7 @@
 import { CssAnimationEvent } from './css-animation-event'
 
+jest.useFakeTimers()
+
 function makeFakeElem () {
   return {
     addEventListener (event, fn) {
@@ -24,7 +26,7 @@ test('adds event listener and class on start', () => {
   expect(elem.classList.add).toHaveBeenCalledWith('anim-class')
 })
 
-test('creates a listener that removes class and listener and calls next', () => {
+test('creates a listener that removes class and listener and calls next on next tick', () => {
   const elem = makeFakeElem()
   const step = new CssAnimationEvent(elem, 'anim-class')
   const next = jest.fn()
@@ -38,9 +40,13 @@ test('creates a listener that removes class and listener and calls next', () => 
   // Invoke our animationend listener
   elem.fn()
 
-  expect(next).toHaveBeenCalled()
   expect(elem.classList.remove).toHaveBeenCalledWith('anim-class')
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', elem.fn)
+  expect(next).not.toHaveBeenCalled()
+
+  jest.advanceTimersByTime(1)
+
+  expect(next).toHaveBeenCalled()
 })
 
 test('removes event listener and class on stop', () => {

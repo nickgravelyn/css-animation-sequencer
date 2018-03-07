@@ -99,7 +99,7 @@ var CssAnimationEvent = function () {
 
   CssAnimationEvent.prototype._onAnimationEnd = function _onAnimationEnd() {
     this.stop();
-    this._complete();
+    setTimeout(this._complete);
   };
 
   return CssAnimationEvent;
