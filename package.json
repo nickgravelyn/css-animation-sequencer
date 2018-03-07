@@ -10,11 +10,11 @@
   ],
   "scripts": {
     "build": "rollup -c && esdoc",
-    "watch": "rollup -c -w",
-    "docs": "http-server docs -a localhost -c-1",
+    "serve-docs": "http-server docs -a localhost -c-1",
     "lint": "eslint .",
     "test": "jest",
-    "prepack": "yarn build"
+    "prepublishOnly": "yarn build",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "husky": "^0.15.0-rc.8",
     "jest": "^22.4.0",
     "lint-staged": "^6.1.0",
+    "np": "^2.20.1",
     "rollup": "^0.56.0",
     "rollup-plugin-babel": "^3.0.3"
   },
