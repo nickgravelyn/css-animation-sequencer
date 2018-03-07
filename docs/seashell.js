@@ -200,8 +200,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link CallbackEvent} to the Timeline, forwarding all arguments to the
-    {@link CallbackEvent} constructor.
+    Constructs a {@link CallbackEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
@@ -212,8 +212,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link ConcurrentEvent} to the Timeline, forwarding all arguments to the
-    {@link ConcurrentEvent} constructor.
+    Constructs a {@link ConcurrentEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
@@ -224,8 +224,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link CssAnimationEvent} to the Timeline, forwarding all arguments to the
-    {@link CssAnimationEvent} constructor.
+    Constructs a {@link CssAnimationEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
@@ -236,8 +236,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link DelayEvent} to the Timeline, forwarding all arguments to the
-    {@link DelayEvent} constructor.
+    Constructs a {@link DelayEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
@@ -248,8 +248,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link SetStyleEvent} to the Timeline, forwarding all arguments to the
-    {@link SetStyleEvent} constructor.
+    Constructs a {@link SetStyleEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
@@ -260,8 +260,8 @@ var Timeline = function () {
   };
 
   /**
-    Adds a {@link TimelineEvent} to the Timeline, forwarding all arguments to the
-    {@link TimelineEvent} constructor.
+    Constructs a {@link TimelineEvent} to the timeline, forwarding all arguments,
+    and adds it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
 
