@@ -6,8 +6,8 @@ import { SetStyleEvent } from './events/set-style-event'
 import { TimelineEvent } from './events/timeline-event'
 
 export class Timeline {
-  constructor (events = []) {
-    this._events = events.slice(0)
+  constructor () {
+    this._events = []
     this._playing = false
     this._startNext = this._startNext.bind(this)
   }

@@ -122,13 +122,6 @@ test('returns self from add for chaining', () => {
   expect(returned).toBe(timeline)
 })
 
-test('can pass in events to constructor', () => {
-  const event = createMockEvent()
-  const timeline = new Timeline([event])
-  timeline.start()
-  expect(event.start).toHaveBeenCalled()
-})
-
 test('second event starts after first event completes', () => {
   const timeline = new Timeline()
   const event1 = createMockEventThatDoesntCompleteAutomatically()

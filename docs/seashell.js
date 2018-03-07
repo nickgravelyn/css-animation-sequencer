@@ -7,6 +7,24 @@ var classCallCheck = function (instance, Constructor) {
   }
 };
 
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
 var CallbackEvent = function () {
   function CallbackEvent(callback) {
     classCallCheck(this, CallbackEvent);
@@ -36,7 +54,8 @@ var ConcurrentEvent = function () {
   }
 
   ConcurrentEvent.prototype.start = function start(complete) {
-    var runningCount = this._children.length;
+    var len = this._children.length;
+    var runningCount = len;
     var childComplete = function childComplete() {
       runningCount--;
       if (runningCount === 0) {
@@ -44,13 +63,13 @@ var ConcurrentEvent = function () {
       }
     };
 
-    for (var i = 0; i < this._children.length; ++i) {
+    for (var i = 0; i < len; ++i) {
       this._children[i].start(childComplete);
     }
   };
 
   ConcurrentEvent.prototype.stop = function stop() {
-    for (var i = 0; i < this._children.length; ++i) {
+    for (var i = 0, len = this._children.length; i < len; ++i) {
       this._children[i].stop();
     }
   };
@@ -149,10 +168,9 @@ var TimelineEvent = function () {
 
 var Timeline = function () {
   function Timeline() {
-    var events = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     classCallCheck(this, Timeline);
 
-    this._events = events.slice(0);
+    this._events = [];
     this._playing = false;
     this._startNext = this._startNext.bind(this);
   }
@@ -235,7 +253,73 @@ var Timeline = function () {
   return Timeline;
 }();
 
-function buildCssAnimation() {}
+var DynamicCssAnimation = function () {
+  function DynamicCssAnimation() {
+    classCallCheck(this, DynamicCssAnimation);
+
+    this._name = 'seashell-' + Math.random().toString(36).substring(2);
+    this._duration = 0;
+    this.delay = 0;
+    this.direction = 'normal';
+    this.fillMode = 'none';
+    this.timingFunction = 'ease';
+    this.iterationCount = 1;
+
+    this._keyframes = [];
+  }
+
+  DynamicCssAnimation.prototype.addKeyFrame = function addKeyFrame(duration, style) {
+    this._keyframes.push({ duration: duration, style: style });
+    this._duration += duration;
+    return this;
+  };
+
+  DynamicCssAnimation.prototype.generateStyle = function generateStyle() {
+    if (!this._styleSheet) {
+      this._styleSheet = document.createElement('style');
+      document.head.appendChild(this._styleSheet);
+    }
+
+    this._styleSheet.textContent = this.createCssString();
+  };
+
+  DynamicCssAnimation.prototype.destroyStyle = function destroyStyle() {
+    if (this._styleSheet) {
+      this._styleSheet.parentNode.removeChild(this._styleSheet);
+      this._styleSheet = null;
+    }
+  };
+
+  DynamicCssAnimation.prototype.createCssString = function createCssString() {
+    var name = this._name;
+    var css = '.' + name + ' {\n  animation-delay: ' + this.delay + 's;\n  animation-direction: ' + this.direction + ';\n  animation-duration: ' + this._duration + 's;\n  animation-fill-mode: ' + this.fillMode + ';\n  animation-iteration-count: ' + this.iterationCount + ';\n  animation-name: ' + name + ';\n  animation-timing-function: ' + this.timingFunction + ';\n}\n@keyframes ' + name + ' {\n';
+
+    var runningTime = 0;
+    for (var i = 0, len = this._keyframes.length; i < len; ++i) {
+      var frame = this._keyframes[i];
+      runningTime += frame.duration;
+      var percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100;
+      css += '  ' + percentage + '% {\n';
+      for (var key in frame.style) {
+        if (frame.style.hasOwnProperty(key)) {
+          css += '    ' + key + ': ' + frame.style[key] + ';\n';
+        }
+      }
+      css += '  }\n';
+    }
+
+    css += '}';
+    return css;
+  };
+
+  createClass(DynamicCssAnimation, [{
+    key: 'name',
+    get: function get$$1() {
+      return this._name;
+    }
+  }]);
+  return DynamicCssAnimation;
+}();
 
 exports.Timeline = Timeline;
 exports.CallbackEvent = CallbackEvent;
@@ -244,7 +328,7 @@ exports.CssAnimationEvent = CssAnimationEvent;
 exports.DelayEvent = DelayEvent;
 exports.SetStyleEvent = SetStyleEvent;
 exports.TimelineEvent = TimelineEvent;
-exports.buildCssAnimation = buildCssAnimation;
+exports.DynamicCssAnimation = DynamicCssAnimation;
 
 return exports;
 

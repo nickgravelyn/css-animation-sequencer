@@ -101,3 +101,49 @@ test("destroyStyle doesn't crash or throw if called multiple times", () => {
   animation.destroyStyle()
   expect(() => { animation.destroyStyle() }).not.toThrow()
 })
+
+test('can add keyframe', () => {
+  const animation = new DynamicCssAnimation()
+  animation.addKeyFrame(0, { left: '5px', top: '8px' })
+  expect(animation.createCssString()).toContain(
+    `  0% {
+    left: 5px;
+    top: 8px;
+  }`)
+})
+
+test('adding multiple keyframes with duration adds keyframes and sets duration', () => {
+  const animation = new DynamicCssAnimation()
+  animation.addKeyFrame(0, { left: '5px', top: '8px' })
+  animation.addKeyFrame(1, { left: '8px', top: '10px' })
+
+  const css = animation.createCssString()
+  expect(css).toContain('animation-duration: 1s')
+  expect(css).toContain(
+    `  0% {
+    left: 5px;
+    top: 8px;
+  }
+  100% {
+    left: 8px;
+    top: 10px;
+  }`)
+})
+
+test('percentages are computed correctly for multiple keyframes', () => {
+  const animation = new DynamicCssAnimation()
+  animation.addKeyFrame(0, {})
+  animation.addKeyFrame(0.5, {})
+  animation.addKeyFrame(2.0, {})
+
+  const css = animation.createCssString()
+  expect(css).toContain('0%')
+  expect(css).toContain('20%')
+  expect(css).toContain('100%')
+})
+
+test('addKeyFrame returns self for chaining', () => {
+  const animation = new DynamicCssAnimation()
+  const returned = animation.addKeyFrame(0, {})
+  expect(returned).toBe(animation)
+})

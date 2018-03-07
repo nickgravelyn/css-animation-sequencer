@@ -105,7 +105,7 @@
     <hr class="my-4">
 
     <div class="row">
-      <p>So far this is all well and good, but Seashell goes even further in enabling you to create nice animated sequences, starting with the <code>buildCssAnimation</code> function. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by the Timeline.</p>
+      <p>So far this is all well and good, but Seashell goes even further in enabling you to create nice animated sequences, starting with the <code>DynamicCssAnimation</code> class. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by a <code>Timeline</code>.</p>
     </div>
 
     <div class="row">
@@ -123,19 +123,16 @@
   var plus50 = "calc(50% + 50px)"
   var minus50 = "calc(50% - 50px)"
 
-  var keyframes = [
-    { style: { left: minus50, top: minus50 } },
-    { duration: 1000, style: { left: plus50, top: minus50 } },
-    { duration: 1000, style: { left: plus50, top: plus50 } },
-    { duration: 1000, style: { left: minus50, top: plus50 } },
-    { duration: 1000, style: { left: minus50, top: minus50 } },
-  ]
+  var animation = new DynamicCssAnimation()
+    .addKeyFrame(0.0, { left: minus50, top: minus50 })
+    .addKeyFrame(1.0, { left: plus50, top: minus50 })
+    .addKeyFrame(1.0, { left: plus50, top: plus50 })
+    .addKeyFrame(1.0, { left: minus50, top: plus50 })
+    .addKeyFrame(1.0, { left: minus50, top: minus50 })
+  animation.generateStyle()
 
-  var animation = buildCssAnimation(keyframes)
-
-  new Seashell.TimelineBuilder()
-    .addCssAnimation(pinkBox, animation)
-    .buildTimeline()
+  new Timeline()
+    .addCssAnimation(pinkBox, animation.name)
     .start({ iterations: Infinity })
 })()
       </script>

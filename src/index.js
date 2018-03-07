@@ -7,4 +7,4 @@ export { DelayEvent } from './events/delay-event'
 export { SetStyleEvent } from './events/set-style-event'
 export { TimelineEvent } from './events/timeline-event'
 
-export { buildCssAnimation } from './build-css-animation'
+export { DynamicCssAnimation } from './dynamic-css-animation'
