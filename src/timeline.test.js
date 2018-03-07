@@ -188,3 +188,30 @@ test('invokes complete callback when done', () => {
   timeline.start({ onComplete: complete })
   expect(complete).toHaveBeenCalled()
 })
+
+test('branch creates timelines based on delegate parameter count and wraps them in concurrent event', () => {
+  const timeline = new Timeline()
+  timeline.add = jest.fn()
+
+  let timelines = []
+  timeline.branch((t1, t2, t3) => {
+    timelines.push(t1)
+    timelines.push(t2)
+    timelines.push(t3)
+  })
+
+  expect(timelines).toHaveLength(3)
+  expect(timelines[0]).toBeInstanceOf(Timeline)
+  expect(timelines[1]).toBeInstanceOf(Timeline)
+  expect(timelines[2]).toBeInstanceOf(Timeline)
+
+  expect(timeline.add).toHaveBeenCalled()
+  expect(timeline.add.mock.calls[0][0]).toBeInstanceOf(ConcurrentEvent)
+
+  expect(TimelineEvent).toHaveBeenCalledTimes(3)
+  expect(TimelineEvent.mock.calls[0][0]).toBe(timelines[0])
+  expect(TimelineEvent.mock.calls[1][0]).toBe(timelines[1])
+  expect(TimelineEvent.mock.calls[2][0]).toBe(timelines[2])
+
+  expect(ConcurrentEvent).toHaveBeenCalledWith(...TimelineEvent.mock.instances)
+})

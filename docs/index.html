@@ -135,6 +135,7 @@
   animation.generateStyle()
 
   new Timeline()
+    .addSetStyle(pinkBox, { left: minus50, top: minus50 })
     .addCssAnimation(pinkBox, animation.name)
     .start({ iterations: Infinity })
 })()
@@ -145,6 +146,8 @@
 
     <div class="row">
       <p>A more advanced event that can be used is the <code>ConcurrentEvent</code> which allows for running events in parallel. Combined with the <code>TimelineEvent</code>, you have a lot of flexibility in defining and choreographing your animations.</p>
+
+      <p><code>Timeline</code> provides a nice <code>branch</code> method that helps by creating a number of new <code>Timelines</code> for you and passing them into your delegate before creating the <code>ConcurrentEvent</code> around them. You can choose if you want to use that or <code>addConcurrent</code> which requires you <code>new</code> up instances of events you want to use.</p>
     </div>
 
     <div class="row">
@@ -175,15 +178,14 @@
     .addKeyFrame(0.5, { transform: 'translateY(0))' })
   translateAnimation.generateStyle()
 
-  var redTimeline = new Seashell.Timeline()
-    .addCssAnimation(redBox, rotateAnimation.name)
-    .addCssAnimation(redBox, 'flash')
-
   new Timeline()
     .addCssAnimation(orangeBox, rotateAnimation.name)
-    .addConcurrent(
-      new CssAnimationEvent(orangeBox, translateAnimation.name),
-      new TimelineEvent(redTimeline))
+    .branch((t1, t2) => {
+      t1.addCssAnimation(orangeBox, translateAnimation.name)
+
+      t2.addCssAnimation(redBox, rotateAnimation.name)
+        .addCssAnimation(redBox, 'flash')
+    })
     .start({ iterations: Infinity })
 })()
       </script>

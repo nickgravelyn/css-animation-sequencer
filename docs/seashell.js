@@ -210,6 +210,16 @@ var Timeline = function () {
     return this;
   };
 
+  Timeline.prototype.branch = function branch(fn) {
+    var timelines = Array(fn.length).fill().map(function () {
+      return new Timeline();
+    });
+    fn.apply(undefined, timelines);
+    return this.addConcurrent.apply(this, timelines.map(function (t) {
+      return new TimelineEvent(t);
+    }));
+  };
+
   Timeline.prototype.start = function start() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref$iterations = _ref.iterations,

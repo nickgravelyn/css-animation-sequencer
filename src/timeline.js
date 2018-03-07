@@ -47,6 +47,12 @@ export class Timeline {
     return this
   }
 
+  branch (fn) {
+    const timelines = Array(fn.length).fill().map(() => new Timeline())
+    fn(...timelines)
+    return this.addConcurrent(...timelines.map(t => new TimelineEvent(t)))
+  }
+
   start ({ iterations = 1, onComplete = null } = {}) {
     this._playing = true
     this._current = -1
