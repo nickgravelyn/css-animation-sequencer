@@ -12,5 +12,14 @@ module.exports = {
         },
       },
     },
+    {
+      name: 'esdoc-importpath-plugin',
+      option: {
+        stripPackageName: true,
+        replaces: [
+          { from: '.*', to: 'seashell-animation' },
+        ],
+      },
+    },
   ],
 }

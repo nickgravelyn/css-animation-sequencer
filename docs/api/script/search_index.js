@@ -1,50 +1,50 @@
 window.esdocSearchIndex = [
   [
-    "seashell-animation/src/events/callback-event.js~callbackevent",
+    "seashell-animation~callbackevent",
     "class/src/events/callback-event.js~CallbackEvent.html",
-    "<span>CallbackEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/callback-event.js</span>",
+    "<span>CallbackEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/events/concurrent-event.js~concurrentevent",
+    "seashell-animation~concurrentevent",
     "class/src/events/concurrent-event.js~ConcurrentEvent.html",
-    "<span>ConcurrentEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/concurrent-event.js</span>",
+    "<span>ConcurrentEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/events/css-animation-event.js~cssanimationevent",
+    "seashell-animation~cssanimationevent",
     "class/src/events/css-animation-event.js~CssAnimationEvent.html",
-    "<span>CssAnimationEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/css-animation-event.js</span>",
+    "<span>CssAnimationEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/events/delay-event.js~delayevent",
+    "seashell-animation~delayevent",
     "class/src/events/delay-event.js~DelayEvent.html",
-    "<span>DelayEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/delay-event.js</span>",
+    "<span>DelayEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/dynamic-css-animation.js~dynamiccssanimation",
+    "seashell-animation~dynamiccssanimation",
     "class/src/dynamic-css-animation.js~DynamicCssAnimation.html",
-    "<span>DynamicCssAnimation</span> <span class=\"search-result-import-path\">seashell-animation/src/dynamic-css-animation.js</span>",
+    "<span>DynamicCssAnimation</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/events/set-style-event.js~setstyleevent",
+    "seashell-animation~setstyleevent",
     "class/src/events/set-style-event.js~SetStyleEvent.html",
-    "<span>SetStyleEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/set-style-event.js</span>",
+    "<span>SetStyleEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/timeline.js~timeline",
+    "seashell-animation~timeline",
     "class/src/timeline.js~Timeline.html",
-    "<span>Timeline</span> <span class=\"search-result-import-path\">seashell-animation/src/timeline.js</span>",
+    "<span>Timeline</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
-    "seashell-animation/src/events/timeline-event.js~timelineevent",
+    "seashell-animation~timelineevent",
     "class/src/events/timeline-event.js~TimelineEvent.html",
-    "<span>TimelineEvent</span> <span class=\"search-result-import-path\">seashell-animation/src/events/timeline-event.js</span>",
+    "<span>TimelineEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
     "class"
   ],
   [
