@@ -1,0 +1,112 @@
+{
+  "coverage": "17.39%",
+  "expectCount": 69,
+  "actualCount": 12,
+  "files": {
+    "src/dynamic-css-animation.js": {
+      "expectCount": 16,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        14,
+        18,
+        24,
+        26,
+        33,
+        40
+      ]
+    },
+    "src/events/callback-event.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        6,
+        11
+      ]
+    },
+    "src/events/concurrent-event.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        6,
+        21
+      ]
+    },
+    "src/events/css-animation-event.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        14,
+        19
+      ]
+    },
+    "src/events/delay-event.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        10
+      ]
+    },
+    "src/events/set-style-event.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        17
+      ]
+    },
+    "src/events/timeline-event.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        6,
+        10
+      ]
+    },
+    "src/timeline.js": {
+      "expectCount": 18,
+      "actualCount": 12,
+      "undocumentLines": [
+        17,
+        18,
+        132,
+        133,
+        134,
+        151
+      ]
+    }
+  }
+}

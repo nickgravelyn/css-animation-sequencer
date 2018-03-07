@@ -166,7 +166,14 @@ var TimelineEvent = function () {
   return TimelineEvent;
 }();
 
+/**
+  Coordinating object that holds a list of events that are
+  played sequentially to create animations.
+*/
 var Timeline = function () {
+  /**
+    Initializes a new Timeline.
+  */
   function Timeline() {
     classCallCheck(this, Timeline);
 
@@ -175,40 +182,107 @@ var Timeline = function () {
     this._startNext = this._startNext.bind(this);
   }
 
+  /**
+    Adds an event to the timeline.
+     An event is any object that implements a basic interface consisting
+    of `start` and `stop` methods. `start` is called with a completion
+    callback function that the event must call when completion is reached.
+    `stop` should stop any asynchronous work for the event and should **not**
+    invoke the complete method passed into `start`.
+     @param {Object} event - The event to add to the timeline
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
+
   Timeline.prototype.add = function add(event) {
     this._events.push(event);
     return this;
   };
+
+  /**
+    Adds a {@link CallbackEvent} to the Timeline, forwarding all arguments to the
+    {@link CallbackEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
 
   Timeline.prototype.addCallback = function addCallback() {
     this.add(new (Function.prototype.bind.apply(CallbackEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
 
+  /**
+    Adds a {@link ConcurrentEvent} to the Timeline, forwarding all arguments to the
+    {@link ConcurrentEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
+
   Timeline.prototype.addConcurrent = function addConcurrent() {
     this.add(new (Function.prototype.bind.apply(ConcurrentEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
+
+  /**
+    Adds a {@link CssAnimationEvent} to the Timeline, forwarding all arguments to the
+    {@link CssAnimationEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
 
   Timeline.prototype.addCssAnimation = function addCssAnimation() {
     this.add(new (Function.prototype.bind.apply(CssAnimationEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
 
+  /**
+    Adds a {@link DelayEvent} to the Timeline, forwarding all arguments to the
+    {@link DelayEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
+
   Timeline.prototype.addDelay = function addDelay() {
     this.add(new (Function.prototype.bind.apply(DelayEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
+
+  /**
+    Adds a {@link SetStyleEvent} to the Timeline, forwarding all arguments to the
+    {@link SetStyleEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
 
   Timeline.prototype.addSetStyle = function addSetStyle() {
     this.add(new (Function.prototype.bind.apply(SetStyleEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
 
+  /**
+    Adds a {@link TimelineEvent} to the Timeline, forwarding all arguments to the
+    {@link TimelineEvent} constructor.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
+
   Timeline.prototype.addTimeline = function addTimeline() {
     this.add(new (Function.prototype.bind.apply(TimelineEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
+
+  /**
+    Creates a number of timelines, passes them to the function provided,
+    and wraps them all in a {@link ConcurrentEvent}.
+     The function passed in must have a defined `.length`. That length is used to
+    know how many new timelines to create. This mainly means your function
+    should not use rest parameters.
+     @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length
+     @param {Function} fn -
+      A function called that is expected to configure the newly created timelines.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+
 
   Timeline.prototype.branch = function branch(fn) {
     var timelines = Array(fn.length).fill().map(function () {
@@ -219,6 +293,18 @@ var Timeline = function () {
       return new TimelineEvent(t);
     }));
   };
+
+  /**
+    Starts playing the timeline.
+     @param {Object} options -
+      Playback options.
+    @param {Number} options.iterations -
+      The number of times to play through the events. Defaults to 1.
+    @param {Function} options.onComplete -
+      A function to invoke when the timeline finishes playing.
+      This will never be invoked if iterations is set to `Infinity`.
+  */
+
 
   Timeline.prototype.start = function start() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -234,6 +320,13 @@ var Timeline = function () {
     this._startNext();
   };
 
+  /**
+    Stops the timeline, if it is playing.
+     Aside from preventing starting any new events, this also calls `stop`
+    on the current event to allow it to clean up.
+  */
+
+
   Timeline.prototype.stop = function stop() {
     if (!this._playing) {
       return;
@@ -242,6 +335,10 @@ var Timeline = function () {
   };
 
   Timeline.prototype._startNext = function _startNext() {
+    if (!this._playing) {
+      return;
+    }
+
     this._current++;
 
     if (this._current >= this._events.length) {

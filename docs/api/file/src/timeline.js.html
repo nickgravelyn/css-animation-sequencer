@@ -1,9 +1,53 @@
-import { CallbackEvent } from './events/callback-event'
-import { ConcurrentEvent } from './events/concurrent-event'
-import { CssAnimationEvent } from './events/css-animation-event'
-import { DelayEvent } from './events/delay-event'
-import { SetStyleEvent } from './events/set-style-event'
-import { TimelineEvent } from './events/timeline-event'
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/timeline.js | seashell-animation</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A lovely library for web animations."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="seashell-animation"><meta property="twitter:description" content="A lovely library for web animations."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/nickgravelyn/seashell"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dynamic-css-animation.js~DynamicCssAnimation.html">DynamicCssAnimation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/timeline.js~Timeline.html">Timeline</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#events">events</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/callback-event.js~CallbackEvent.html">CallbackEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/concurrent-event.js~ConcurrentEvent.html">ConcurrentEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/css-animation-event.js~CssAnimationEvent.html">CssAnimationEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/delay-event.js~DelayEvent.html">DelayEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/set-style-event.js~SetStyleEvent.html">SetStyleEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/timeline-event.js~TimelineEvent.html">TimelineEvent</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/timeline.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { CallbackEvent } from &apos;./events/callback-event&apos;
+import { ConcurrentEvent } from &apos;./events/concurrent-event&apos;
+import { CssAnimationEvent } from &apos;./events/css-animation-event&apos;
+import { DelayEvent } from &apos;./events/delay-event&apos;
+import { SetStyleEvent } from &apos;./events/set-style-event&apos;
+import { TimelineEvent } from &apos;./events/timeline-event&apos;
 
 /**
   Coordinating object that holds a list of events that are
@@ -111,9 +155,9 @@ export class Timeline {
     @return {Timeline} The timeline, to support call chaining.
   */
   branch (fn) {
-    const timelines = Array(fn.length).fill().map(() => new Timeline())
+    const timelines = Array(fn.length).fill().map(() =&gt; new Timeline())
     fn(...timelines)
-    return this.addConcurrent(...timelines.map(t => new TimelineEvent(t)))
+    return this.addConcurrent(...timelines.map(t =&gt; new TimelineEvent(t)))
   }
 
   /**
@@ -155,8 +199,8 @@ export class Timeline {
 
     this._current++
 
-    if (this._current >= this._events.length) {
-      if (this._iterations <= 1) {
+    if (this._current &gt;= this._events.length) {
+      if (this._iterations &lt;= 1) {
         this._playing = false
         if (this._onComplete) {
           this._onComplete()
@@ -171,3 +215,20 @@ export class Timeline {
     this._events[this._current].start(this._startNext)
   }
 }
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

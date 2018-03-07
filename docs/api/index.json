@@ -1,0 +1,1980 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/dynamic-css-animation.js",
+    "content": "export class DynamicCssAnimation {\n  constructor () {\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\n    this._duration = 0\n    this.delay = 0\n    this.direction = 'normal'\n    this.fillMode = 'none'\n    this.timingFunction = 'ease'\n    this.iterationCount = 1\n\n    this._keyframes = []\n  }\n\n  get name () {\n    return this._name\n  }\n\n  addKeyFrame (duration, style) {\n    this._keyframes.push({ duration, style })\n    this._duration += duration\n    return this\n  }\n\n  generateStyle () {\n    if (!this._styleSheet) {\n      this._styleSheet = document.createElement('style')\n      document.head.appendChild(this._styleSheet)\n    }\n\n    this._styleSheet.textContent = this.createCssString()\n  }\n\n  destroyStyle () {\n    if (this._styleSheet) {\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\n      this._styleSheet = null\n    }\n  }\n\n  createCssString () {\n    const name = this._name\n    let css = `.${name} {\n  animation-delay: ${this.delay}s;\n  animation-direction: ${this.direction};\n  animation-duration: ${this._duration}s;\n  animation-fill-mode: ${this.fillMode};\n  animation-iteration-count: ${this.iterationCount};\n  animation-name: ${name};\n  animation-timing-function: ${this.timingFunction};\n}\n@keyframes ${name} {\\n`\n\n    let runningTime = 0\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\n      const frame = this._keyframes[i]\n      runningTime += frame.duration\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\n      css += `  ${percentage}% {\\n`\n      for (const key in frame.style) {\n        if (frame.style.hasOwnProperty(key)) {\n          css += `    ${key}: ${frame.style[key]};\\n`\n        }\n      }\n      css += '  }\\n'\n    }\n\n    css += '}'\n    return css\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/dynamic-css-animation.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "DynamicCssAnimation",
+    "memberof": "src/dynamic-css-animation.js",
+    "static": true,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/dynamic-css-animation.js",
+    "importStyle": "{DynamicCssAnimation}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "_name",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_name",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "_duration",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_duration",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "delay",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#delay",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "direction",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#direction",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "fillMode",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#fillMode",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "timingFunction",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#timingFunction",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "member",
+    "name": "iterationCount",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#iterationCount",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "_keyframes",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_keyframes",
+    "access": "private",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "get",
+    "name": "name",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "addKeyFrame",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#addKeyFrame",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "duration",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "style",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "generateStyle",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#generateStyle",
+    "access": "public",
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 63,
+    "kind": "member",
+    "name": "_styleSheet",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_styleSheet",
+    "access": "private",
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "destroyStyle",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#destroyStyle",
+    "access": "public",
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "createCssString",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#createCssString",
+    "access": "public",
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "src/events/callback-event.js",
+    "content": "export class CallbackEvent {\n  constructor (callback) {\n    this._callback = callback\n  }\n\n  start (complete) {\n    this._callback()\n    complete()\n  }\n\n  stop () {\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/callback-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "class",
+    "name": "CallbackEvent",
+    "memberof": "src/events/callback-event.js",
+    "static": true,
+    "longname": "src/events/callback-event.js~CallbackEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/callback-event.js",
+    "importStyle": "{CallbackEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 69,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/callback-event.js~CallbackEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/callback-event.js~CallbackEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "member",
+    "name": "_callback",
+    "memberof": "src/events/callback-event.js~CallbackEvent",
+    "static": false,
+    "longname": "src/events/callback-event.js~CallbackEvent#_callback",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/callback-event.js~CallbackEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/callback-event.js~CallbackEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/callback-event.js~CallbackEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/callback-event.js~CallbackEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/events/concurrent-event.js",
+    "content": "export class ConcurrentEvent {\n  constructor (...children) {\n    this._children = children\n  }\n\n  start (complete) {\n    const len = this._children.length\n    let runningCount = len\n    const childComplete = () => {\n      runningCount--\n      if (runningCount === 0) {\n        complete()\n      }\n    }\n\n    for (let i = 0; i < len; ++i) {\n      this._children[i].start(childComplete)\n    }\n  }\n\n  stop () {\n    for (let i = 0, len = this._children.length; i < len; ++i) {\n      this._children[i].stop()\n    }\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/concurrent-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "class",
+    "name": "ConcurrentEvent",
+    "memberof": "src/events/concurrent-event.js",
+    "static": true,
+    "longname": "src/events/concurrent-event.js~ConcurrentEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/concurrent-event.js",
+    "importStyle": "{ConcurrentEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 75,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/concurrent-event.js~ConcurrentEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/concurrent-event.js~ConcurrentEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "member",
+    "name": "_children",
+    "memberof": "src/events/concurrent-event.js~ConcurrentEvent",
+    "static": false,
+    "longname": "src/events/concurrent-event.js~ConcurrentEvent#_children",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/concurrent-event.js~ConcurrentEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/concurrent-event.js~ConcurrentEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 78,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/concurrent-event.js~ConcurrentEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/concurrent-event.js~ConcurrentEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 79,
+    "kind": "file",
+    "name": "src/events/css-animation-event.js",
+    "content": "export class CssAnimationEvent {\n  constructor (element, className) {\n    this._element = element\n    this._animation = className\n    this._onAnimationEnd = this._onAnimationEnd.bind(this)\n  }\n\n  start (complete) {\n    this._complete = complete\n    this._element.addEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.add(this._animation)\n  }\n\n  stop () {\n    this._element.removeEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.remove(this._animation)\n  }\n\n  _onAnimationEnd () {\n    this.stop()\n    setTimeout(this._complete)\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/css-animation-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 80,
+    "kind": "class",
+    "name": "CssAnimationEvent",
+    "memberof": "src/events/css-animation-event.js",
+    "static": true,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/css-animation-event.js",
+    "importStyle": "{CssAnimationEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 81,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "_element",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#_element",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "name": "_animation",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#_animation",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 86,
+    "kind": "member",
+    "name": "_complete",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#_complete",
+    "access": "private",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 88,
+    "kind": "method",
+    "name": "_onAnimationEnd",
+    "memberof": "src/events/css-animation-event.js~CssAnimationEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/css-animation-event.js~CssAnimationEvent#_onAnimationEnd",
+    "access": "private",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "ignore": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 89,
+    "kind": "file",
+    "name": "src/events/delay-event.js",
+    "content": "export class DelayEvent {\n  constructor (time) {\n    this._time = time\n  }\n\n  start (complete) {\n    this._timer = setTimeout(complete, this._time)\n  }\n\n  stop () {\n    if (this._timer) {\n      clearTimeout(this._timer)\n    }\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/delay-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 90,
+    "kind": "class",
+    "name": "DelayEvent",
+    "memberof": "src/events/delay-event.js",
+    "static": true,
+    "longname": "src/events/delay-event.js~DelayEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/delay-event.js",
+    "importStyle": "{DelayEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 91,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/delay-event.js~DelayEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/delay-event.js~DelayEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "member",
+    "name": "_time",
+    "memberof": "src/events/delay-event.js~DelayEvent",
+    "static": false,
+    "longname": "src/events/delay-event.js~DelayEvent#_time",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/delay-event.js~DelayEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/delay-event.js~DelayEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 94,
+    "kind": "member",
+    "name": "_timer",
+    "memberof": "src/events/delay-event.js~DelayEvent",
+    "static": false,
+    "longname": "src/events/delay-event.js~DelayEvent#_timer",
+    "access": "private",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 95,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/delay-event.js~DelayEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/delay-event.js~DelayEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 96,
+    "kind": "file",
+    "name": "src/events/set-style-event.js",
+    "content": "export class SetStyleEvent {\n  constructor (element, style) {\n    this._element = element\n    this._style = style\n  }\n\n  start (complete) {\n    for (const key in this._style) {\n      if (this._style.hasOwnProperty(key)) {\n        this._element.style[key] = this._style[key]\n      }\n    }\n\n    complete()\n  }\n\n  stop () {\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/set-style-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 97,
+    "kind": "class",
+    "name": "SetStyleEvent",
+    "memberof": "src/events/set-style-event.js",
+    "static": true,
+    "longname": "src/events/set-style-event.js~SetStyleEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/set-style-event.js",
+    "importStyle": "{SetStyleEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 98,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/set-style-event.js~SetStyleEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/set-style-event.js~SetStyleEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "member",
+    "name": "_element",
+    "memberof": "src/events/set-style-event.js~SetStyleEvent",
+    "static": false,
+    "longname": "src/events/set-style-event.js~SetStyleEvent#_element",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "member",
+    "name": "_style",
+    "memberof": "src/events/set-style-event.js~SetStyleEvent",
+    "static": false,
+    "longname": "src/events/set-style-event.js~SetStyleEvent#_style",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/set-style-event.js~SetStyleEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/set-style-event.js~SetStyleEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 102,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/set-style-event.js~SetStyleEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/set-style-event.js~SetStyleEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 103,
+    "kind": "file",
+    "name": "src/events/timeline-event.js",
+    "content": "export class TimelineEvent {\n  constructor (timeline) {\n    this._timeline = timeline\n  }\n\n  start (complete) {\n    this._timeline.start({ onComplete: complete })\n  }\n\n  stop () {\n    this._timeline.stop()\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/events/timeline-event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 104,
+    "kind": "class",
+    "name": "TimelineEvent",
+    "memberof": "src/events/timeline-event.js",
+    "static": true,
+    "longname": "src/events/timeline-event.js~TimelineEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/events/timeline-event.js",
+    "importStyle": "{TimelineEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 105,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/events/timeline-event.js~TimelineEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/timeline-event.js~TimelineEvent#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "member",
+    "name": "_timeline",
+    "memberof": "src/events/timeline-event.js~TimelineEvent",
+    "static": false,
+    "longname": "src/events/timeline-event.js~TimelineEvent#_timeline",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 107,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/events/timeline-event.js~TimelineEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/timeline-event.js~TimelineEvent#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "complete",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 108,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/events/timeline-event.js~TimelineEvent",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/events/timeline-event.js~TimelineEvent#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 109,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "export { Timeline } from './timeline'\n\nexport { CallbackEvent } from './events/callback-event'\nexport { ConcurrentEvent } from './events/concurrent-event'\nexport { CssAnimationEvent } from './events/css-animation-event'\nexport { DelayEvent } from './events/delay-event'\nexport { SetStyleEvent } from './events/set-style-event'\nexport { TimelineEvent } from './events/timeline-event'\n\nexport { DynamicCssAnimation } from './dynamic-css-animation'\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 110,
+    "kind": "file",
+    "name": "src/timeline.js",
+    "content": "import { CallbackEvent } from './events/callback-event'\nimport { ConcurrentEvent } from './events/concurrent-event'\nimport { CssAnimationEvent } from './events/css-animation-event'\nimport { DelayEvent } from './events/delay-event'\nimport { SetStyleEvent } from './events/set-style-event'\nimport { TimelineEvent } from './events/timeline-event'\n\n/**\n  Coordinating object that holds a list of events that are\n  played sequentially to create animations.\n*/\nexport class Timeline {\n  /**\n    Initializes a new Timeline.\n  */\n  constructor () {\n    this._events = []\n    this._playing = false\n    this._startNext = this._startNext.bind(this)\n  }\n\n  /**\n    Adds an event to the timeline.\n\n    An event is any object that implements a basic interface consisting\n    of `start` and `stop` methods. `start` is called with a completion\n    callback function that the event must call when completion is reached.\n    `stop` should stop any asynchronous work for the event and should **not**\n    invoke the complete method passed into `start`.\n\n    @param {Object} event - The event to add to the timeline\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  add (event) {\n    this._events.push(event)\n    return this\n  }\n\n  /**\n    Adds a {@link CallbackEvent} to the Timeline, forwarding all arguments to the\n    {@link CallbackEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addCallback () {\n    this.add(new CallbackEvent(...arguments))\n    return this\n  }\n\n  /**\n    Adds a {@link ConcurrentEvent} to the Timeline, forwarding all arguments to the\n    {@link ConcurrentEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addConcurrent () {\n    this.add(new ConcurrentEvent(...arguments))\n    return this\n  }\n\n  /**\n    Adds a {@link CssAnimationEvent} to the Timeline, forwarding all arguments to the\n    {@link CssAnimationEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addCssAnimation () {\n    this.add(new CssAnimationEvent(...arguments))\n    return this\n  }\n\n  /**\n    Adds a {@link DelayEvent} to the Timeline, forwarding all arguments to the\n    {@link DelayEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addDelay () {\n    this.add(new DelayEvent(...arguments))\n    return this\n  }\n\n  /**\n    Adds a {@link SetStyleEvent} to the Timeline, forwarding all arguments to the\n    {@link SetStyleEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addSetStyle () {\n    this.add(new SetStyleEvent(...arguments))\n    return this\n  }\n\n  /**\n    Adds a {@link TimelineEvent} to the Timeline, forwarding all arguments to the\n    {@link TimelineEvent} constructor.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addTimeline () {\n    this.add(new TimelineEvent(...arguments))\n    return this\n  }\n\n  /**\n    Creates a number of timelines, passes them to the function provided,\n    and wraps them all in a {@link ConcurrentEvent}.\n\n    The function passed in must have a defined `.length`. That length is used to\n    know how many new timelines to create. This mainly means your function\n    should not use rest parameters.\n\n    @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length\n\n    @param {Function} fn -\n      A function called that is expected to configure the newly created timelines.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  branch (fn) {\n    const timelines = Array(fn.length).fill().map(() => new Timeline())\n    fn(...timelines)\n    return this.addConcurrent(...timelines.map(t => new TimelineEvent(t)))\n  }\n\n  /**\n    Starts playing the timeline.\n\n    @param {Object} options -\n      Playback options.\n    @param {Number} options.iterations -\n      The number of times to play through the events. Defaults to 1.\n    @param {Function} options.onComplete -\n      A function to invoke when the timeline finishes playing.\n      This will never be invoked if iterations is set to `Infinity`.\n  */\n  start ({ iterations = 1, onComplete = null } = {}) {\n    this._playing = true\n    this._current = -1\n    this._iterations = iterations\n    this._onComplete = onComplete\n    this._startNext()\n  }\n\n  /**\n    Stops the timeline, if it is playing.\n\n    Aside from preventing starting any new events, this also calls `stop`\n    on the current event to allow it to clean up.\n  */\n  stop () {\n    if (!this._playing) {\n      return\n    }\n    this._events[this._current].stop()\n  }\n\n  _startNext () {\n    if (!this._playing) {\n      return\n    }\n\n    this._current++\n\n    if (this._current >= this._events.length) {\n      if (this._iterations <= 1) {\n        this._playing = false\n        if (this._onComplete) {\n          this._onComplete()\n        }\n        return\n      }\n\n      this._iterations--\n      this._current = 0\n    }\n\n    this._events[this._current].start(this._startNext)\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/nick/Documents/seashell/src/timeline.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 111,
+    "kind": "class",
+    "name": "Timeline",
+    "memberof": "src/timeline.js",
+    "static": true,
+    "longname": "src/timeline.js~Timeline",
+    "access": "public",
+    "export": true,
+    "importPath": "seashell-animation/src/timeline.js",
+    "importStyle": "{Timeline}",
+    "description": "Coordinating object that holds a list of events that are\nplayed sequentially to create animations.",
+    "lineNumber": 12,
+    "interface": false
+  },
+  {
+    "__docId__": 112,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#constructor",
+    "access": "public",
+    "description": "Initializes a new Timeline.",
+    "lineNumber": 16
+  },
+  {
+    "__docId__": 113,
+    "kind": "member",
+    "name": "_events",
+    "memberof": "src/timeline.js~Timeline",
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_events",
+    "access": "private",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 114,
+    "kind": "member",
+    "name": "_playing",
+    "memberof": "src/timeline.js~Timeline",
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_playing",
+    "access": "private",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#add",
+    "access": "public",
+    "description": "Adds an event to the timeline.\n\nAn event is any object that implements a basic interface consisting\nof `start` and `stop` methods. `start` is called with a completion\ncallback function that the event must call when completion is reached.\n`stop` should stop any asynchronous work for the event and should **not**\ninvoke the complete method passed into `start`.",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "The event to add to the timeline"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    }
+  },
+  {
+    "__docId__": 117,
+    "kind": "method",
+    "name": "addCallback",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addCallback",
+    "access": "public",
+    "description": "Adds a {@link CallbackEvent} to the Timeline, forwarding all arguments to the\n{@link CallbackEvent} constructor.",
+    "lineNumber": 44,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 118,
+    "kind": "method",
+    "name": "addConcurrent",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addConcurrent",
+    "access": "public",
+    "description": "Adds a {@link ConcurrentEvent} to the Timeline, forwarding all arguments to the\n{@link ConcurrentEvent} constructor.",
+    "lineNumber": 54,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 119,
+    "kind": "method",
+    "name": "addCssAnimation",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addCssAnimation",
+    "access": "public",
+    "description": "Adds a {@link CssAnimationEvent} to the Timeline, forwarding all arguments to the\n{@link CssAnimationEvent} constructor.",
+    "lineNumber": 64,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 120,
+    "kind": "method",
+    "name": "addDelay",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addDelay",
+    "access": "public",
+    "description": "Adds a {@link DelayEvent} to the Timeline, forwarding all arguments to the\n{@link DelayEvent} constructor.",
+    "lineNumber": 74,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 121,
+    "kind": "method",
+    "name": "addSetStyle",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addSetStyle",
+    "access": "public",
+    "description": "Adds a {@link SetStyleEvent} to the Timeline, forwarding all arguments to the\n{@link SetStyleEvent} constructor.",
+    "lineNumber": 84,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 122,
+    "kind": "method",
+    "name": "addTimeline",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#addTimeline",
+    "access": "public",
+    "description": "Adds a {@link TimelineEvent} to the Timeline, forwarding all arguments to the\n{@link TimelineEvent} constructor.",
+    "lineNumber": 94,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 123,
+    "kind": "method",
+    "name": "branch",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#branch",
+    "access": "public",
+    "description": "Creates a number of timelines, passes them to the function provided,\nand wraps them all in a {@link ConcurrentEvent}.\n\nThe function passed in must have a defined `.length`. That length is used to\nknow how many new timelines to create. This mainly means your function\nshould not use rest parameters.",
+    "see": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length"
+    ],
+    "lineNumber": 113,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "A function called that is expected to configure the newly created timelines."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Timeline"
+      ],
+      "spread": false,
+      "description": "The timeline, to support call chaining."
+    }
+  },
+  {
+    "__docId__": 124,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#start",
+    "access": "public",
+    "description": "Starts playing the timeline.",
+    "lineNumber": 130,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "Playback options."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.iterations",
+        "description": "The number of times to play through the events. Defaults to 1."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.onComplete",
+        "description": "A function to invoke when the timeline finishes playing.\nThis will never be invoked if iterations is set to `Infinity`."
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 126,
+    "kind": "member",
+    "name": "_current",
+    "memberof": "src/timeline.js~Timeline",
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_current",
+    "access": "private",
+    "description": null,
+    "lineNumber": 132,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "member",
+    "name": "_iterations",
+    "memberof": "src/timeline.js~Timeline",
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_iterations",
+    "access": "private",
+    "description": null,
+    "lineNumber": 133,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "member",
+    "name": "_onComplete",
+    "memberof": "src/timeline.js~Timeline",
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_onComplete",
+    "access": "private",
+    "description": null,
+    "lineNumber": 134,
+    "undocument": true,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#stop",
+    "access": "public",
+    "description": "Stops the timeline, if it is playing.\n\nAside from preventing starting any new events, this also calls `stop`\non the current event to allow it to clean up.",
+    "lineNumber": 144,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 130,
+    "kind": "method",
+    "name": "_startNext",
+    "memberof": "src/timeline.js~Timeline",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timeline.js~Timeline#_startNext",
+    "access": "private",
+    "description": null,
+    "lineNumber": 151,
+    "undocument": true,
+    "ignore": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "kind": "index",
+    "content": "# Seashell 🐚\n\nA lovely library for web animations.\n\nCheckout the [examples](https://nickgravelyn.github.io/seashell) to get an idea of what the library can do.\n\n## Get Started\n\n```\nyarn add seashell-animation\n```\n\nor\n\n```\nnpm add --save seashell-animation\n```\n\nThen you can import and use the library:\n\n```js\nimport { Timeline } from 'seashell-animation'\n\nlet timeline = new Timeline()\n// etc\n```\n",
+    "longname": "/Users/nick/Documents/seashell/api_index.md",
+    "name": "./api_index.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"seashell-animation\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A lovely library for web animations.\",\n  \"main\": \"dist/seashell.cjs.js\",\n  \"module\": \"dist/seashell.esm.js\",\n  \"files\": [\n    \"dist/seashell.cjs.js\",\n    \"dist/seashell.esm.js\"\n  ],\n  \"scripts\": {\n    \"build\": \"rollup -c && esdoc\",\n    \"watch\": \"rollup -c -w\",\n    \"docs\": \"http-server docs -a localhost -c-1\",\n    \"lint\": \"eslint .\",\n    \"test\": \"jest\",\n    \"prepack\": \"yarn build\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/nickgravelyn/seashell.git\"\n  },\n  \"author\": \"Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/nickgravelyn/seashell/issues\"\n  },\n  \"homepage\": \"https://github.com/nickgravelyn/seashell#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@nickgravelyn/eslint-config\": \"^1.1.0\",\n    \"babel-core\": \"^6.26.0\",\n    \"babel-plugin-external-helpers\": \"^6.22.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.18.1\",\n    \"eslint-plugin-jest\": \"^21.12.2\",\n    \"http-server\": \"^0.11.1\",\n    \"husky\": \"^0.15.0-rc.8\",\n    \"jest\": \"^22.4.0\",\n    \"lint-staged\": \"^6.1.0\",\n    \"rollup\": \"^0.56.0\",\n    \"rollup-plugin-babel\": \"^3.0.3\"\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-commit\": \"yarn test && lint-staged\"\n    }\n  },\n  \"lint-staged\": {\n    \"linters\": {\n      \"*.js\": [\n        \"yarn lint --fix\",\n        \"git add\"\n      ]\n    }\n  }\n}\n",
+    "longname": "/Users/nick/Documents/seashell/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
