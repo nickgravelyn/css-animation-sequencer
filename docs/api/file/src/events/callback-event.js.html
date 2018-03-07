@@ -42,16 +42,26 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/events/callback-event.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export class CallbackEvent {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+  An event that invokes a function when started
+*/
+export class CallbackEvent {
+  /**
+    Initializes the event.
+
+    @param {Function} callback - The function to invoke when the event starts.
+  */
   constructor (callback) {
     this._callback = callback
   }
 
+  /** @ignore */
   start (complete) {
     this._callback()
     complete()
   }
 
+  /** @ignore */
   stop () {
   }
 }

@@ -42,11 +42,24 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/events/concurrent-event.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export class ConcurrentEvent {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+  An event that concurrently starts any number of children.
+
+  This event is used to have simultaneous animations or timelines. All
+  children of the event are started when the event are started, and the
+  event doesn&apos;t complete until all children have completed.
+*/
+export class ConcurrentEvent {
+  /**
+    Initializes the event.
+
+    @param {Array&lt;Object&gt;} ...children - The events to run concurrently.
+  */
   constructor (...children) {
     this._children = children
   }
 
+  /** @ignore */
   start (complete) {
     const len = this._children.length
     let runningCount = len
@@ -62,6 +75,7 @@
     }
   }
 
+  /** @ignore */
   stop () {
     for (let i = 0, len = this._children.length; i &lt; len; ++i) {
       this._children[i].stop()

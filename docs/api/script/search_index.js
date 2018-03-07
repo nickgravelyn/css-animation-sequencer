@@ -414,18 +414,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/events/callback-event.js~callbackevent#start",
-    "class/src/events/callback-event.js~CallbackEvent.html#instance-method-start",
-    "src/events/callback-event.js~CallbackEvent#start",
-    "method"
-  ],
-  [
-    "src/events/callback-event.js~callbackevent#stop",
-    "class/src/events/callback-event.js~CallbackEvent.html#instance-method-stop",
-    "src/events/callback-event.js~CallbackEvent#stop",
-    "method"
-  ],
-  [
     "src/events/concurrent-event.js",
     "file/src/events/concurrent-event.js.html",
     "src/events/concurrent-event.js",
@@ -435,18 +423,6 @@ window.esdocSearchIndex = [
     "src/events/concurrent-event.js~concurrentevent#constructor",
     "class/src/events/concurrent-event.js~ConcurrentEvent.html#instance-constructor-constructor",
     "src/events/concurrent-event.js~ConcurrentEvent#constructor",
-    "method"
-  ],
-  [
-    "src/events/concurrent-event.js~concurrentevent#start",
-    "class/src/events/concurrent-event.js~ConcurrentEvent.html#instance-method-start",
-    "src/events/concurrent-event.js~ConcurrentEvent#start",
-    "method"
-  ],
-  [
-    "src/events/concurrent-event.js~concurrentevent#stop",
-    "class/src/events/concurrent-event.js~ConcurrentEvent.html#instance-method-stop",
-    "src/events/concurrent-event.js~ConcurrentEvent#stop",
     "method"
   ],
   [
@@ -462,18 +438,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/events/css-animation-event.js~cssanimationevent#start",
-    "class/src/events/css-animation-event.js~CssAnimationEvent.html#instance-method-start",
-    "src/events/css-animation-event.js~CssAnimationEvent#start",
-    "method"
-  ],
-  [
-    "src/events/css-animation-event.js~cssanimationevent#stop",
-    "class/src/events/css-animation-event.js~CssAnimationEvent.html#instance-method-stop",
-    "src/events/css-animation-event.js~CssAnimationEvent#stop",
-    "method"
-  ],
-  [
     "src/events/delay-event.js",
     "file/src/events/delay-event.js.html",
     "src/events/delay-event.js",
@@ -483,18 +447,6 @@ window.esdocSearchIndex = [
     "src/events/delay-event.js~delayevent#constructor",
     "class/src/events/delay-event.js~DelayEvent.html#instance-constructor-constructor",
     "src/events/delay-event.js~DelayEvent#constructor",
-    "method"
-  ],
-  [
-    "src/events/delay-event.js~delayevent#start",
-    "class/src/events/delay-event.js~DelayEvent.html#instance-method-start",
-    "src/events/delay-event.js~DelayEvent#start",
-    "method"
-  ],
-  [
-    "src/events/delay-event.js~delayevent#stop",
-    "class/src/events/delay-event.js~DelayEvent.html#instance-method-stop",
-    "src/events/delay-event.js~DelayEvent#stop",
     "method"
   ],
   [
@@ -510,18 +462,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/events/set-style-event.js~setstyleevent#start",
-    "class/src/events/set-style-event.js~SetStyleEvent.html#instance-method-start",
-    "src/events/set-style-event.js~SetStyleEvent#start",
-    "method"
-  ],
-  [
-    "src/events/set-style-event.js~setstyleevent#stop",
-    "class/src/events/set-style-event.js~SetStyleEvent.html#instance-method-stop",
-    "src/events/set-style-event.js~SetStyleEvent#stop",
-    "method"
-  ],
-  [
     "src/events/timeline-event.js",
     "file/src/events/timeline-event.js.html",
     "src/events/timeline-event.js",
@@ -531,18 +471,6 @@ window.esdocSearchIndex = [
     "src/events/timeline-event.js~timelineevent#constructor",
     "class/src/events/timeline-event.js~TimelineEvent.html#instance-constructor-constructor",
     "src/events/timeline-event.js~TimelineEvent#constructor",
-    "method"
-  ],
-  [
-    "src/events/timeline-event.js~timelineevent#start",
-    "class/src/events/timeline-event.js~TimelineEvent.html#instance-method-start",
-    "src/events/timeline-event.js~TimelineEvent#start",
-    "method"
-  ],
-  [
-    "src/events/timeline-event.js~timelineevent#stop",
-    "class/src/events/timeline-event.js~TimelineEvent.html#instance-method-stop",
-    "src/events/timeline-event.js~TimelineEvent#stop",
     "method"
   ],
   [

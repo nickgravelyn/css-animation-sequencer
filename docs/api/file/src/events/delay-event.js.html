@@ -42,15 +42,25 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/events/delay-event.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export class DelayEvent {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+  An event that simply delays a {@link Timeline} from continuing
+*/
+export class DelayEvent {
+  /**
+    Initializes the event.
+
+    @param {Number} time - The time to delay, in seconds.
+  */
   constructor (time) {
-    this._time = time
+    this._time = time * 1000
   }
 
+  /** @ignore */
   start (complete) {
     this._timer = setTimeout(complete, this._time)
   }
 
+  /** @ignore */
   stop () {
     if (this._timer) {
       clearTimeout(this._timer)

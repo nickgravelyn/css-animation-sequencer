@@ -25,24 +25,48 @@ var createClass = function () {
   };
 }();
 
+/**
+  An event that invokes a function when started
+*/
 var CallbackEvent = function () {
+  /**
+    Initializes the event.
+     @param {Function} callback - The function to invoke when the event starts.
+  */
   function CallbackEvent(callback) {
     classCallCheck(this, CallbackEvent);
 
     this._callback = callback;
   }
 
+  /** @ignore */
+
+
   CallbackEvent.prototype.start = function start(complete) {
     this._callback();
     complete();
   };
+
+  /** @ignore */
+
 
   CallbackEvent.prototype.stop = function stop() {};
 
   return CallbackEvent;
 }();
 
+/**
+  An event that concurrently starts any number of children.
+
+  This event is used to have simultaneous animations or timelines. All
+  children of the event are started when the event are started, and the
+  event doesn't complete until all children have completed.
+*/
 var ConcurrentEvent = function () {
+  /**
+    Initializes the event.
+     @param {Array<Object>} ...children - The events to run concurrently.
+  */
   function ConcurrentEvent() {
     classCallCheck(this, ConcurrentEvent);
 
@@ -52,6 +76,9 @@ var ConcurrentEvent = function () {
 
     this._children = children;
   }
+
+  /** @ignore */
+
 
   ConcurrentEvent.prototype.start = function start(complete) {
     var len = this._children.length;
@@ -68,6 +95,9 @@ var ConcurrentEvent = function () {
     }
   };
 
+  /** @ignore */
+
+
   ConcurrentEvent.prototype.stop = function stop() {
     for (var i = 0, len = this._children.length; i < len; ++i) {
       this._children[i].stop();
@@ -77,7 +107,17 @@ var ConcurrentEvent = function () {
   return ConcurrentEvent;
 }();
 
+/**
+  An event that applies a CSS animation to an element.
+*/
 var CssAnimationEvent = function () {
+  /**
+    Initializes the event.
+     @param {HTMLElement} element -
+      The element to apply the animation to.
+    @param {String} className -
+      A CSS class that has an `animation` property on it.
+  */
   function CssAnimationEvent(element, className) {
     classCallCheck(this, CssAnimationEvent);
 
@@ -86,11 +126,17 @@ var CssAnimationEvent = function () {
     this._onAnimationEnd = this._onAnimationEnd.bind(this);
   }
 
+  /** @ignore */
+
+
   CssAnimationEvent.prototype.start = function start(complete) {
     this._complete = complete;
     this._element.addEventListener('animationend', this._onAnimationEnd);
     this._element.classList.add(this._animation);
   };
+
+  /** @ignore */
+
 
   CssAnimationEvent.prototype.stop = function stop() {
     this._element.removeEventListener('animationend', this._onAnimationEnd);
@@ -105,16 +151,29 @@ var CssAnimationEvent = function () {
   return CssAnimationEvent;
 }();
 
+/**
+  An event that simply delays a {@link Timeline} from continuing
+*/
 var DelayEvent = function () {
+  /**
+    Initializes the event.
+     @param {Number} time - The time to delay, in seconds.
+  */
   function DelayEvent(time) {
     classCallCheck(this, DelayEvent);
 
-    this._time = time;
+    this._time = time * 1000;
   }
+
+  /** @ignore */
+
 
   DelayEvent.prototype.start = function start(complete) {
     this._timer = setTimeout(complete, this._time);
   };
+
+  /** @ignore */
+
 
   DelayEvent.prototype.stop = function stop() {
     if (this._timer) {
@@ -125,13 +184,26 @@ var DelayEvent = function () {
   return DelayEvent;
 }();
 
+/**
+  An event that sets style properties on an element.
+*/
 var SetStyleEvent = function () {
+  /**
+    Initializes the event.
+     @param {HTMLElement} element -
+      The element to apply the style to.
+    @param {Object} style -
+      An object representing the style keys and values to apply to the element.
+  */
   function SetStyleEvent(element, style) {
     classCallCheck(this, SetStyleEvent);
 
     this._element = element;
     this._style = style;
   }
+
+  /** @ignore */
+
 
   SetStyleEvent.prototype.start = function start(complete) {
     for (var key in this._style) {
@@ -143,21 +215,37 @@ var SetStyleEvent = function () {
     complete();
   };
 
+  /** @ignore */
+
+
   SetStyleEvent.prototype.stop = function stop() {};
 
   return SetStyleEvent;
 }();
 
+/**
+  An event that runs a {@link Timeline}.
+*/
 var TimelineEvent = function () {
+  /**
+    Initializes the event.
+     @param {Timeline} timeline - The timeline to run.
+  */
   function TimelineEvent(timeline) {
     classCallCheck(this, TimelineEvent);
 
     this._timeline = timeline;
   }
 
+  /** @ignore */
+
+
   TimelineEvent.prototype.start = function start(complete) {
     this._timeline.start({ onComplete: complete });
   };
+
+  /** @ignore */
+
 
   TimelineEvent.prototype.stop = function stop() {
     this._timeline.stop();
@@ -360,7 +448,13 @@ var Timeline = function () {
   return Timeline;
 }();
 
+/**
+  A helper class for building CSS animations from code
+*/
 var DynamicCssAnimation = function () {
+  /**
+    Initializes a new animation.
+  */
   function DynamicCssAnimation() {
     classCallCheck(this, DynamicCssAnimation);
 
@@ -375,11 +469,36 @@ var DynamicCssAnimation = function () {
     this._keyframes = [];
   }
 
+  /**
+    Gets the name of the animation.
+     The name is the CSS class to use with {@link CssAnimationEvent} or to manually
+    apply to an element if not using {@link Timeline}.
+     @type {String}
+  */
+
+
+  /**
+    Adds a new keyframe to the animation.
+     @param {Number} duration - The amount of time (in seconds) to animate to this frame.
+    @param {Objct} style - An object representing CSS style attributes and their values.
+    @return {DynamicCssAnimation} The animation, for call chaining.
+  */
   DynamicCssAnimation.prototype.addKeyFrame = function addKeyFrame(duration, style) {
     this._keyframes.push({ duration: duration, style: style });
     this._duration += duration;
     return this;
   };
+
+  /**
+    Generates the CSS style and appends it to the document head.
+     Generally you should call this method before using the animation so the browser
+    has the CSS. Alternatively you can use {@link createCssString} to create the
+    CSS and then insert it into the document yourself.
+     If you use this method for an animation you don't plan to re-use, you should at
+    some point call {@link destroyStyle} to remove the generated style block from
+    the document.
+  */
+
 
   DynamicCssAnimation.prototype.generateStyle = function generateStyle() {
     if (!this._styleSheet) {
@@ -390,12 +509,27 @@ var DynamicCssAnimation = function () {
     this._styleSheet.textContent = this.createCssString();
   };
 
+  /**
+    Removes the style block inserted by {@link generateStyle}.
+  */
+
+
   DynamicCssAnimation.prototype.destroyStyle = function destroyStyle() {
     if (this._styleSheet) {
       this._styleSheet.parentNode.removeChild(this._styleSheet);
       this._styleSheet = null;
     }
   };
+
+  /**
+    Creates the CSS for this animation.
+     This method is used internally by {@link generateStyle}, which is the recommended
+    method to use when using this class for animations. However if you would rather
+    manage inserting the CSS into the document you can call this method to simply
+    get the CSS as a string.
+     @return {String} The CSS for the animation.
+  */
+
 
   DynamicCssAnimation.prototype.createCssString = function createCssString() {
     var name = this._name;

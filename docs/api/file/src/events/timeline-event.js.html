@@ -42,15 +42,25 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/events/timeline-event.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export class TimelineEvent {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+  An event that runs a {@link Timeline}.
+*/
+export class TimelineEvent {
+  /**
+    Initializes the event.
+
+    @param {Timeline} timeline - The timeline to run.
+  */
   constructor (timeline) {
     this._timeline = timeline
   }
 
+  /** @ignore */
   start (complete) {
     this._timeline.start({ onComplete: complete })
   }
 
+  /** @ignore */
   stop () {
     this._timeline.stop()
   }

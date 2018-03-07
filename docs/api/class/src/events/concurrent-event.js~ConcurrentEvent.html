@@ -42,13 +42,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ConcurrentEvent} from &apos;<span><a href="file/src/events/concurrent-event.js.html#lineNumber1">seashell-animation/src/events/concurrent-event.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ConcurrentEvent} from &apos;<span><a href="file/src/events/concurrent-event.js.html#lineNumber8">seashell-animation/src/events/concurrent-event.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/events/concurrent-event.js.html#lineNumber1">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/events/concurrent-event.js.html#lineNumber8">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -68,7 +68,11 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>An event that concurrently starts any number of children.</p>
+<p>This event is used to have simultaneous animations or timelines. All
+children of the event are started when the event are started, and the
+event doesn&apos;t complete until all children have completed.</p>
+</div>
   
 
   
@@ -106,7 +110,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Initializes the event.</p>
+</div>
       </div>
     </td>
     <td>
@@ -118,69 +123,7 @@
 </table>
 </div>
 
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/events/concurrent-event.js~ConcurrentEvent.html#instance-method-start">start</a></span></span><span class="code" data-ice="signature">(complete: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/events/concurrent-event.js~ConcurrentEvent.html#instance-method-stop">stop</a></span></span><span class="code" data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 
 
 
@@ -200,61 +143,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/events/concurrent-event.js.html#lineNumber2">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/events/concurrent-event.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
-
-  
-
-  <div data-ice="properties">
+  <div data-ice="description"><p>Initializes the event.</p>
 </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
-
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-start">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">start</span><span class="code" data-ice="signature">(complete: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/events/concurrent-event.js.html#lineNumber6">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
 
   
 
@@ -266,11 +163,12 @@
     </thead>
     <tbody>
     
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">complete</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+    <tr data-ice="property" data-depth="3">
+      <td data-ice="name" class="code" data-depth="3">...children</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The events to run concurrently.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -294,50 +192,9 @@
   
   
 </div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-stop">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">stop</span><span class="code" data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/events/concurrent-event.js.html#lineNumber21">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
 </div>
 
-  
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 </div>
 
 <footer class="footer">

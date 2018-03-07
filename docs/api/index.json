@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/dynamic-css-animation.js",
-    "content": "export class DynamicCssAnimation {\n  constructor () {\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\n    this._duration = 0\n    this.delay = 0\n    this.direction = 'normal'\n    this.fillMode = 'none'\n    this.timingFunction = 'ease'\n    this.iterationCount = 1\n\n    this._keyframes = []\n  }\n\n  get name () {\n    return this._name\n  }\n\n  addKeyFrame (duration, style) {\n    this._keyframes.push({ duration, style })\n    this._duration += duration\n    return this\n  }\n\n  generateStyle () {\n    if (!this._styleSheet) {\n      this._styleSheet = document.createElement('style')\n      document.head.appendChild(this._styleSheet)\n    }\n\n    this._styleSheet.textContent = this.createCssString()\n  }\n\n  destroyStyle () {\n    if (this._styleSheet) {\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\n      this._styleSheet = null\n    }\n  }\n\n  createCssString () {\n    const name = this._name\n    let css = `.${name} {\n  animation-delay: ${this.delay}s;\n  animation-direction: ${this.direction};\n  animation-duration: ${this._duration}s;\n  animation-fill-mode: ${this.fillMode};\n  animation-iteration-count: ${this.iterationCount};\n  animation-name: ${name};\n  animation-timing-function: ${this.timingFunction};\n}\n@keyframes ${name} {\\n`\n\n    let runningTime = 0\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\n      const frame = this._keyframes[i]\n      runningTime += frame.duration\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\n      css += `  ${percentage}% {\\n`\n      for (const key in frame.style) {\n        if (frame.style.hasOwnProperty(key)) {\n          css += `    ${key}: ${frame.style[key]};\\n`\n        }\n      }\n      css += '  }\\n'\n    }\n\n    css += '}'\n    return css\n  }\n}\n",
+    "content": "/**\n  A helper class for building CSS animations from code\n*/\nexport class DynamicCssAnimation {\n  /**\n    Initializes a new animation.\n  */\n  constructor () {\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\n    this._duration = 0\n    this.delay = 0\n    this.direction = 'normal'\n    this.fillMode = 'none'\n    this.timingFunction = 'ease'\n    this.iterationCount = 1\n\n    this._keyframes = []\n  }\n\n  /**\n    Gets the name of the animation.\n\n    The name is the CSS class to use with {@link CssAnimationEvent} or to manually\n    apply to an element if not using {@link Timeline}.\n\n    @type {String}\n  */\n  get name () {\n    return this._name\n  }\n\n  /**\n    Adds a new keyframe to the animation.\n\n    @param {Number} duration - The amount of time (in seconds) to animate to this frame.\n    @param {Objct} style - An object representing CSS style attributes and their values.\n    @return {DynamicCssAnimation} The animation, for call chaining.\n  */\n  addKeyFrame (duration, style) {\n    this._keyframes.push({ duration, style })\n    this._duration += duration\n    return this\n  }\n\n  /**\n    Generates the CSS style and appends it to the document head.\n\n    Generally you should call this method before using the animation so the browser\n    has the CSS. Alternatively you can use {@link createCssString} to create the\n    CSS and then insert it into the document yourself.\n\n    If you use this method for an animation you don't plan to re-use, you should at\n    some point call {@link destroyStyle} to remove the generated style block from\n    the document.\n  */\n  generateStyle () {\n    if (!this._styleSheet) {\n      this._styleSheet = document.createElement('style')\n      document.head.appendChild(this._styleSheet)\n    }\n\n    this._styleSheet.textContent = this.createCssString()\n  }\n\n  /**\n    Removes the style block inserted by {@link generateStyle}.\n  */\n  destroyStyle () {\n    if (this._styleSheet) {\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\n      this._styleSheet = null\n    }\n  }\n\n  /**\n    Creates the CSS for this animation.\n\n    This method is used internally by {@link generateStyle}, which is the recommended\n    method to use when using this class for animations. However if you would rather\n    manage inserting the CSS into the document you can call this method to simply\n    get the CSS as a string.\n\n    @return {String} The CSS for the animation.\n  */\n  createCssString () {\n    const name = this._name\n    let css = `.${name} {\n  animation-delay: ${this.delay}s;\n  animation-direction: ${this.direction};\n  animation-duration: ${this._duration}s;\n  animation-fill-mode: ${this.fillMode};\n  animation-iteration-count: ${this.iterationCount};\n  animation-name: ${name};\n  animation-timing-function: ${this.timingFunction};\n}\n@keyframes ${name} {\\n`\n\n    let runningTime = 0\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\n      const frame = this._keyframes[i]\n      runningTime += frame.duration\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\n      css += `  ${percentage}% {\\n`\n      for (const key in frame.style) {\n        if (frame.style.hasOwnProperty(key)) {\n          css += `    ${key}: ${frame.style[key]};\\n`\n        }\n      }\n      css += '  }\\n'\n    }\n\n    css += '}'\n    return css\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/dynamic-css-animation.js",
     "access": "public",
@@ -585,9 +585,8 @@
     "export": true,
     "importPath": "seashell-animation/src/dynamic-css-animation.js",
     "importStyle": "{DynamicCssAnimation}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "A helper class for building CSS animations from code",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -600,9 +599,8 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes a new animation.",
+    "lineNumber": 8
   },
   {
     "__docId__": 51,
@@ -613,7 +611,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_name",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 9,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -631,7 +629,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_duration",
     "access": "private",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 10,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -649,7 +647,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#delay",
     "access": "public",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 11,
     "undocument": true,
     "type": {
       "types": [
@@ -666,7 +664,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#direction",
     "access": "public",
     "description": null,
-    "lineNumber": 6,
+    "lineNumber": 12,
     "undocument": true,
     "type": {
       "types": [
@@ -683,7 +681,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#fillMode",
     "access": "public",
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 13,
     "undocument": true,
     "type": {
       "types": [
@@ -700,7 +698,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#timingFunction",
     "access": "public",
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -717,7 +715,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#iterationCount",
     "access": "public",
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 15,
     "undocument": true,
     "type": {
       "types": [
@@ -734,7 +732,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_keyframes",
     "access": "private",
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 17,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -753,13 +751,15 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#name",
     "access": "public",
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
+    "description": "Gets the name of the animation.\n\nThe name is the CSS class to use with {@link CssAnimationEvent} or to manually\napply to an element if not using {@link Timeline}.",
+    "lineNumber": 28,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "String"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -772,27 +772,37 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#addKeyFrame",
     "access": "public",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
+    "description": "Adds a new keyframe to the animation.",
+    "lineNumber": 39,
     "params": [
       {
-        "name": "duration",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "duration",
+        "description": "The amount of time (in seconds) to animate to this frame."
       },
       {
-        "name": "style",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Objct"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "style",
+        "description": "An object representing CSS style attributes and their values."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "DynamicCssAnimation"
+      ],
+      "spread": false,
+      "description": "The animation, for call chaining."
     }
   },
   {
@@ -805,9 +815,8 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#generateStyle",
     "access": "public",
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
+    "description": "Generates the CSS style and appends it to the document head.\n\nGenerally you should call this method before using the animation so the browser\nhas the CSS. Alternatively you can use {@link createCssString} to create the\nCSS and then insert it into the document yourself.\n\nIf you use this method for an animation you don't plan to re-use, you should at\nsome point call {@link destroyStyle} to remove the generated style block from\nthe document.",
+    "lineNumber": 56,
     "params": [],
     "return": null
   },
@@ -820,7 +829,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_styleSheet",
     "access": "private",
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 58,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -839,9 +848,8 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#destroyStyle",
     "access": "public",
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "Removes the style block inserted by {@link generateStyle}.",
+    "lineNumber": 68,
     "params": [],
     "return": null
   },
@@ -855,21 +863,23 @@
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#createCssString",
     "access": "public",
-    "description": null,
-    "lineNumber": 40,
-    "undocument": true,
-    "params": [],
+    "description": "Creates the CSS for this animation.\n\nThis method is used internally by {@link generateStyle}, which is the recommended\nmethod to use when using this class for animations. However if you would rather\nmanage inserting the CSS into the document you can call this method to simply\nget the CSS as a string.",
+    "lineNumber": 85,
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
-    }
+        "String"
+      ],
+      "spread": false,
+      "description": "The CSS for the animation."
+    },
+    "params": []
   },
   {
     "__docId__": 67,
     "kind": "file",
     "name": "src/events/callback-event.js",
-    "content": "export class CallbackEvent {\n  constructor (callback) {\n    this._callback = callback\n  }\n\n  start (complete) {\n    this._callback()\n    complete()\n  }\n\n  stop () {\n  }\n}\n",
+    "content": "/**\n  An event that invokes a function when started\n*/\nexport class CallbackEvent {\n  /**\n    Initializes the event.\n\n    @param {Function} callback - The function to invoke when the event starts.\n  */\n  constructor (callback) {\n    this._callback = callback\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._callback()\n    complete()\n  }\n\n  /** @ignore */\n  stop () {\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/callback-event.js",
     "access": "public",
@@ -887,9 +897,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/callback-event.js",
     "importStyle": "{CallbackEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that invokes a function when started",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -902,9 +911,20 @@
     "static": false,
     "longname": "src/events/callback-event.js~CallbackEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": "The function to invoke when the event starts."
+      }
+    ]
   },
   {
     "__docId__": 70,
@@ -915,7 +935,7 @@
     "longname": "src/events/callback-event.js~CallbackEvent#_callback",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 11,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -935,8 +955,8 @@
     "longname": "src/events/callback-event.js~CallbackEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "lineNumber": 15,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -958,8 +978,8 @@
     "longname": "src/events/callback-event.js~CallbackEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "lineNumber": 21,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -967,7 +987,7 @@
     "__docId__": 73,
     "kind": "file",
     "name": "src/events/concurrent-event.js",
-    "content": "export class ConcurrentEvent {\n  constructor (...children) {\n    this._children = children\n  }\n\n  start (complete) {\n    const len = this._children.length\n    let runningCount = len\n    const childComplete = () => {\n      runningCount--\n      if (runningCount === 0) {\n        complete()\n      }\n    }\n\n    for (let i = 0; i < len; ++i) {\n      this._children[i].start(childComplete)\n    }\n  }\n\n  stop () {\n    for (let i = 0, len = this._children.length; i < len; ++i) {\n      this._children[i].stop()\n    }\n  }\n}\n",
+    "content": "/**\n  An event that concurrently starts any number of children.\n\n  This event is used to have simultaneous animations or timelines. All\n  children of the event are started when the event are started, and the\n  event doesn't complete until all children have completed.\n*/\nexport class ConcurrentEvent {\n  /**\n    Initializes the event.\n\n    @param {Array<Object>} ...children - The events to run concurrently.\n  */\n  constructor (...children) {\n    this._children = children\n  }\n\n  /** @ignore */\n  start (complete) {\n    const len = this._children.length\n    let runningCount = len\n    const childComplete = () => {\n      runningCount--\n      if (runningCount === 0) {\n        complete()\n      }\n    }\n\n    for (let i = 0; i < len; ++i) {\n      this._children[i].start(childComplete)\n    }\n  }\n\n  /** @ignore */\n  stop () {\n    for (let i = 0, len = this._children.length; i < len; ++i) {\n      this._children[i].stop()\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/concurrent-event.js",
     "access": "public",
@@ -985,9 +1005,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/concurrent-event.js",
     "importStyle": "{ConcurrentEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that concurrently starts any number of children.\n\nThis event is used to have simultaneous animations or timelines. All\nchildren of the event are started when the event are started, and the\nevent doesn't complete until all children have completed.",
+    "lineNumber": 8,
     "interface": false
   },
   {
@@ -1000,9 +1019,20 @@
     "static": false,
     "longname": "src/events/concurrent-event.js~ConcurrentEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 14,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<Object>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "...children",
+        "description": "The events to run concurrently."
+      }
+    ]
   },
   {
     "__docId__": 76,
@@ -1013,7 +1043,7 @@
     "longname": "src/events/concurrent-event.js~ConcurrentEvent#_children",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 15,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1033,8 +1063,8 @@
     "longname": "src/events/concurrent-event.js~ConcurrentEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "lineNumber": 19,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -1056,8 +1086,8 @@
     "longname": "src/events/concurrent-event.js~ConcurrentEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "lineNumber": 35,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -1065,7 +1095,7 @@
     "__docId__": 79,
     "kind": "file",
     "name": "src/events/css-animation-event.js",
-    "content": "export class CssAnimationEvent {\n  constructor (element, className) {\n    this._element = element\n    this._animation = className\n    this._onAnimationEnd = this._onAnimationEnd.bind(this)\n  }\n\n  start (complete) {\n    this._complete = complete\n    this._element.addEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.add(this._animation)\n  }\n\n  stop () {\n    this._element.removeEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.remove(this._animation)\n  }\n\n  _onAnimationEnd () {\n    this.stop()\n    setTimeout(this._complete)\n  }\n}\n",
+    "content": "/**\n  An event that applies a CSS animation to an element.\n*/\nexport class CssAnimationEvent {\n  /**\n    Initializes the event.\n\n    @param {HTMLElement} element -\n      The element to apply the animation to.\n    @param {String} className -\n      A CSS class that has an `animation` property on it.\n  */\n  constructor (element, className) {\n    this._element = element\n    this._animation = className\n    this._onAnimationEnd = this._onAnimationEnd.bind(this)\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._complete = complete\n    this._element.addEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.add(this._animation)\n  }\n\n  /** @ignore */\n  stop () {\n    this._element.removeEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.remove(this._animation)\n  }\n\n  _onAnimationEnd () {\n    this.stop()\n    setTimeout(this._complete)\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/css-animation-event.js",
     "access": "public",
@@ -1083,9 +1113,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/css-animation-event.js",
     "importStyle": "{CssAnimationEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that applies a CSS animation to an element.",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -1098,9 +1127,30 @@
     "static": false,
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 13,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "element",
+        "description": "The element to apply the animation to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "className",
+        "description": "A CSS class that has an `animation` property on it."
+      }
+    ]
   },
   {
     "__docId__": 82,
@@ -1111,7 +1161,7 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#_element",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 14,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1129,7 +1179,7 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#_animation",
     "access": "private",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 15,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1149,8 +1199,8 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "lineNumber": 20,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -1170,7 +1220,7 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#_complete",
     "access": "private",
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 21,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1190,8 +1240,8 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 14,
-    "undocument": true,
+    "lineNumber": 27,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -1206,7 +1256,7 @@
     "longname": "src/events/css-animation-event.js~CssAnimationEvent#_onAnimationEnd",
     "access": "private",
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 32,
     "undocument": true,
     "ignore": true,
     "params": [],
@@ -1216,7 +1266,7 @@
     "__docId__": 89,
     "kind": "file",
     "name": "src/events/delay-event.js",
-    "content": "export class DelayEvent {\n  constructor (time) {\n    this._time = time\n  }\n\n  start (complete) {\n    this._timer = setTimeout(complete, this._time)\n  }\n\n  stop () {\n    if (this._timer) {\n      clearTimeout(this._timer)\n    }\n  }\n}\n",
+    "content": "/**\n  An event that simply delays a {@link Timeline} from continuing\n*/\nexport class DelayEvent {\n  /**\n    Initializes the event.\n\n    @param {Number} time - The time to delay, in seconds.\n  */\n  constructor (time) {\n    this._time = time * 1000\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._timer = setTimeout(complete, this._time)\n  }\n\n  /** @ignore */\n  stop () {\n    if (this._timer) {\n      clearTimeout(this._timer)\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/delay-event.js",
     "access": "public",
@@ -1234,9 +1284,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/delay-event.js",
     "importStyle": "{DelayEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that simply delays a {@link Timeline} from continuing",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -1249,9 +1298,20 @@
     "static": false,
     "longname": "src/events/delay-event.js~DelayEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "time",
+        "description": "The time to delay, in seconds."
+      }
+    ]
   },
   {
     "__docId__": 92,
@@ -1262,7 +1322,7 @@
     "longname": "src/events/delay-event.js~DelayEvent#_time",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 11,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1282,8 +1342,8 @@
     "longname": "src/events/delay-event.js~DelayEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "lineNumber": 15,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -1303,7 +1363,7 @@
     "longname": "src/events/delay-event.js~DelayEvent#_timer",
     "access": "private",
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 16,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1323,8 +1383,8 @@
     "longname": "src/events/delay-event.js~DelayEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 10,
-    "undocument": true,
+    "lineNumber": 20,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -1332,7 +1392,7 @@
     "__docId__": 96,
     "kind": "file",
     "name": "src/events/set-style-event.js",
-    "content": "export class SetStyleEvent {\n  constructor (element, style) {\n    this._element = element\n    this._style = style\n  }\n\n  start (complete) {\n    for (const key in this._style) {\n      if (this._style.hasOwnProperty(key)) {\n        this._element.style[key] = this._style[key]\n      }\n    }\n\n    complete()\n  }\n\n  stop () {\n  }\n}\n",
+    "content": "/**\n  An event that sets style properties on an element.\n*/\nexport class SetStyleEvent {\n  /**\n    Initializes the event.\n\n    @param {HTMLElement} element -\n      The element to apply the style to.\n    @param {Object} style -\n      An object representing the style keys and values to apply to the element.\n  */\n  constructor (element, style) {\n    this._element = element\n    this._style = style\n  }\n\n  /** @ignore */\n  start (complete) {\n    for (const key in this._style) {\n      if (this._style.hasOwnProperty(key)) {\n        this._element.style[key] = this._style[key]\n      }\n    }\n\n    complete()\n  }\n\n  /** @ignore */\n  stop () {\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/set-style-event.js",
     "access": "public",
@@ -1350,9 +1410,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/set-style-event.js",
     "importStyle": "{SetStyleEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that sets style properties on an element.",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -1365,9 +1424,30 @@
     "static": false,
     "longname": "src/events/set-style-event.js~SetStyleEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 13,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "element",
+        "description": "The element to apply the style to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "style",
+        "description": "An object representing the style keys and values to apply to the element."
+      }
+    ]
   },
   {
     "__docId__": 99,
@@ -1378,7 +1458,7 @@
     "longname": "src/events/set-style-event.js~SetStyleEvent#_element",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 14,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1396,7 +1476,7 @@
     "longname": "src/events/set-style-event.js~SetStyleEvent#_style",
     "access": "private",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 15,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1416,8 +1496,8 @@
     "longname": "src/events/set-style-event.js~SetStyleEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "lineNumber": 19,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -1439,8 +1519,8 @@
     "longname": "src/events/set-style-event.js~SetStyleEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 17,
-    "undocument": true,
+    "lineNumber": 30,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -1448,7 +1528,7 @@
     "__docId__": 103,
     "kind": "file",
     "name": "src/events/timeline-event.js",
-    "content": "export class TimelineEvent {\n  constructor (timeline) {\n    this._timeline = timeline\n  }\n\n  start (complete) {\n    this._timeline.start({ onComplete: complete })\n  }\n\n  stop () {\n    this._timeline.stop()\n  }\n}\n",
+    "content": "/**\n  An event that runs a {@link Timeline}.\n*/\nexport class TimelineEvent {\n  /**\n    Initializes the event.\n\n    @param {Timeline} timeline - The timeline to run.\n  */\n  constructor (timeline) {\n    this._timeline = timeline\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._timeline.start({ onComplete: complete })\n  }\n\n  /** @ignore */\n  stop () {\n    this._timeline.stop()\n  }\n}\n",
     "static": true,
     "longname": "/Users/nick/Documents/seashell/src/events/timeline-event.js",
     "access": "public",
@@ -1466,9 +1546,8 @@
     "export": true,
     "importPath": "seashell-animation/src/events/timeline-event.js",
     "importStyle": "{TimelineEvent}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "An event that runs a {@link Timeline}.",
+    "lineNumber": 4,
     "interface": false
   },
   {
@@ -1481,9 +1560,20 @@
     "static": false,
     "longname": "src/events/timeline-event.js~TimelineEvent#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
+    "description": "Initializes the event.",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Timeline"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "timeline",
+        "description": "The timeline to run."
+      }
+    ]
   },
   {
     "__docId__": 106,
@@ -1494,7 +1584,7 @@
     "longname": "src/events/timeline-event.js~TimelineEvent#_timeline",
     "access": "private",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 11,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1514,8 +1604,8 @@
     "longname": "src/events/timeline-event.js~TimelineEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "lineNumber": 15,
+    "ignore": true,
     "params": [
       {
         "name": "complete",
@@ -1537,8 +1627,8 @@
     "longname": "src/events/timeline-event.js~TimelineEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 10,
-    "undocument": true,
+    "lineNumber": 20,
+    "ignore": true,
     "params": [],
     "return": null
   },
@@ -1971,7 +2061,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"seashell-animation\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A lovely library for web animations.\",\n  \"main\": \"dist/seashell.cjs.js\",\n  \"module\": \"dist/seashell.esm.js\",\n  \"files\": [\n    \"dist/seashell.cjs.js\",\n    \"dist/seashell.esm.js\"\n  ],\n  \"scripts\": {\n    \"build\": \"rollup -c && esdoc\",\n    \"watch\": \"rollup -c -w\",\n    \"docs\": \"http-server docs -a localhost -c-1\",\n    \"lint\": \"eslint .\",\n    \"test\": \"jest\",\n    \"prepack\": \"yarn build\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/nickgravelyn/seashell.git\"\n  },\n  \"author\": \"Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/nickgravelyn/seashell/issues\"\n  },\n  \"homepage\": \"https://github.com/nickgravelyn/seashell#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@nickgravelyn/eslint-config\": \"^1.1.0\",\n    \"babel-core\": \"^6.26.0\",\n    \"babel-plugin-external-helpers\": \"^6.22.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.18.1\",\n    \"eslint-plugin-jest\": \"^21.12.2\",\n    \"http-server\": \"^0.11.1\",\n    \"husky\": \"^0.15.0-rc.8\",\n    \"jest\": \"^22.4.0\",\n    \"lint-staged\": \"^6.1.0\",\n    \"rollup\": \"^0.56.0\",\n    \"rollup-plugin-babel\": \"^3.0.3\"\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-commit\": \"yarn test && lint-staged\"\n    }\n  },\n  \"lint-staged\": {\n    \"linters\": {\n      \"*.js\": [\n        \"yarn lint --fix\",\n        \"git add\"\n      ]\n    }\n  }\n}\n",
+    "content": "{\n  \"name\": \"seashell-animation\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A lovely library for web animations.\",\n  \"main\": \"dist/seashell.cjs.js\",\n  \"module\": \"dist/seashell.esm.js\",\n  \"files\": [\n    \"dist/seashell.cjs.js\",\n    \"dist/seashell.esm.js\"\n  ],\n  \"scripts\": {\n    \"build\": \"rollup -c && esdoc\",\n    \"serve-docs\": \"http-server docs -a localhost -c-1\",\n    \"lint\": \"eslint .\",\n    \"test\": \"jest\",\n    \"prepublishOnly\": \"yarn build\",\n    \"release\": \"np\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/nickgravelyn/seashell.git\"\n  },\n  \"author\": \"Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/nickgravelyn/seashell/issues\"\n  },\n  \"homepage\": \"https://github.com/nickgravelyn/seashell#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@nickgravelyn/eslint-config\": \"^1.1.0\",\n    \"babel-core\": \"^6.26.0\",\n    \"babel-plugin-external-helpers\": \"^6.22.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.18.1\",\n    \"eslint-plugin-jest\": \"^21.12.2\",\n    \"http-server\": \"^0.11.1\",\n    \"husky\": \"^0.15.0-rc.8\",\n    \"jest\": \"^22.4.0\",\n    \"lint-staged\": \"^6.1.0\",\n    \"np\": \"^2.20.1\",\n    \"rollup\": \"^0.56.0\",\n    \"rollup-plugin-babel\": \"^3.0.3\"\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-commit\": \"yarn test && lint-staged\"\n    }\n  },\n  \"lint-staged\": {\n    \"linters\": {\n      \"*.js\": [\n        \"yarn lint --fix\",\n        \"git add\"\n      ]\n    }\n  }\n}\n",
     "longname": "/Users/nick/Documents/seashell/package.json",
     "name": "package.json",
     "static": true,
