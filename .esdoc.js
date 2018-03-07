@@ -10,6 +10,8 @@ module.exports = {
         accessor: {
           access: ['public', 'protected'],
         },
+        coverage: { enable: false },
+        lint: { enable: false },
       },
     },
     {
