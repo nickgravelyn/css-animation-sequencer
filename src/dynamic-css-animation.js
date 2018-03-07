@@ -12,7 +12,23 @@ export class DynamicCssAnimation {
     return this._name
   }
 
-  generateCss () {
+  generateStyle () {
+    if (!this._styleSheet) {
+      this._styleSheet = document.createElement('style')
+      document.head.appendChild(this._styleSheet)
+    }
+
+    this._styleSheet.textContent = this.createCssString()
+  }
+
+  destroyStyle () {
+    if (this._styleSheet) {
+      this._styleSheet.parentNode.removeChild(this._styleSheet)
+      this._styleSheet = null
+    }
+  }
+
+  createCssString () {
     const name = this._name
     return `.${name} {
   animation-delay: ${this.delay}s;
