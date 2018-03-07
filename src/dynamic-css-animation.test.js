@@ -21,6 +21,7 @@ test('can create blank CSS', () => {
   animation-direction: normal;
   animation-duration: 0s;
   animation-fill-mode: none;
+  animation-iteration-count: 1;
   animation-name: ${name};
   animation-timing-function: ease;
 }
@@ -50,4 +51,10 @@ test('can set timing function', () => {
   const animation = new DynamicCssAnimation()
   animation.timingFunction = 'ease-in-out'
   expect(animation.generateCss()).toContain('animation-timing-function: ease-in-out')
+})
+
+test('can set iteration count', () => {
+  const animation = new DynamicCssAnimation()
+  animation.iterationCount = '15'
+  expect(animation.generateCss()).toContain('animation-iteration-count: 15')
 })
