@@ -22,6 +22,73 @@
     var SetStyleEvent = Seashell.SetStyleEvent
     var TimelineEvent = Seashell.TimelineEvent
     var DynamicCssAnimation = Seashell.DynamicCssAnimation
+
+    function changeExample (id) {
+      var examples = document.body.querySelectorAll('div[data-example]')
+      for (var j = 0; j < examples.length; j++) {
+        var example = examples[j]
+        if (parseInt(example.dataset.example) === id) {
+          example.style.removeProperty('display')
+        } else {
+          example.style.display = 'none'
+        }
+      }
+    }
+
+    function hookExampleLink (link) {
+      var linkExample = parseInt(link.dataset.example)
+      link.addEventListener('click', function (e) {
+        changeExample (linkExample)
+        e.preventDefault()
+        return false
+      })
+    }
+
+    function wireUpExampleLinks () {
+      var exampleLinks = document.body.querySelectorAll('a[data-example]')
+      for (var i = 0; i < exampleLinks.length; i++) {
+        hookExampleLink(exampleLinks[i])
+      }
+      changeExample(1)
+    }
+
+    function pasteInSampleCode () {
+      var scripts = document.querySelectorAll('script[data-sample-code]')
+      for (var i = 0; i < scripts.length; ++i) {
+        var code = scripts[i].dataset.sampleCode
+        var target = document.querySelector('code[data-sample-code="' + code + '"]')
+        var text = scripts[i].innerText.trim()
+        text = text.split('\n')
+          .filter(line => {
+            if (line.indexOf('pasteInSampleCss') >= 0) {
+              return false
+            }
+            return true
+          })
+        console.log(text)
+
+        var baseIndent = text[1].search(/\S/)
+        text = text.slice(1, text.length - 1).map(l => l.substring(baseIndent))
+        target.innerText = text.join('\n')
+      }
+    }
+
+    function pasteInSampleCss (animationName, codeName) {
+      var style = document.querySelector('style[data-seashell="' + animationName + '"]')
+      var target = document.querySelector('code[data-sample-css="' + codeName + '"]')
+
+      var text = style.textContent.trim()
+      text = text.split('\n')
+      var baseIndent = text[0].search(/\S/)
+      text = text.map(l => l.substring(baseIndent))
+      target.innerText = text.join('\n')
+    }
+
+    window.onload = function () {
+      wireUpExampleLinks()
+      pasteInSampleCode()
+      hljs.initHighlighting()
+    }
   </script>
 </head>
 <body>
@@ -129,6 +196,12 @@
           <div class="col-12">
             <pre><code class="javascript" data-sample-code="pink-box"></code></pre>
           </div>
+          <div class="col-12">
+            <p>This JavaScript code not only creates the timeline to sequence the animation, but also generates and inserts CSS into the document head. It uses a randomly generated name to avoid collisions with other animations.</p>
+          </div>
+          <div class="col-12">
+            <pre><code class="css" data-sample-css="pink-box-animation"></code></pre>
+          </div>
           <script data-sample-code="pink-box" type="text/javascript">
             (function () {
               var pinkBox = document.getElementById('pink-box')
@@ -145,6 +218,8 @@
                 .addSetStyle(pinkBox, { transform: 'translate(-50px, -50px)' })
                 .addCssAnimation(pinkBox, animation.name)
                 .start({ iterations: Infinity })
+
+              pasteInSampleCss(animation.name, 'pink-box-animation')
             })()
           </script>
         </div>
@@ -207,38 +282,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function changeExample (id) {
-      var examples = document.body.querySelectorAll('div[data-example]')
-      for (var j = 0; j < examples.length; j++) {
-        var example = examples[j]
-        if (parseInt(example.dataset.example) === id) {
-          example.style.removeProperty('display')
-        } else {
-          example.style.display = 'none'
-        }
-      }
-    }
-
-    function hookExampleLink (link) {
-      var linkExample = parseInt(link.dataset.example)
-      link.addEventListener('click', function (e) {
-        changeExample (linkExample)
-        e.preventDefault()
-        return false
-      })
-    }
-
-    (function () {
-      var exampleLinks = document.body.querySelectorAll('a[data-example]')
-      for (var i = 0; i < exampleLinks.length; i++) {
-        hookExampleLink(exampleLinks[i])
-      }
-
-      changeExample(1)
-    })()
-  </script>
-  <script type="text/javascript" src="./demo.js"></script>
 </body>
 </html>

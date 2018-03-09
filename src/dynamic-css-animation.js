@@ -80,6 +80,7 @@ export class DynamicCssAnimation {
   generateStyle () {
     if (!this._styleSheet) {
       this._styleSheet = document.createElement('style')
+      this._styleSheet.dataset.seashell = this._name
       document.head.appendChild(this._styleSheet)
     }
 

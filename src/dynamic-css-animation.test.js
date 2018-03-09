@@ -71,6 +71,7 @@ test('can put css into a style tag in the head', () => {
 
   const styles = document.head.querySelectorAll('style')
   expect(styles.length).toEqual(1)
+  expect(styles[0].dataset.seashell).toEqual(animation.name)
   expect(styles[0].textContent).toEqual(animation.createCssString())
 })
 

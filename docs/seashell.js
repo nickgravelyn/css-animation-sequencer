@@ -283,6 +283,7 @@ var DynamicCssAnimation = function () {
   DynamicCssAnimation.prototype.generateStyle = function generateStyle() {
     if (!this._styleSheet) {
       this._styleSheet = document.createElement('style');
+      this._styleSheet.dataset.seashell = this._name;
       document.head.appendChild(this._styleSheet);
     }
     this._styleSheet.textContent = this.createCssString();
