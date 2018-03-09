@@ -480,7 +480,7 @@ var DynamicCssAnimation = function () {
   /**
     Adds a new keyframe to the animation.
      @param {Number} duration - The amount of time (in seconds) to animate to this frame.
-    @param {Objct} style - An object representing CSS style attributes and their values.
+    @param {Object} style - An object representing CSS style attributes and their values.
     @return {DynamicCssAnimation} The animation, for call chaining.
   */
   DynamicCssAnimation.prototype.addKeyFrame = function addKeyFrame(duration, style) {
