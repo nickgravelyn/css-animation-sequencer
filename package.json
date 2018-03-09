@@ -1,6 +1,6 @@
 {
   "name": "seashell-animation",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A lovely library for web animations.",
   "main": "dist/seashell.cjs.js",
   "module": "dist/seashell.esm.js",
