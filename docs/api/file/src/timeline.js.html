@@ -34,6 +34,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#events">events</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/callback-event.js~CallbackEvent.html">CallbackEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/concurrent-event.js~ConcurrentEvent.html">ConcurrentEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/css-animation-event.js~CssAnimationEvent.html">CssAnimationEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/css-transition-event.js~CssTransitionEvent.html">CssTransitionEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/delay-event.js~DelayEvent.html">DelayEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/set-style-event.js~SetStyleEvent.html">SetStyleEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/timeline-event.js~TimelineEvent.html">TimelineEvent</a></span></span></li>
@@ -45,6 +46,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { CallbackEvent } from &apos;./events/callback-event&apos;
 import { ConcurrentEvent } from &apos;./events/concurrent-event&apos;
 import { CssAnimationEvent } from &apos;./events/css-animation-event&apos;
+import { CssTransitionEvent } from &apos;./events/css-transition-event&apos;
 import { DelayEvent } from &apos;./events/delay-event&apos;
 import { SetStyleEvent } from &apos;./events/set-style-event&apos;
 import { TimelineEvent } from &apos;./events/timeline-event&apos;
@@ -81,8 +83,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link CallbackEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CallbackEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addCallback () {
@@ -91,8 +93,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link ConcurrentEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link ConcurrentEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addConcurrent () {
@@ -101,8 +103,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link CssAnimationEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CssAnimationEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addCssAnimation () {
@@ -111,8 +113,18 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link DelayEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CssTransitionEvent}, forwarding all arguments, and adds
+    it to the timeline.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+  addCssTransition () {
+    this.add(new CssTransitionEvent(...arguments))
+    return this
+  }
+
+  /**
+    Constructs a {@link DelayEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addDelay () {
@@ -121,8 +133,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link SetStyleEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link SetStyleEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addSetStyle () {
@@ -131,8 +143,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link TimelineEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link TimelineEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addTimeline () {

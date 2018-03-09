@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 446,
+  "end": 524,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 11,
+      "line": 12,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 446,
+    "end": 524,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 11,
+        "line": 12,
         "column": 0
       }
     },
@@ -117,8 +117,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 39,
-        "end": 94,
+        "start": 41,
+        "end": 96,
         "loc": {
           "start": {
             "line": 3,
@@ -133,8 +133,8 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 48,
-            "end": 61,
+            "start": 50,
+            "end": 63,
             "loc": {
               "start": {
                 "line": 3,
@@ -147,8 +147,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 48,
-              "end": 61,
+              "start": 50,
+              "end": 63,
               "loc": {
                 "start": {
                   "line": 3,
@@ -164,8 +164,8 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 48,
-              "end": 61,
+              "start": 50,
+              "end": 63,
               "loc": {
                 "start": {
                   "line": 3,
@@ -183,8 +183,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 69,
-          "end": 94,
+          "start": 71,
+          "end": 96,
           "loc": {
             "start": {
               "line": 3,
@@ -204,8 +204,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 95,
-        "end": 154,
+        "start": 98,
+        "end": 157,
         "loc": {
           "start": {
             "line": 4,
@@ -220,8 +220,8 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 104,
-            "end": 119,
+            "start": 107,
+            "end": 122,
             "loc": {
               "start": {
                 "line": 4,
@@ -234,8 +234,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 104,
-              "end": 119,
+              "start": 107,
+              "end": 122,
               "loc": {
                 "start": {
                   "line": 4,
@@ -251,8 +251,8 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 104,
-              "end": 119,
+              "start": 107,
+              "end": 122,
               "loc": {
                 "start": {
                   "line": 4,
@@ -270,8 +270,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 127,
-          "end": 154,
+          "start": 130,
+          "end": 157,
           "loc": {
             "start": {
               "line": 4,
@@ -291,8 +291,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 155,
-        "end": 219,
+        "start": 159,
+        "end": 223,
         "loc": {
           "start": {
             "line": 5,
@@ -307,8 +307,8 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 164,
-            "end": 181,
+            "start": 168,
+            "end": 185,
             "loc": {
               "start": {
                 "line": 5,
@@ -321,8 +321,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 164,
-              "end": 181,
+              "start": 168,
+              "end": 185,
               "loc": {
                 "start": {
                   "line": 5,
@@ -338,8 +338,8 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 164,
-              "end": 181,
+              "start": 168,
+              "end": 185,
               "loc": {
                 "start": {
                   "line": 5,
@@ -357,8 +357,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 189,
-          "end": 219,
+          "start": 193,
+          "end": 223,
           "loc": {
             "start": {
               "line": 5,
@@ -378,8 +378,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 220,
-        "end": 269,
+        "start": 225,
+        "end": 291,
         "loc": {
           "start": {
             "line": 6,
@@ -387,15 +387,15 @@
           },
           "end": {
             "line": 6,
-            "column": 49
+            "column": 66
           }
         },
         "declaration": null,
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 229,
-            "end": 239,
+            "start": 234,
+            "end": 252,
             "loc": {
               "start": {
                 "line": 6,
@@ -403,13 +403,13 @@
               },
               "end": {
                 "line": 6,
-                "column": 19
+                "column": 27
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 229,
-              "end": 239,
+              "start": 234,
+              "end": 252,
               "loc": {
                 "start": {
                   "line": 6,
@@ -417,6 +417,93 @@
                 },
                 "end": {
                   "line": 6,
+                  "column": 27
+                },
+                "identifierName": "CssTransitionEvent"
+              },
+              "name": "CssTransitionEvent"
+            },
+            "exported": {
+              "type": "Identifier",
+              "start": 234,
+              "end": 252,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 9
+                },
+                "end": {
+                  "line": 6,
+                  "column": 27
+                },
+                "identifierName": "CssTransitionEvent"
+              },
+              "name": "CssTransitionEvent"
+            }
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 260,
+          "end": 291,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 35
+            },
+            "end": {
+              "line": 6,
+              "column": 66
+            }
+          },
+          "extra": {
+            "rawValue": "./events/css-transition-event",
+            "raw": "'./events/css-transition-event'"
+          },
+          "value": "./events/css-transition-event"
+        }
+      },
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 293,
+        "end": 342,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 49
+          }
+        },
+        "declaration": null,
+        "specifiers": [
+          {
+            "type": "ExportSpecifier",
+            "start": 302,
+            "end": 312,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 9
+              },
+              "end": {
+                "line": 7,
+                "column": 19
+              }
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 302,
+              "end": 312,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 9
+                },
+                "end": {
+                  "line": 7,
                   "column": 19
                 },
                 "identifierName": "DelayEvent"
@@ -425,15 +512,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 229,
-              "end": 239,
+              "start": 302,
+              "end": 312,
               "loc": {
                 "start": {
-                  "line": 6,
+                  "line": 7,
                   "column": 9
                 },
                 "end": {
-                  "line": 6,
+                  "line": 7,
                   "column": 19
                 },
                 "identifierName": "DelayEvent"
@@ -444,15 +531,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 247,
-          "end": 269,
+          "start": 320,
+          "end": 342,
           "loc": {
             "start": {
-              "line": 6,
+              "line": 7,
               "column": 27
             },
             "end": {
-              "line": 6,
+              "line": 7,
               "column": 49
             }
           },
@@ -465,15 +552,15 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 270,
-        "end": 326,
+        "start": 344,
+        "end": 400,
         "loc": {
           "start": {
-            "line": 7,
+            "line": 8,
             "column": 0
           },
           "end": {
-            "line": 7,
+            "line": 8,
             "column": 56
           }
         },
@@ -481,29 +568,29 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 279,
-            "end": 292,
+            "start": 353,
+            "end": 366,
             "loc": {
               "start": {
-                "line": 7,
+                "line": 8,
                 "column": 9
               },
               "end": {
-                "line": 7,
+                "line": 8,
                 "column": 22
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 279,
-              "end": 292,
+              "start": 353,
+              "end": 366,
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 8,
                   "column": 9
                 },
                 "end": {
-                  "line": 7,
+                  "line": 8,
                   "column": 22
                 },
                 "identifierName": "SetStyleEvent"
@@ -512,15 +599,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 279,
-              "end": 292,
+              "start": 353,
+              "end": 366,
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 8,
                   "column": 9
                 },
                 "end": {
-                  "line": 7,
+                  "line": 8,
                   "column": 22
                 },
                 "identifierName": "SetStyleEvent"
@@ -531,15 +618,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 300,
-          "end": 326,
+          "start": 374,
+          "end": 400,
           "loc": {
             "start": {
-              "line": 7,
+              "line": 8,
               "column": 30
             },
             "end": {
-              "line": 7,
+              "line": 8,
               "column": 56
             }
           },
@@ -552,15 +639,15 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 327,
-        "end": 382,
+        "start": 402,
+        "end": 457,
         "loc": {
           "start": {
-            "line": 8,
+            "line": 9,
             "column": 0
           },
           "end": {
-            "line": 8,
+            "line": 9,
             "column": 55
           }
         },
@@ -568,29 +655,29 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 336,
-            "end": 349,
+            "start": 411,
+            "end": 424,
             "loc": {
               "start": {
-                "line": 8,
+                "line": 9,
                 "column": 9
               },
               "end": {
-                "line": 8,
+                "line": 9,
                 "column": 22
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 336,
-              "end": 349,
+              "start": 411,
+              "end": 424,
               "loc": {
                 "start": {
-                  "line": 8,
+                  "line": 9,
                   "column": 9
                 },
                 "end": {
-                  "line": 8,
+                  "line": 9,
                   "column": 22
                 },
                 "identifierName": "TimelineEvent"
@@ -599,15 +686,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 336,
-              "end": 349,
+              "start": 411,
+              "end": 424,
               "loc": {
                 "start": {
-                  "line": 8,
+                  "line": 9,
                   "column": 9
                 },
                 "end": {
-                  "line": 8,
+                  "line": 9,
                   "column": 22
                 },
                 "identifierName": "TimelineEvent"
@@ -618,15 +705,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 357,
-          "end": 382,
+          "start": 432,
+          "end": 457,
           "loc": {
             "start": {
-              "line": 8,
+              "line": 9,
               "column": 30
             },
             "end": {
-              "line": 8,
+              "line": 9,
               "column": 55
             }
           },
@@ -639,15 +726,15 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 384,
-        "end": 445,
+        "start": 461,
+        "end": 522,
         "loc": {
           "start": {
-            "line": 10,
+            "line": 11,
             "column": 0
           },
           "end": {
-            "line": 10,
+            "line": 11,
             "column": 61
           }
         },
@@ -655,29 +742,29 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 393,
-            "end": 412,
+            "start": 470,
+            "end": 489,
             "loc": {
               "start": {
-                "line": 10,
+                "line": 11,
                 "column": 9
               },
               "end": {
-                "line": 10,
+                "line": 11,
                 "column": 28
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 393,
-              "end": 412,
+              "start": 470,
+              "end": 489,
               "loc": {
                 "start": {
-                  "line": 10,
+                  "line": 11,
                   "column": 9
                 },
                 "end": {
-                  "line": 10,
+                  "line": 11,
                   "column": 28
                 },
                 "identifierName": "DynamicCssAnimation"
@@ -686,15 +773,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 393,
-              "end": 412,
+              "start": 470,
+              "end": 489,
               "loc": {
                 "start": {
-                  "line": 10,
+                  "line": 11,
                   "column": 9
                 },
                 "end": {
-                  "line": 10,
+                  "line": 11,
                   "column": 28
                 },
                 "identifierName": "DynamicCssAnimation"
@@ -705,15 +792,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 420,
-          "end": 445,
+          "start": 497,
+          "end": 522,
           "loc": {
             "start": {
-              "line": 10,
+              "line": 11,
               "column": 36
             },
             "end": {
-              "line": 10,
+              "line": 11,
               "column": 61
             }
           },
@@ -901,8 +988,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 39,
-      "end": 45,
+      "start": 41,
+      "end": 47,
       "loc": {
         "start": {
           "line": 3,
@@ -926,8 +1013,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 46,
-      "end": 47,
+      "start": 48,
+      "end": 49,
       "loc": {
         "start": {
           "line": 3,
@@ -952,8 +1039,8 @@
         "binop": null
       },
       "value": "CallbackEvent",
-      "start": 48,
-      "end": 61,
+      "start": 50,
+      "end": 63,
       "loc": {
         "start": {
           "line": 3,
@@ -977,8 +1064,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 62,
-      "end": 63,
+      "start": 64,
+      "end": 65,
       "loc": {
         "start": {
           "line": 3,
@@ -1003,8 +1090,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 64,
-      "end": 68,
+      "start": 66,
+      "end": 70,
       "loc": {
         "start": {
           "line": 3,
@@ -1030,8 +1117,8 @@
         "updateContext": null
       },
       "value": "./events/callback-event",
-      "start": 69,
-      "end": 94,
+      "start": 71,
+      "end": 96,
       "loc": {
         "start": {
           "line": 3,
@@ -1058,8 +1145,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 95,
-      "end": 101,
+      "start": 98,
+      "end": 104,
       "loc": {
         "start": {
           "line": 4,
@@ -1083,8 +1170,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 102,
-      "end": 103,
+      "start": 105,
+      "end": 106,
       "loc": {
         "start": {
           "line": 4,
@@ -1109,8 +1196,8 @@
         "binop": null
       },
       "value": "ConcurrentEvent",
-      "start": 104,
-      "end": 119,
+      "start": 107,
+      "end": 122,
       "loc": {
         "start": {
           "line": 4,
@@ -1134,8 +1221,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 120,
-      "end": 121,
+      "start": 123,
+      "end": 124,
       "loc": {
         "start": {
           "line": 4,
@@ -1160,8 +1247,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 122,
-      "end": 126,
+      "start": 125,
+      "end": 129,
       "loc": {
         "start": {
           "line": 4,
@@ -1187,8 +1274,8 @@
         "updateContext": null
       },
       "value": "./events/concurrent-event",
-      "start": 127,
-      "end": 154,
+      "start": 130,
+      "end": 157,
       "loc": {
         "start": {
           "line": 4,
@@ -1215,8 +1302,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 155,
-      "end": 161,
+      "start": 159,
+      "end": 165,
       "loc": {
         "start": {
           "line": 5,
@@ -1240,8 +1327,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 162,
-      "end": 163,
+      "start": 166,
+      "end": 167,
       "loc": {
         "start": {
           "line": 5,
@@ -1266,8 +1353,8 @@
         "binop": null
       },
       "value": "CssAnimationEvent",
-      "start": 164,
-      "end": 181,
+      "start": 168,
+      "end": 185,
       "loc": {
         "start": {
           "line": 5,
@@ -1291,8 +1378,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 182,
-      "end": 183,
+      "start": 186,
+      "end": 187,
       "loc": {
         "start": {
           "line": 5,
@@ -1317,8 +1404,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 184,
-      "end": 188,
+      "start": 188,
+      "end": 192,
       "loc": {
         "start": {
           "line": 5,
@@ -1344,8 +1431,8 @@
         "updateContext": null
       },
       "value": "./events/css-animation-event",
-      "start": 189,
-      "end": 219,
+      "start": 193,
+      "end": 223,
       "loc": {
         "start": {
           "line": 5,
@@ -1372,8 +1459,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 220,
-      "end": 226,
+      "start": 225,
+      "end": 231,
       "loc": {
         "start": {
           "line": 6,
@@ -1397,8 +1484,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 227,
-      "end": 228,
+      "start": 232,
+      "end": 233,
       "loc": {
         "start": {
           "line": 6,
@@ -1422,9 +1509,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "DelayEvent",
-      "start": 229,
-      "end": 239,
+      "value": "CssTransitionEvent",
+      "start": 234,
+      "end": 252,
       "loc": {
         "start": {
           "line": 6,
@@ -1432,6 +1519,163 @@
         },
         "end": {
           "line": 6,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 253,
+      "end": 254,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 28
+        },
+        "end": {
+          "line": 6,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 255,
+      "end": 259,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 30
+        },
+        "end": {
+          "line": 6,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./events/css-transition-event",
+      "start": 260,
+      "end": 291,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 35
+        },
+        "end": {
+          "line": 6,
+          "column": 66
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 293,
+      "end": 299,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 300,
+      "end": 301,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 7
+        },
+        "end": {
+          "line": 7,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "DelayEvent",
+      "start": 302,
+      "end": 312,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 9
+        },
+        "end": {
+          "line": 7,
           "column": 19
         }
       }
@@ -1448,15 +1692,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 240,
-      "end": 241,
+      "start": 313,
+      "end": 314,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 20
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 21
         }
       }
@@ -1474,15 +1718,15 @@
         "binop": null
       },
       "value": "from",
-      "start": 242,
-      "end": 246,
+      "start": 315,
+      "end": 319,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 22
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 26
         }
       }
@@ -1501,15 +1745,15 @@
         "updateContext": null
       },
       "value": "./events/delay-event",
-      "start": 247,
-      "end": 269,
+      "start": 320,
+      "end": 342,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 27
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 49
         }
       }
@@ -1529,15 +1773,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 270,
-      "end": 276,
+      "start": 344,
+      "end": 350,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 6
         }
       }
@@ -1554,15 +1798,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 277,
-      "end": 278,
+      "start": 351,
+      "end": 352,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 7
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 8
         }
       }
@@ -1580,15 +1824,15 @@
         "binop": null
       },
       "value": "SetStyleEvent",
-      "start": 279,
-      "end": 292,
+      "start": 353,
+      "end": 366,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 9
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 22
         }
       }
@@ -1605,15 +1849,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 293,
-      "end": 294,
+      "start": 367,
+      "end": 368,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 23
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 24
         }
       }
@@ -1631,15 +1875,15 @@
         "binop": null
       },
       "value": "from",
-      "start": 295,
-      "end": 299,
+      "start": 369,
+      "end": 373,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 25
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 29
         }
       }
@@ -1658,15 +1902,15 @@
         "updateContext": null
       },
       "value": "./events/set-style-event",
-      "start": 300,
-      "end": 326,
+      "start": 374,
+      "end": 400,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 30
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 56
         }
       }
@@ -1686,15 +1930,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 327,
-      "end": 333,
+      "start": 402,
+      "end": 408,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 6
         }
       }
@@ -1711,15 +1955,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 334,
-      "end": 335,
+      "start": 409,
+      "end": 410,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 7
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 8
         }
       }
@@ -1737,15 +1981,15 @@
         "binop": null
       },
       "value": "TimelineEvent",
-      "start": 336,
-      "end": 349,
+      "start": 411,
+      "end": 424,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 9
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 22
         }
       }
@@ -1762,15 +2006,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 350,
-      "end": 351,
+      "start": 425,
+      "end": 426,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 23
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 24
         }
       }
@@ -1788,15 +2032,15 @@
         "binop": null
       },
       "value": "from",
-      "start": 352,
-      "end": 356,
+      "start": 427,
+      "end": 431,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 25
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 29
         }
       }
@@ -1815,15 +2059,15 @@
         "updateContext": null
       },
       "value": "./events/timeline-event",
-      "start": 357,
-      "end": 382,
+      "start": 432,
+      "end": 457,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 30
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 55
         }
       }
@@ -1843,15 +2087,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 384,
-      "end": 390,
+      "start": 461,
+      "end": 467,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 6
         }
       }
@@ -1868,15 +2112,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 391,
-      "end": 392,
+      "start": 468,
+      "end": 469,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 7
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 8
         }
       }
@@ -1894,15 +2138,15 @@
         "binop": null
       },
       "value": "DynamicCssAnimation",
-      "start": 393,
-      "end": 412,
+      "start": 470,
+      "end": 489,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 9
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 28
         }
       }
@@ -1919,15 +2163,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 413,
-      "end": 414,
+      "start": 490,
+      "end": 491,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 29
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 30
         }
       }
@@ -1945,15 +2189,15 @@
         "binop": null
       },
       "value": "from",
-      "start": 415,
-      "end": 419,
+      "start": 492,
+      "end": 496,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 31
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 35
         }
       }
@@ -1972,15 +2216,15 @@
         "updateContext": null
       },
       "value": "./dynamic-css-animation",
-      "start": 420,
-      "end": 445,
+      "start": 497,
+      "end": 522,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 36
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 61
         }
       }
@@ -1998,15 +2242,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 446,
-      "end": 446,
+      "start": 524,
+      "end": 524,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 12,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 12,
           "column": 0
         }
       }

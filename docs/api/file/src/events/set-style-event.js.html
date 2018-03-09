@@ -34,6 +34,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#events">events</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/callback-event.js~CallbackEvent.html">CallbackEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/concurrent-event.js~ConcurrentEvent.html">ConcurrentEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/css-animation-event.js~CssAnimationEvent.html">CssAnimationEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/css-transition-event.js~CssTransitionEvent.html">CssTransitionEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/delay-event.js~DelayEvent.html">DelayEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/set-style-event.js~SetStyleEvent.html">SetStyleEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/events/timeline-event.js~TimelineEvent.html">TimelineEvent</a></span></span></li>
@@ -42,7 +43,9 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/events/set-style-event.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { applyStyle } from &apos;../lib/apply-style&apos;
+
+/**
   An event that sets style properties on an element.
 */
 export class SetStyleEvent {
@@ -61,12 +64,7 @@ export class SetStyleEvent {
 
   /** @ignore */
   start (complete) {
-    for (const key in this._style) {
-      if (this._style.hasOwnProperty(key)) {
-        this._element.style[key] = this._style[key]
-      }
-    }
-
+    applyStyle(this._element, this._style)
     complete()
   }
 

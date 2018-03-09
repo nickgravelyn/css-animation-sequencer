@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | seashell-animation</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/events/css-transition-event.js | seashell-animation</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -42,18 +42,55 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { Timeline } from &apos;./timeline&apos;
+<div class="content" data-ice="content"><h1 data-ice="title">src/events/css-transition-event.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { applyStyle } from &apos;../lib/apply-style&apos;
 
-export { CallbackEvent } from &apos;./events/callback-event&apos;
-export { ConcurrentEvent } from &apos;./events/concurrent-event&apos;
-export { CssAnimationEvent } from &apos;./events/css-animation-event&apos;
-export { CssTransitionEvent } from &apos;./events/css-transition-event&apos;
-export { DelayEvent } from &apos;./events/delay-event&apos;
-export { SetStyleEvent } from &apos;./events/set-style-event&apos;
-export { TimelineEvent } from &apos;./events/timeline-event&apos;
+/**
+  An event that uses CSS transitions to animate from one style
+  state to another.
+*/
+export class CssTransitionEvent {
+  /**
+    Initializes the event.
 
-export { DynamicCssAnimation } from &apos;./dynamic-css-animation&apos;
+    @param {HTMLElement} element -
+      The element to apply the style transition to.
+    @param {Number} duration -
+      The duration (in seconds) for the transition.
+    @param {Object} style -
+      An object representing the style keys and values to transition to.
+  */
+  constructor (element, duration, style) {
+    this._element = element
+    this._style = style
+    this._transition = `${Object.keys(this._style).map(k =&gt; k + &apos; &apos; + duration + &apos;s&apos;).join(&apos;, &apos;)}`
+    this._onTransitionEnd = this._onTransitionEnd.bind(this)
+    this._startTransition = this._startTransition.bind(this)
+  }
+
+  /** @ignore */
+  start (complete) {
+    this._complete = complete
+    this._element.addEventListener(&apos;transitionend&apos;, this._onTransitionEnd)
+    setTimeout(this._startTransition)
+  }
+
+  /** @ignore */
+  stop () {
+    this._element.removeEventListener(&apos;transitionend&apos;, this._onTransitionEnd)
+    this._element.style.removeProperty(&apos;transition&apos;)
+  }
+
+  _startTransition () {
+    this._element.style.transition = this._transition
+    applyStyle(this._element, this._style)
+  }
+
+  _onTransitionEnd () {
+    this.stop()
+    setTimeout(this._complete)
+  }
+}
 </code></pre>
 
 </div>

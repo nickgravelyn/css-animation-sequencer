@@ -18,6 +18,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "seashell-animation~csstransitionevent",
+    "class/src/events/css-transition-event.js~CssTransitionEvent.html",
+    "<span>CssTransitionEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
+    "class"
+  ],
+  [
     "seashell-animation~delayevent",
     "class/src/events/delay-event.js~DelayEvent.html",
     "<span>DelayEvent</span> <span class=\"search-result-import-path\">seashell-animation</span>",
@@ -438,6 +444,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/events/css-transition-event.js",
+    "file/src/events/css-transition-event.js.html",
+    "src/events/css-transition-event.js",
+    "file"
+  ],
+  [
+    "src/events/css-transition-event.js~csstransitionevent#constructor",
+    "class/src/events/css-transition-event.js~CssTransitionEvent.html#instance-constructor-constructor",
+    "src/events/css-transition-event.js~CssTransitionEvent#constructor",
+    "method"
+  ],
+  [
     "src/events/delay-event.js",
     "file/src/events/delay-event.js.html",
     "src/events/delay-event.js",
@@ -480,6 +498,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/lib/apply-style.js",
+    "file/src/lib/apply-style.js.html",
+    "src/lib/apply-style.js",
+    "file"
+  ],
+  [
     "src/timeline.js",
     "file/src/timeline.js.html",
     "src/timeline.js",
@@ -507,6 +531,12 @@ window.esdocSearchIndex = [
     "src/timeline.js~timeline#addcssanimation",
     "class/src/timeline.js~Timeline.html#instance-method-addCssAnimation",
     "src/timeline.js~Timeline#addCssAnimation",
+    "method"
+  ],
+  [
+    "src/timeline.js~timeline#addcsstransition",
+    "class/src/timeline.js~Timeline.html#instance-method-addCssTransition",
+    "src/timeline.js~Timeline#addCssTransition",
     "method"
   ],
   [

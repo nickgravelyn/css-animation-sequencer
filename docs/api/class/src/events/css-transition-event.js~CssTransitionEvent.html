@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">SetStyleEvent | seashell-animation</title>
+  <title data-ice="title">CssTransitionEvent | seashell-animation</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -43,17 +43,17 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {SetStyleEvent} from &apos;<span><a href="file/src/events/set-style-event.js.html#lineNumber6">seashell-animation</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {CssTransitionEvent} from &apos;<span><a href="file/src/events/css-transition-event.js.html#lineNumber7">seashell-animation</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/events/set-style-event.js.html#lineNumber6">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/events/css-transition-event.js.html#lineNumber7">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">SetStyleEvent</h1>
+  <h1 data-ice="name">CssTransitionEvent</h1>
 
   
 
@@ -69,7 +69,8 @@
 
   
   
-  <div class="description" data-ice="description"><p>An event that sets style properties on an element.</p>
+  <div class="description" data-ice="description"><p>An event that uses CSS transitions to animate from one style
+state to another.</p>
 </div>
   
 
@@ -102,7 +103,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/events/set-style-event.js~SetStyleEvent.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(element: <span>HTMLElement</span>, style: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/events/css-transition-event.js~CssTransitionEvent.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(element: <span>HTMLElement</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, style: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
@@ -137,11 +138,11 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(element: <span>HTMLElement</span>, style: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(element: <span>HTMLElement</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, style: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/events/set-style-event.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/events/css-transition-event.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -165,14 +166,21 @@
       <td data-ice="name" class="code" data-depth="0">element</td>
       <td data-ice="type" class="code"><span>HTMLElement</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The element to apply the style to.</p>
+      <td data-ice="description"><p>The element to apply the style transition to.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">duration</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The duration (in seconds) for the transition.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">style</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>An object representing the style keys and values to apply to the element.</p>
+      <td data-ice="description"><p>An object representing the style keys and values to transition to.</p>
 </td>
     </tr>
 </tbody>
