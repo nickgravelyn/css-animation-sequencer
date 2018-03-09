@@ -567,9 +567,9 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/dynamic-css-animation.js",
-    "content": "/**\r\n  A helper class for building CSS animations from code\r\n*/\r\nexport class DynamicCssAnimation {\r\n  /**\r\n    Initializes a new animation.\r\n  */\r\n  constructor () {\r\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\r\n    this._duration = 0\r\n    this._keyframes = []\r\n\r\n    /**\r\n      Sets the animation-delay property of the generated animation.\r\n      @type {Number}\r\n    */\r\n    this.delay = 0\r\n\r\n    /**\r\n      Sets the animation-direction property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.direction = 'normal'\r\n\r\n    /**\r\n      Sets the animation-fill-mode property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.fillMode = 'none'\r\n\r\n    /**\r\n      Sets the animation-timing-function property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.timingFunction = 'ease'\r\n\r\n    /**\r\n      Sets the animation-iteration-count property of the generated animation.\r\n      @type {Number}\r\n    */\r\n    this.iterationCount = 1\r\n  }\r\n\r\n  /**\r\n    Gets the name of the animation.\r\n\r\n    The name is the CSS class to use with {@link CssAnimationEvent} or to manually\r\n    apply to an element if not using {@link Timeline}.\r\n\r\n    @type {String}\r\n  */\r\n  get name () {\r\n    return this._name\r\n  }\r\n\r\n  /**\r\n    Adds a new keyframe to the animation.\r\n\r\n    @param {Number} duration - The amount of time (in seconds) to animate to this frame.\r\n    @param {Object} style - An object representing CSS style attributes and their values.\r\n    @return {DynamicCssAnimation} The animation, for call chaining.\r\n  */\r\n  addKeyFrame (duration, style) {\r\n    this._keyframes.push({ duration, style })\r\n    this._duration += duration\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Generates the CSS style and appends it to the document head.\r\n\r\n    Generally you should call this method before using the animation so the browser\r\n    has the CSS. Alternatively you can use {@link createCssString} to create the\r\n    CSS and then insert it into the document yourself.\r\n\r\n    If you use this method for an animation you don't plan to re-use, you should at\r\n    some point call {@link destroyStyle} to remove the generated style block from\r\n    the document.\r\n  */\r\n  generateStyle () {\r\n    if (!this._styleSheet) {\r\n      this._styleSheet = document.createElement('style')\r\n      document.head.appendChild(this._styleSheet)\r\n    }\r\n\r\n    this._styleSheet.textContent = this.createCssString()\r\n  }\r\n\r\n  /**\r\n    Removes the style block inserted by {@link generateStyle}.\r\n  */\r\n  destroyStyle () {\r\n    if (this._styleSheet) {\r\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\r\n      this._styleSheet = null\r\n    }\r\n  }\r\n\r\n  /**\r\n    Creates the CSS for this animation.\r\n\r\n    This method is used internally by {@link generateStyle}, which is the recommended\r\n    method to use when using this class for animations. However if you would rather\r\n    manage inserting the CSS into the document you can call this method to simply\r\n    get the CSS as a string.\r\n\r\n    @return {String} The CSS for the animation.\r\n  */\r\n  createCssString () {\r\n    const name = this._name\r\n    let css = `.${name} {\r\n  animation-delay: ${this.delay}s;\r\n  animation-direction: ${this.direction};\r\n  animation-duration: ${this._duration}s;\r\n  animation-fill-mode: ${this.fillMode};\r\n  animation-iteration-count: ${this.iterationCount};\r\n  animation-name: ${name};\r\n  animation-timing-function: ${this.timingFunction};\r\n}\r\n@keyframes ${name} {\\n`\r\n\r\n    let runningTime = 0\r\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\r\n      const frame = this._keyframes[i]\r\n      runningTime += frame.duration\r\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\r\n      css += `  ${percentage}% {\\n`\r\n      for (const key in frame.style) {\r\n        if (frame.style.hasOwnProperty(key)) {\r\n          css += `    ${key}: ${frame.style[key]};\\n`\r\n        }\r\n      }\r\n      css += '  }\\n'\r\n    }\r\n\r\n    css += '}'\r\n    return css\r\n  }\r\n}\r\n",
+    "content": "/**\n  A helper class for building CSS animations from code\n*/\nexport class DynamicCssAnimation {\n  /**\n    Initializes a new animation.\n  */\n  constructor () {\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\n    this._duration = 0\n    this._keyframes = []\n\n    /**\n      Sets the animation-delay property of the generated animation.\n      @type {Number}\n    */\n    this.delay = 0\n\n    /**\n      Sets the animation-direction property of the generated animation.\n      @type {String}\n    */\n    this.direction = 'normal'\n\n    /**\n      Sets the animation-fill-mode property of the generated animation.\n      @type {String}\n    */\n    this.fillMode = 'none'\n\n    /**\n      Sets the animation-timing-function property of the generated animation.\n      @type {String}\n    */\n    this.timingFunction = 'ease'\n\n    /**\n      Sets the animation-iteration-count property of the generated animation.\n      @type {Number}\n    */\n    this.iterationCount = 1\n  }\n\n  /**\n    Gets the name of the animation.\n\n    The name is the CSS class to use with {@link CssAnimationEvent} or to manually\n    apply to an element if not using {@link Timeline}.\n\n    @type {String}\n  */\n  get name () {\n    return this._name\n  }\n\n  /**\n    Adds a new keyframe to the animation.\n\n    @param {Number} duration - The amount of time (in seconds) to animate to this frame.\n    @param {Object} style - An object representing CSS style attributes and their values.\n    @return {DynamicCssAnimation} The animation, for call chaining.\n  */\n  addKeyFrame (duration, style) {\n    this._keyframes.push({ duration, style })\n    this._duration += duration\n    return this\n  }\n\n  /**\n    Generates the CSS style and appends it to the document head.\n\n    Generally you should call this method before using the animation so the browser\n    has the CSS. Alternatively you can use {@link createCssString} to create the\n    CSS and then insert it into the document yourself.\n\n    If you use this method for an animation you don't plan to re-use, you should at\n    some point call {@link destroyStyle} to remove the generated style block from\n    the document.\n  */\n  generateStyle () {\n    if (!this._styleSheet) {\n      this._styleSheet = document.createElement('style')\n      document.head.appendChild(this._styleSheet)\n    }\n\n    this._styleSheet.textContent = this.createCssString()\n  }\n\n  /**\n    Removes the style block inserted by {@link generateStyle}.\n  */\n  destroyStyle () {\n    if (this._styleSheet) {\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\n      this._styleSheet = null\n    }\n  }\n\n  /**\n    Creates the CSS for this animation.\n\n    This method is used internally by {@link generateStyle}, which is the recommended\n    method to use when using this class for animations. However if you would rather\n    manage inserting the CSS into the document you can call this method to simply\n    get the CSS as a string.\n\n    @return {String} The CSS for the animation.\n  */\n  createCssString () {\n    const name = this._name\n    let css = `.${name} {\n  animation-delay: ${this.delay}s;\n  animation-direction: ${this.direction};\n  animation-duration: ${this._duration}s;\n  animation-fill-mode: ${this.fillMode};\n  animation-iteration-count: ${this.iterationCount};\n  animation-name: ${name};\n  animation-timing-function: ${this.timingFunction};\n}\n@keyframes ${name} {\\n`\n\n    let runningTime = 0\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\n      const frame = this._keyframes[i]\n      runningTime += frame.duration\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\n      css += `  ${percentage}% {\\n`\n      for (const key in frame.style) {\n        if (frame.style.hasOwnProperty(key)) {\n          css += `    ${key}: ${frame.style[key]};\\n`\n        }\n      }\n      css += '  }\\n'\n    }\n\n    css += '}'\n    return css\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/dynamic-css-animation.js",
+    "longname": "/Users/nick/Documents/seashell/src/dynamic-css-animation.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -889,9 +889,9 @@
     "__docId__": 67,
     "kind": "file",
     "name": "src/events/callback-event.js",
-    "content": "/**\r\n  An event that invokes a function when started\r\n*/\r\nexport class CallbackEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {Function} callback - The function to invoke when the event starts.\r\n  */\r\n  constructor (callback) {\r\n    this._callback = callback\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    this._callback()\r\n    complete()\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n  }\r\n}\r\n",
+    "content": "/**\n  An event that invokes a function when started\n*/\nexport class CallbackEvent {\n  /**\n    Initializes the event.\n\n    @param {Function} callback - The function to invoke when the event starts.\n  */\n  constructor (callback) {\n    this._callback = callback\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._callback()\n    complete()\n  }\n\n  /** @ignore */\n  stop () {\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/callback-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/callback-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -997,9 +997,9 @@
     "__docId__": 73,
     "kind": "file",
     "name": "src/events/concurrent-event.js",
-    "content": "/**\r\n  An event that concurrently starts any number of children.\r\n\r\n  This event is used to have simultaneous animations or timelines. All\r\n  children of the event are started when the event are started, and the\r\n  event doesn't complete until all children have completed.\r\n*/\r\nexport class ConcurrentEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {Array<Object>} ...children - The events to run concurrently.\r\n  */\r\n  constructor (...children) {\r\n    this._children = children\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    const len = this._children.length\r\n    let runningCount = len\r\n    const childComplete = () => {\r\n      runningCount--\r\n      if (runningCount === 0) {\r\n        complete()\r\n      }\r\n    }\r\n\r\n    for (let i = 0; i < len; ++i) {\r\n      this._children[i].start(childComplete)\r\n    }\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n    for (let i = 0, len = this._children.length; i < len; ++i) {\r\n      this._children[i].stop()\r\n    }\r\n  }\r\n}\r\n",
+    "content": "/**\n  An event that concurrently starts any number of children.\n\n  This event is used to have simultaneous animations or timelines. All\n  children of the event are started when the event are started, and the\n  event doesn't complete until all children have completed.\n*/\nexport class ConcurrentEvent {\n  /**\n    Initializes the event.\n\n    @param {Array<Object>} ...children - The events to run concurrently.\n  */\n  constructor (...children) {\n    this._children = children\n  }\n\n  /** @ignore */\n  start (complete) {\n    const len = this._children.length\n    let runningCount = len\n    const childComplete = () => {\n      runningCount--\n      if (runningCount === 0) {\n        complete()\n      }\n    }\n\n    for (let i = 0; i < len; ++i) {\n      this._children[i].start(childComplete)\n    }\n  }\n\n  /** @ignore */\n  stop () {\n    for (let i = 0, len = this._children.length; i < len; ++i) {\n      this._children[i].stop()\n    }\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/concurrent-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/concurrent-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1105,9 +1105,9 @@
     "__docId__": 79,
     "kind": "file",
     "name": "src/events/css-animation-event.js",
-    "content": "/**\r\n  An event that applies a CSS animation to an element.\r\n*/\r\nexport class CssAnimationEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {HTMLElement} element -\r\n      The element to apply the animation to.\r\n    @param {String} className -\r\n      A CSS class that has an `animation` property on it.\r\n  */\r\n  constructor (element, className) {\r\n    this._element = element\r\n    this._animation = className\r\n    this._onAnimationEnd = this._onAnimationEnd.bind(this)\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    this._complete = complete\r\n    this._element.addEventListener('animationend', this._onAnimationEnd)\r\n    this._element.classList.add(this._animation)\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n    this._element.removeEventListener('animationend', this._onAnimationEnd)\r\n    this._element.classList.remove(this._animation)\r\n  }\r\n\r\n  _onAnimationEnd () {\r\n    this.stop()\r\n    setTimeout(this._complete)\r\n  }\r\n}\r\n",
+    "content": "/**\n  An event that applies a CSS animation to an element.\n*/\nexport class CssAnimationEvent {\n  /**\n    Initializes the event.\n\n    @param {HTMLElement} element -\n      The element to apply the animation to.\n    @param {String} className -\n      A CSS class that has an `animation` property on it.\n  */\n  constructor (element, className) {\n    this._element = element\n    this._animation = className\n    this._onAnimationEnd = this._onAnimationEnd.bind(this)\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._complete = complete\n    this._element.addEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.add(this._animation)\n  }\n\n  /** @ignore */\n  stop () {\n    this._element.removeEventListener('animationend', this._onAnimationEnd)\n    this._element.classList.remove(this._animation)\n  }\n\n  _onAnimationEnd () {\n    this.stop()\n    setTimeout(this._complete)\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/css-animation-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/css-animation-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1276,9 +1276,9 @@
     "__docId__": 89,
     "kind": "file",
     "name": "src/events/css-transition-event.js",
-    "content": "import { applyStyle } from '../lib/apply-style'\r\n\r\n/**\r\n  An event that uses CSS transitions to animate from one style\r\n  state to another.\r\n*/\r\nexport class CssTransitionEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {HTMLElement} element -\r\n      The element to apply the style transition to.\r\n    @param {Number} duration -\r\n      The duration (in seconds) for the transition.\r\n    @param {Object} style -\r\n      An object representing the style keys and values to transition to.\r\n  */\r\n  constructor (element, duration, style) {\r\n    this._element = element\r\n    this._style = style\r\n    this._transition = `${Object.keys(this._style).map(k => k + ' ' + duration + 's').join(', ')}`\r\n    this._onTransitionEnd = this._onTransitionEnd.bind(this)\r\n    this._startTransition = this._startTransition.bind(this)\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    this._complete = complete\r\n    this._element.addEventListener('transitionend', this._onTransitionEnd)\r\n    setTimeout(this._startTransition)\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n    this._element.removeEventListener('transitionend', this._onTransitionEnd)\r\n    this._element.style.removeProperty('transition')\r\n  }\r\n\r\n  _startTransition () {\r\n    this._element.style.transition = this._transition\r\n    applyStyle(this._element, this._style)\r\n  }\r\n\r\n  _onTransitionEnd () {\r\n    this.stop()\r\n    setTimeout(this._complete)\r\n  }\r\n}\r\n",
+    "content": "import { applyStyle } from '../lib/apply-style'\n\n/**\n  An event that uses CSS transitions to animate from one style\n  state to another.\n*/\nexport class CssTransitionEvent {\n  /**\n    Initializes the event.\n\n    @param {HTMLElement} element -\n      The element to apply the style transition to.\n    @param {Number} duration -\n      The duration (in seconds) for the transition.\n    @param {Object} style -\n      An object representing the style keys and values to transition to.\n    @param {Object} options -\n      Options for the transition.\n    @param {String} options.timingFunction -\n      Timing function to use for the transition. Defaults to 'ease'.\n  */\n  constructor (element, duration, style, { timingFunction = 'ease' } = {}) {\n    this._element = element\n    this._style = style\n    this._transition = `${Object.keys(this._style).map(k => `${k} ${duration}s ${timingFunction}`).join(', ')}`\n    this._onTransitionEnd = this._onTransitionEnd.bind(this)\n    this._startTransition = this._startTransition.bind(this)\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._complete = complete\n    this._element.addEventListener('transitionend', this._onTransitionEnd)\n    setTimeout(this._startTransition)\n  }\n\n  /** @ignore */\n  stop () {\n    this._element.removeEventListener('transitionend', this._onTransitionEnd)\n    this._element.style.removeProperty('transition')\n  }\n\n  _startTransition () {\n    this._element.style.transition = this._transition\n    applyStyle(this._element, this._style)\n  }\n\n  _onTransitionEnd () {\n    this.stop()\n    setTimeout(this._complete)\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/css-transition-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/css-transition-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1309,7 +1309,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#constructor",
     "access": "public",
     "description": "Initializes the event.",
-    "lineNumber": 18,
+    "lineNumber": 22,
     "params": [
       {
         "nullable": null,
@@ -1340,6 +1340,26 @@
         "optional": false,
         "name": "style",
         "description": "An object representing the style keys and values to transition to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "Options for the transition."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.timingFunction",
+        "description": "Timing function to use for the transition. Defaults to 'ease'."
       }
     ]
   },
@@ -1352,7 +1372,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_element",
     "access": "private",
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 23,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1370,7 +1390,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_style",
     "access": "private",
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 24,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1388,7 +1408,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_transition",
     "access": "private",
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 25,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1408,7 +1428,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#start",
     "access": "public",
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 31,
     "ignore": true,
     "params": [
       {
@@ -1429,7 +1449,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_complete",
     "access": "private",
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 32,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -1449,7 +1469,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#stop",
     "access": "public",
     "description": null,
-    "lineNumber": 34,
+    "lineNumber": 38,
     "ignore": true,
     "params": [],
     "return": null
@@ -1465,7 +1485,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_startTransition",
     "access": "private",
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 43,
     "undocument": true,
     "ignore": true,
     "params": [],
@@ -1482,7 +1502,7 @@
     "longname": "src/events/css-transition-event.js~CssTransitionEvent#_onTransitionEnd",
     "access": "private",
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 48,
     "undocument": true,
     "ignore": true,
     "params": [],
@@ -1492,9 +1512,9 @@
     "__docId__": 102,
     "kind": "file",
     "name": "src/events/delay-event.js",
-    "content": "/**\r\n  An event that simply delays a {@link Timeline} from continuing\r\n*/\r\nexport class DelayEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {Number} time - The time to delay, in seconds.\r\n  */\r\n  constructor (time) {\r\n    this._time = time * 1000\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    this._timer = setTimeout(complete, this._time)\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n    if (this._timer) {\r\n      clearTimeout(this._timer)\r\n    }\r\n  }\r\n}\r\n",
+    "content": "/**\n  An event that simply delays a {@link Timeline} from continuing\n*/\nexport class DelayEvent {\n  /**\n    Initializes the event.\n\n    @param {Number} time - The time to delay, in seconds.\n  */\n  constructor (time) {\n    this._time = time * 1000\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._timer = setTimeout(complete, this._time)\n  }\n\n  /** @ignore */\n  stop () {\n    if (this._timer) {\n      clearTimeout(this._timer)\n    }\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/delay-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/delay-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1618,9 +1638,9 @@
     "__docId__": 109,
     "kind": "file",
     "name": "src/events/set-style-event.js",
-    "content": "import { applyStyle } from '../lib/apply-style'\r\n\r\n/**\r\n  An event that sets style properties on an element.\r\n*/\r\nexport class SetStyleEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {HTMLElement} element -\r\n      The element to apply the style to.\r\n    @param {Object} style -\r\n      An object representing the style keys and values to apply to the element.\r\n  */\r\n  constructor (element, style) {\r\n    this._element = element\r\n    this._style = style\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    applyStyle(this._element, this._style)\r\n    complete()\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n  }\r\n}\r\n",
+    "content": "import { applyStyle } from '../lib/apply-style'\n\n/**\n  An event that sets style properties on an element.\n*/\nexport class SetStyleEvent {\n  /**\n    Initializes the event.\n\n    @param {HTMLElement} element -\n      The element to apply the style to.\n    @param {Object} style -\n      An object representing the style keys and values to apply to the element.\n  */\n  constructor (element, style) {\n    this._element = element\n    this._style = style\n  }\n\n  /** @ignore */\n  start (complete) {\n    applyStyle(this._element, this._style)\n    complete()\n  }\n\n  /** @ignore */\n  stop () {\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/set-style-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/set-style-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1754,9 +1774,9 @@
     "__docId__": 116,
     "kind": "file",
     "name": "src/events/timeline-event.js",
-    "content": "/**\r\n  An event that runs a {@link Timeline}.\r\n*/\r\nexport class TimelineEvent {\r\n  /**\r\n    Initializes the event.\r\n\r\n    @param {Timeline} timeline - The timeline to run.\r\n  */\r\n  constructor (timeline) {\r\n    this._timeline = timeline\r\n  }\r\n\r\n  /** @ignore */\r\n  start (complete) {\r\n    this._timeline.start({ onComplete: complete })\r\n  }\r\n\r\n  /** @ignore */\r\n  stop () {\r\n    this._timeline.stop()\r\n  }\r\n}\r\n",
+    "content": "/**\n  An event that runs a {@link Timeline}.\n*/\nexport class TimelineEvent {\n  /**\n    Initializes the event.\n\n    @param {Timeline} timeline - The timeline to run.\n  */\n  constructor (timeline) {\n    this._timeline = timeline\n  }\n\n  /** @ignore */\n  start (complete) {\n    this._timeline.start({ onComplete: complete })\n  }\n\n  /** @ignore */\n  stop () {\n    this._timeline.stop()\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/events/timeline-event.js",
+    "longname": "/Users/nick/Documents/seashell/src/events/timeline-event.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1862,9 +1882,9 @@
     "__docId__": 122,
     "kind": "file",
     "name": "src/index.js",
-    "content": "export { Timeline } from './timeline'\r\n\r\nexport { CallbackEvent } from './events/callback-event'\r\nexport { ConcurrentEvent } from './events/concurrent-event'\r\nexport { CssAnimationEvent } from './events/css-animation-event'\r\nexport { CssTransitionEvent } from './events/css-transition-event'\r\nexport { DelayEvent } from './events/delay-event'\r\nexport { SetStyleEvent } from './events/set-style-event'\r\nexport { TimelineEvent } from './events/timeline-event'\r\n\r\nexport { DynamicCssAnimation } from './dynamic-css-animation'\r\n",
+    "content": "export { Timeline } from './timeline'\n\nexport { CallbackEvent } from './events/callback-event'\nexport { ConcurrentEvent } from './events/concurrent-event'\nexport { CssAnimationEvent } from './events/css-animation-event'\nexport { CssTransitionEvent } from './events/css-transition-event'\nexport { DelayEvent } from './events/delay-event'\nexport { SetStyleEvent } from './events/set-style-event'\nexport { TimelineEvent } from './events/timeline-event'\n\nexport { DynamicCssAnimation } from './dynamic-css-animation'\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/index.js",
+    "longname": "/Users/nick/Documents/seashell/src/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1873,9 +1893,9 @@
     "__docId__": 123,
     "kind": "file",
     "name": "src/lib/apply-style.js",
-    "content": "/** @ignore */\r\nexport function applyStyle (element, style) {\r\n  for (const key in style) {\r\n    if (style.hasOwnProperty(key)) {\r\n      element.style[key] = style[key]\r\n    }\r\n  }\r\n}\r\n",
+    "content": "/** @ignore */\nexport function applyStyle (element, style) {\n  for (const key in style) {\n    if (style.hasOwnProperty(key)) {\n      element.style[key] = style[key]\n    }\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/lib/apply-style.js",
+    "longname": "/Users/nick/Documents/seashell/src/lib/apply-style.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1916,9 +1936,9 @@
     "__docId__": 125,
     "kind": "file",
     "name": "src/timeline.js",
-    "content": "import { CallbackEvent } from './events/callback-event'\r\nimport { ConcurrentEvent } from './events/concurrent-event'\r\nimport { CssAnimationEvent } from './events/css-animation-event'\r\nimport { CssTransitionEvent } from './events/css-transition-event'\r\nimport { DelayEvent } from './events/delay-event'\r\nimport { SetStyleEvent } from './events/set-style-event'\r\nimport { TimelineEvent } from './events/timeline-event'\r\n\r\n/**\r\n  Coordinating object that holds a list of events that are\r\n  played sequentially to create animations.\r\n*/\r\nexport class Timeline {\r\n  /**\r\n    Initializes a new Timeline.\r\n  */\r\n  constructor () {\r\n    this._events = []\r\n    this._playing = false\r\n    this._startNext = this._startNext.bind(this)\r\n  }\r\n\r\n  /**\r\n    Adds an event to the timeline.\r\n\r\n    An event is any object that implements a basic interface consisting\r\n    of `start` and `stop` methods. `start` is called with a completion\r\n    callback function that the event must call when completion is reached.\r\n    `stop` should stop any asynchronous work for the event and should **not**\r\n    invoke the complete method passed into `start`.\r\n\r\n    @param {Object} event - The event to add to the timeline\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  add (event) {\r\n    this._events.push(event)\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link CallbackEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addCallback () {\r\n    this.add(new CallbackEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link ConcurrentEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addConcurrent () {\r\n    this.add(new ConcurrentEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link CssAnimationEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addCssAnimation () {\r\n    this.add(new CssAnimationEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link CssTransitionEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addCssTransition () {\r\n    this.add(new CssTransitionEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link DelayEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addDelay () {\r\n    this.add(new DelayEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link SetStyleEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addSetStyle () {\r\n    this.add(new SetStyleEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Constructs a {@link TimelineEvent}, forwarding all arguments, and adds\r\n    it to the timeline.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  addTimeline () {\r\n    this.add(new TimelineEvent(...arguments))\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Creates a number of timelines, passes them to the function provided,\r\n    and wraps them all in a {@link ConcurrentEvent}.\r\n\r\n    The function passed in must have a defined `.length`. That length is used to\r\n    know how many new timelines to create. This mainly means your function\r\n    should not use rest parameters.\r\n\r\n    @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length\r\n\r\n    @param {Function} fn -\r\n      A function called that is expected to configure the newly created timelines.\r\n    @return {Timeline} The timeline, to support call chaining.\r\n  */\r\n  branch (fn) {\r\n    const timelines = Array(fn.length).fill().map(() => new Timeline())\r\n    fn(...timelines)\r\n    return this.addConcurrent(...timelines.map(t => new TimelineEvent(t)))\r\n  }\r\n\r\n  /**\r\n    Starts playing the timeline.\r\n\r\n    @param {Object} options -\r\n      Playback options.\r\n    @param {Number} options.iterations -\r\n      The number of times to play through the events. Defaults to 1.\r\n    @param {Function} options.onComplete -\r\n      A function to invoke when the timeline finishes playing.\r\n      This will never be invoked if iterations is set to `Infinity`.\r\n  */\r\n  start ({ iterations = 1, onComplete = null } = {}) {\r\n    this._playing = true\r\n    this._current = -1\r\n    this._iterations = iterations\r\n    this._onComplete = onComplete\r\n    this._startNext()\r\n  }\r\n\r\n  /**\r\n    Stops the timeline, if it is playing.\r\n\r\n    Aside from preventing starting any new events, this also calls `stop`\r\n    on the current event to allow it to clean up.\r\n  */\r\n  stop () {\r\n    if (!this._playing) {\r\n      return\r\n    }\r\n    this._events[this._current].stop()\r\n  }\r\n\r\n  _startNext () {\r\n    if (!this._playing) {\r\n      return\r\n    }\r\n\r\n    this._current++\r\n\r\n    if (this._current >= this._events.length) {\r\n      if (this._iterations <= 1) {\r\n        this._playing = false\r\n        if (this._onComplete) {\r\n          this._onComplete()\r\n        }\r\n        return\r\n      }\r\n\r\n      this._iterations--\r\n      this._current = 0\r\n    }\r\n\r\n    this._events[this._current].start(this._startNext)\r\n  }\r\n}\r\n",
+    "content": "import { CallbackEvent } from './events/callback-event'\nimport { ConcurrentEvent } from './events/concurrent-event'\nimport { CssAnimationEvent } from './events/css-animation-event'\nimport { CssTransitionEvent } from './events/css-transition-event'\nimport { DelayEvent } from './events/delay-event'\nimport { SetStyleEvent } from './events/set-style-event'\nimport { TimelineEvent } from './events/timeline-event'\n\n/**\n  Coordinating object that holds a list of events that are\n  played sequentially to create animations.\n*/\nexport class Timeline {\n  /**\n    Initializes a new Timeline.\n  */\n  constructor () {\n    this._events = []\n    this._playing = false\n    this._startNext = this._startNext.bind(this)\n  }\n\n  /**\n    Adds an event to the timeline.\n\n    An event is any object that implements a basic interface consisting\n    of `start` and `stop` methods. `start` is called with a completion\n    callback function that the event must call when completion is reached.\n    `stop` should stop any asynchronous work for the event and should **not**\n    invoke the complete method passed into `start`.\n\n    @param {Object} event - The event to add to the timeline\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  add (event) {\n    this._events.push(event)\n    return this\n  }\n\n  /**\n    Constructs a {@link CallbackEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addCallback () {\n    this.add(new CallbackEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link ConcurrentEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addConcurrent () {\n    this.add(new ConcurrentEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link CssAnimationEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addCssAnimation () {\n    this.add(new CssAnimationEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link CssTransitionEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addCssTransition () {\n    this.add(new CssTransitionEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link DelayEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addDelay () {\n    this.add(new DelayEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link SetStyleEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addSetStyle () {\n    this.add(new SetStyleEvent(...arguments))\n    return this\n  }\n\n  /**\n    Constructs a {@link TimelineEvent}, forwarding all arguments, and adds\n    it to the timeline.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  addTimeline () {\n    this.add(new TimelineEvent(...arguments))\n    return this\n  }\n\n  /**\n    Creates a number of timelines, passes them to the function provided,\n    and wraps them all in a {@link ConcurrentEvent}.\n\n    The function passed in must have a defined `.length`. That length is used to\n    know how many new timelines to create. This mainly means your function\n    should not use rest parameters.\n\n    @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length\n\n    @param {Function} fn -\n      A function called that is expected to configure the newly created timelines.\n    @return {Timeline} The timeline, to support call chaining.\n  */\n  branch (fn) {\n    const timelines = Array(fn.length).fill().map(() => new Timeline())\n    fn(...timelines)\n    return this.addConcurrent(...timelines.map(t => new TimelineEvent(t)))\n  }\n\n  /**\n    Starts playing the timeline.\n\n    @param {Object} options -\n      Playback options.\n    @param {Number} options.iterations -\n      The number of times to play through the events. Defaults to 1.\n    @param {Function} options.onComplete -\n      A function to invoke when the timeline finishes playing.\n      This will never be invoked if iterations is set to `Infinity`.\n  */\n  start ({ iterations = 1, onComplete = null } = {}) {\n    this._playing = true\n    this._current = -1\n    this._iterations = iterations\n    this._onComplete = onComplete\n    this._startNext()\n  }\n\n  /**\n    Stops the timeline, if it is playing.\n\n    Aside from preventing starting any new events, this also calls `stop`\n    on the current event to allow it to clean up.\n  */\n  stop () {\n    if (!this._playing) {\n      return\n    }\n    this._events[this._current].stop()\n  }\n\n  _startNext () {\n    if (!this._playing) {\n      return\n    }\n\n    this._current++\n\n    if (this._current >= this._events.length) {\n      if (this._iterations <= 1) {\n        this._playing = false\n        if (this._onComplete) {\n          this._onComplete()\n        }\n        return\n      }\n\n      this._iterations--\n      this._current = 0\n    }\n\n    this._events[this._current].start(this._startNext)\n  }\n}\n",
     "static": true,
-    "longname": "C:/dev/seashell/src/timeline.js",
+    "longname": "/Users/nick/Documents/seashell/src/timeline.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2344,8 +2364,8 @@
   },
   {
     "kind": "index",
-    "content": "# Seashell 🐚\r\n\r\nA lovely library for web animations.\r\n\r\nCheckout the [examples](https://nickgravelyn.github.io/seashell) to get an idea of what the library can do.\r\n\r\n## Get Started\r\n\r\n```\r\nyarn add seashell-animation\r\n```\r\n\r\nor\r\n\r\n```\r\nnpm add --save seashell-animation\r\n```\r\n\r\nThen you can import and use the library:\r\n\r\n```js\r\nimport { Timeline } from 'seashell-animation'\r\n\r\nlet timeline = new Timeline()\r\n// etc\r\n```\r\n",
-    "longname": "C:\\dev\\seashell\\api_index.md",
+    "content": "# Seashell 🐚\n\nA lovely library for web animations.\n\nCheckout the [examples](https://nickgravelyn.github.io/seashell) to get an idea of what the library can do.\n\n## Get Started\n\n```\nyarn add seashell-animation\n```\n\nor\n\n```\nnpm add --save seashell-animation\n```\n\nThen you can import and use the library:\n\n```js\nimport { Timeline } from 'seashell-animation'\n\nlet timeline = new Timeline()\n// etc\n```\n",
+    "longname": "/Users/nick/Documents/seashell/api_index.md",
     "name": "./api_index.md",
     "static": true,
     "access": "public"
@@ -2353,7 +2373,7 @@
   {
     "kind": "packageJSON",
     "content": "{\n  \"name\": \"seashell-animation\",\n  \"version\": \"1.1.0\",\n  \"description\": \"A lovely library for web animations.\",\n  \"main\": \"dist/seashell.cjs.js\",\n  \"module\": \"dist/seashell.esm.js\",\n  \"files\": [\n    \"dist/seashell.cjs.js\",\n    \"dist/seashell.esm.js\"\n  ],\n  \"scripts\": {\n    \"build\": \"rollup -c\",\n    \"build-docs\": \"esdoc\",\n    \"serve-docs\": \"http-server docs -a localhost -c-1\",\n    \"lint\": \"eslint .\",\n    \"test\": \"jest\",\n    \"prepublishOnly\": \"yarn build\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/nickgravelyn/seashell.git\"\n  },\n  \"author\": \"Nick Gravelyn <nick@gravelyn.com> (https://github.com/nickgravelyn)\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/nickgravelyn/seashell/issues\"\n  },\n  \"homepage\": \"https://github.com/nickgravelyn/seashell#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@nickgravelyn/eslint-config\": \"^1.1.0\",\n    \"babel-core\": \"^6.26.0\",\n    \"babel-plugin-external-helpers\": \"^6.22.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-importpath-plugin\": \"^1.0.1\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.18.1\",\n    \"eslint-plugin-jest\": \"^21.12.2\",\n    \"http-server\": \"^0.11.1\",\n    \"husky\": \"^0.15.0-rc.8\",\n    \"jest\": \"^22.4.0\",\n    \"lint-staged\": \"^6.1.0\",\n    \"rollup\": \"^0.56.0\",\n    \"rollup-plugin-babel\": \"^3.0.3\",\n    \"rollup-plugin-cleanup\": \"^2.0.0\"\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-commit\": \"lint-staged && yarn test\"\n    }\n  },\n  \"lint-staged\": {\n    \"linters\": {\n      \"*.js\": [\n        \"yarn lint --fix\",\n        \"git add\"\n      ]\n    }\n  }\n}\n",
-    "longname": "C:\\dev\\seashell\\package.json",
+    "longname": "/Users/nick/Documents/seashell/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"

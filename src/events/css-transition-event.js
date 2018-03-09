@@ -14,11 +14,15 @@ export class CssTransitionEvent {
       The duration (in seconds) for the transition.
     @param {Object} style -
       An object representing the style keys and values to transition to.
+    @param {Object} options -
+      Options for the transition.
+    @param {String} options.timingFunction -
+      Timing function to use for the transition. Defaults to 'ease'.
   */
-  constructor (element, duration, style) {
+  constructor (element, duration, style, { timingFunction = 'ease' } = {}) {
     this._element = element
     this._style = style
-    this._transition = `${Object.keys(this._style).map(k => k + ' ' + duration + 's').join(', ')}`
+    this._transition = `${Object.keys(this._style).map(k => `${k} ${duration}s ${timingFunction}`).join(', ')}`
     this._onTransitionEnd = this._onTransitionEnd.bind(this)
     this._startTransition = this._startTransition.bind(this)
   }

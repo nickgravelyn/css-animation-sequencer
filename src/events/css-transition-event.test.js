@@ -23,7 +23,18 @@ test('start has timeout on next tick to set the transition property and change s
   jest.advanceTimersByTime(1)
 
   expect(elem.style.opacity).toEqual(1)
-  expect(elem.style.transition).toEqual('opacity 1.23s')
+  expect(elem.style.transition).toEqual('opacity 1.23s ease')
+})
+
+test('can customize ease with options', () => {
+  const elem = makeFakeElem()
+  const event = new CssTransitionEvent(elem, 1.23, { opacity: 1 }, { timingFunction: 'ease-in-out' })
+
+  event.start(jest.fn())
+
+  jest.advanceTimersByTime(1)
+
+  expect(elem.style.transition).toEqual('opacity 1.23s ease-in-out')
 })
 
 test('start adds listener for transitionend', () => {

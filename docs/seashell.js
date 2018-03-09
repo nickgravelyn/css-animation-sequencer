@@ -100,11 +100,14 @@ function applyStyle(element, style) {
 
 var CssTransitionEvent = function () {
   function CssTransitionEvent(element, duration, style) {
+    var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
+        _ref$timingFunction = _ref.timingFunction,
+        timingFunction = _ref$timingFunction === undefined ? 'ease' : _ref$timingFunction;
     classCallCheck(this, CssTransitionEvent);
     this._element = element;
     this._style = style;
     this._transition = '' + Object.keys(this._style).map(function (k) {
-      return k + ' ' + duration + 's';
+      return k + ' ' + duration + 's ' + timingFunction;
     }).join(', ');
     this._onTransitionEnd = this._onTransitionEnd.bind(this);
     this._startTransition = this._startTransition.bind(this);
@@ -265,12 +268,12 @@ var DynamicCssAnimation = function () {
     classCallCheck(this, DynamicCssAnimation);
     this._name = 'seashell-' + Math.random().toString(36).substring(2);
     this._duration = 0;
+    this._keyframes = [];
     this.delay = 0;
     this.direction = 'normal';
     this.fillMode = 'none';
     this.timingFunction = 'ease';
     this.iterationCount = 1;
-    this._keyframes = [];
   }
   DynamicCssAnimation.prototype.addKeyFrame = function addKeyFrame(duration, style) {
     this._keyframes.push({ duration: duration, style: style });
