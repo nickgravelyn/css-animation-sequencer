@@ -7,6 +7,7 @@ import {
 import { CallbackEvent } from './events/callback-event'
 import { ConcurrentEvent } from './events/concurrent-event'
 import { CssAnimationEvent } from './events/css-animation-event'
+import { CssTransitionEvent } from './events/css-transition-event'
 import { DelayEvent } from './events/delay-event'
 import { SetStyleEvent } from './events/set-style-event'
 import { TimelineEvent } from './events/timeline-event'
@@ -14,6 +15,7 @@ import { TimelineEvent } from './events/timeline-event'
 jest.mock('./events/callback-event')
 jest.mock('./events/concurrent-event')
 jest.mock('./events/css-animation-event')
+jest.mock('./events/css-transition-event')
 jest.mock('./events/delay-event')
 jest.mock('./events/set-style-event')
 jest.mock('./events/timeline-event')
@@ -22,6 +24,7 @@ beforeEach(() => {
   CallbackEvent.mockClear()
   ConcurrentEvent.mockClear()
   CssAnimationEvent.mockClear()
+  CssTransitionEvent.mockClear()
   DelayEvent.mockClear()
   SetStyleEvent.mockClear()
   TimelineEvent.mockClear()
@@ -66,6 +69,22 @@ test('can add a css animation event', () => {
   expect(timeline.add).toHaveBeenCalled()
   expect(timeline.add.mock.calls[0][0]).toBeInstanceOf(CssAnimationEvent)
   expect(CssAnimationEvent).toHaveBeenCalledWith(elem, animClass)
+})
+
+test('can add a css transition event', () => {
+  const timeline = new Timeline()
+  timeline.add = jest.fn()
+
+  const elem = {}
+  const duration = 1.234
+  const from = { opacity: 0 }
+  const to = { opacity: 1 }
+  const returned = timeline.addCssTransition(elem, duration, from, to)
+
+  expect(returned).toBe(timeline)
+  expect(timeline.add).toHaveBeenCalled()
+  expect(timeline.add.mock.calls[0][0]).toBeInstanceOf(CssTransitionEvent)
+  expect(CssTransitionEvent).toHaveBeenCalledWith(elem, duration, from, to)
 })
 
 test('can add a delay event', () => {

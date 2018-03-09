@@ -11,7 +11,7 @@ test('sets style fields and completes', () => {
   expect(complete).toHaveBeenCalled()
 })
 
-it('has a stop method', () => {
+test('has a stop method', () => {
   const event = new SetStyleEvent({}, {})
   expect(event.stop).toBeInstanceOf(Function)
 })

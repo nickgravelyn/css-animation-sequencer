@@ -18,22 +18,22 @@ function makeFakeElem () {
 
 test('adds event listener and class on start', () => {
   const elem = makeFakeElem()
-  const step = new CssAnimationEvent(elem, 'anim-class')
-  step.start(jest.fn())
+  const event = new CssAnimationEvent(elem, 'anim-class')
+  event.start(jest.fn())
 
-  expect(elem.event).toBe('animationend')
+  expect(elem.event).toEqual('animationend')
   expect(elem.fn).toBeDefined()
   expect(elem.classList.add).toHaveBeenCalledWith('anim-class')
 })
 
-test('creates a listener that removes class and listener and calls next on next tick', () => {
+test('creates a listener that removes class and listener and completes on next tick', () => {
   const elem = makeFakeElem()
-  const step = new CssAnimationEvent(elem, 'anim-class')
-  const next = jest.fn()
+  const event = new CssAnimationEvent(elem, 'anim-class')
+  const complete = jest.fn()
 
-  step.start(next)
+  event.start(complete)
 
-  expect(next).not.toHaveBeenCalled()
+  expect(complete).not.toHaveBeenCalled()
   expect(elem.classList.remove).not.toHaveBeenCalled()
   expect(elem.removeEventListener).not.toHaveBeenCalled()
 
@@ -42,19 +42,19 @@ test('creates a listener that removes class and listener and calls next on next 
 
   expect(elem.classList.remove).toHaveBeenCalledWith('anim-class')
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', elem.fn)
-  expect(next).not.toHaveBeenCalled()
+  expect(complete).not.toHaveBeenCalled()
 
   jest.advanceTimersByTime(1)
 
-  expect(next).toHaveBeenCalled()
+  expect(complete).toHaveBeenCalled()
 })
 
 test('removes event listener and class on stop', () => {
   const elem = makeFakeElem()
-  const step = new CssAnimationEvent(elem, 'anim-class')
+  const event = new CssAnimationEvent(elem, 'anim-class')
 
-  step.start(jest.fn())
-  step.stop()
+  event.start(jest.fn())
+  event.stop()
 
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', elem.fn)
   expect(elem.classList.remove).toHaveBeenCalledWith('anim-class')

@@ -10,7 +10,10 @@ test('calls complete after a timeout', () => {
   expect(complete).not.toHaveBeenCalled()
   expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1230)
 
-  jest.runAllTimers()
+  jest.advanceTimersByTime(1229)
+  expect(complete).not.toHaveBeenCalled()
+
+  jest.advanceTimersByTime(1)
   expect(complete).toHaveBeenCalled()
 })
 

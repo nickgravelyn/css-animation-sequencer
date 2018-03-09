@@ -90,6 +90,52 @@ var CssAnimationEvent = function () {
   return CssAnimationEvent;
 }();
 
+function applyStyle(element, style) {
+  for (var key in style) {
+    if (style.hasOwnProperty(key)) {
+      element.style[key] = style[key];
+    }
+  }
+}
+var CssTransitionEvent = function () {
+  function CssTransitionEvent(element, duration, from, to) {
+    classCallCheck(this, CssTransitionEvent);
+    this._element = element;
+    if (to === void 0) {
+      this._from = null;
+      this._to = from;
+    } else {
+      this._from = from;
+      this._to = to;
+    }
+    this._transition = '' + Object.keys(this._to).map(function (k) {
+      return k + ' ' + duration + 's';
+    }).join(', ');
+    this._onTransitionEnd = this._onTransitionEnd.bind(this);
+  }
+  CssTransitionEvent.prototype.start = function start(complete) {
+    var _this = this;
+    this._complete = complete;
+    if (this._from) {
+      applyStyle(this._element, this._from);
+    }
+    this._element.addEventListener('transitionend', this._onTransitionEnd);
+    setTimeout(function () {
+      _this._element.style.transition = _this._transition;
+      applyStyle(_this._element, _this._to);
+    });
+  };
+  CssTransitionEvent.prototype.stop = function stop() {
+    this._element.removeEventListener('transitionend', this._onTransitionEnd);
+    this._element.style.removeProperty('transition');
+  };
+  CssTransitionEvent.prototype._onTransitionEnd = function _onTransitionEnd() {
+    this.stop();
+    setTimeout(this._complete);
+  };
+  return CssTransitionEvent;
+}();
+
 var DelayEvent = function () {
   function DelayEvent(time) {
     classCallCheck(this, DelayEvent);
@@ -159,6 +205,10 @@ var Timeline = function () {
   };
   Timeline.prototype.addCssAnimation = function addCssAnimation() {
     this.add(new (Function.prototype.bind.apply(CssAnimationEvent, [null].concat(Array.prototype.slice.call(arguments))))());
+    return this;
+  };
+  Timeline.prototype.addCssTransition = function addCssTransition() {
+    this.add(new (Function.prototype.bind.apply(CssTransitionEvent, [null].concat(Array.prototype.slice.call(arguments))))());
     return this;
   };
   Timeline.prototype.addDelay = function addDelay() {
@@ -283,6 +333,7 @@ exports.Timeline = Timeline;
 exports.CallbackEvent = CallbackEvent;
 exports.ConcurrentEvent = ConcurrentEvent;
 exports.CssAnimationEvent = CssAnimationEvent;
+exports.CssTransitionEvent = CssTransitionEvent;
 exports.DelayEvent = DelayEvent;
 exports.SetStyleEvent = SetStyleEvent;
 exports.TimelineEvent = TimelineEvent;

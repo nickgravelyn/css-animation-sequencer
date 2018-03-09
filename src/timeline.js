@@ -1,6 +1,7 @@
 import { CallbackEvent } from './events/callback-event'
 import { ConcurrentEvent } from './events/concurrent-event'
 import { CssAnimationEvent } from './events/css-animation-event'
+import { CssTransitionEvent } from './events/css-transition-event'
 import { DelayEvent } from './events/delay-event'
 import { SetStyleEvent } from './events/set-style-event'
 import { TimelineEvent } from './events/timeline-event'
@@ -37,8 +38,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link CallbackEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CallbackEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addCallback () {
@@ -47,8 +48,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link ConcurrentEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link ConcurrentEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addConcurrent () {
@@ -57,8 +58,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link CssAnimationEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CssAnimationEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addCssAnimation () {
@@ -67,8 +68,18 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link DelayEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link CssTransitionEvent}, forwarding all arguments, and adds
+    it to the timeline.
+    @return {Timeline} The timeline, to support call chaining.
+  */
+  addCssTransition () {
+    this.add(new CssTransitionEvent(...arguments))
+    return this
+  }
+
+  /**
+    Constructs a {@link DelayEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addDelay () {
@@ -77,8 +88,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link SetStyleEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link SetStyleEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addSetStyle () {
@@ -87,8 +98,8 @@ export class Timeline {
   }
 
   /**
-    Constructs a {@link TimelineEvent} to the timeline, forwarding all arguments,
-    and adds it to the timeline.
+    Constructs a {@link TimelineEvent}, forwarding all arguments, and adds
+    it to the timeline.
     @return {Timeline} The timeline, to support call chaining.
   */
   addTimeline () {
