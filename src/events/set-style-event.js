@@ -1,3 +1,5 @@
+import { applyStyle } from '../lib/apply-style'
+
 /**
   An event that sets style properties on an element.
 */
@@ -17,12 +19,7 @@ export class SetStyleEvent {
 
   /** @ignore */
   start (complete) {
-    for (const key in this._style) {
-      if (this._style.hasOwnProperty(key)) {
-        this._element.style[key] = this._style[key]
-      }
-    }
-
+    applyStyle(this._element, this._style)
     complete()
   }
 
