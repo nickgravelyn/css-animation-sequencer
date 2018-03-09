@@ -53,13 +53,37 @@ export class DynamicCssAnimation {
   constructor () {
     this._name = &apos;seashell-&apos; + Math.random().toString(36).substring(2)
     this._duration = 0
-    this.delay = 0
-    this.direction = &apos;normal&apos;
-    this.fillMode = &apos;none&apos;
-    this.timingFunction = &apos;ease&apos;
-    this.iterationCount = 1
-
     this._keyframes = []
+
+    /**
+      Sets the animation-delay property of the generated animation.
+      @type {Number}
+    */
+    this.delay = 0
+
+    /**
+      Sets the animation-direction property of the generated animation.
+      @type {String}
+    */
+    this.direction = &apos;normal&apos;
+
+    /**
+      Sets the animation-fill-mode property of the generated animation.
+      @type {String}
+    */
+    this.fillMode = &apos;none&apos;
+
+    /**
+      Sets the animation-timing-function property of the generated animation.
+      @type {String}
+    */
+    this.timingFunction = &apos;ease&apos;
+
+    /**
+      Sets the animation-iteration-count property of the generated animation.
+      @type {Number}
+    */
+    this.iterationCount = 1
   }
 
   /**

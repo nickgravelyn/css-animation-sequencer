@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/dynamic-css-animation.js",
-    "content": "/**\r\n  A helper class for building CSS animations from code\r\n*/\r\nexport class DynamicCssAnimation {\r\n  /**\r\n    Initializes a new animation.\r\n  */\r\n  constructor () {\r\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\r\n    this._duration = 0\r\n    this.delay = 0\r\n    this.direction = 'normal'\r\n    this.fillMode = 'none'\r\n    this.timingFunction = 'ease'\r\n    this.iterationCount = 1\r\n\r\n    this._keyframes = []\r\n  }\r\n\r\n  /**\r\n    Gets the name of the animation.\r\n\r\n    The name is the CSS class to use with {@link CssAnimationEvent} or to manually\r\n    apply to an element if not using {@link Timeline}.\r\n\r\n    @type {String}\r\n  */\r\n  get name () {\r\n    return this._name\r\n  }\r\n\r\n  /**\r\n    Adds a new keyframe to the animation.\r\n\r\n    @param {Number} duration - The amount of time (in seconds) to animate to this frame.\r\n    @param {Object} style - An object representing CSS style attributes and their values.\r\n    @return {DynamicCssAnimation} The animation, for call chaining.\r\n  */\r\n  addKeyFrame (duration, style) {\r\n    this._keyframes.push({ duration, style })\r\n    this._duration += duration\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Generates the CSS style and appends it to the document head.\r\n\r\n    Generally you should call this method before using the animation so the browser\r\n    has the CSS. Alternatively you can use {@link createCssString} to create the\r\n    CSS and then insert it into the document yourself.\r\n\r\n    If you use this method for an animation you don't plan to re-use, you should at\r\n    some point call {@link destroyStyle} to remove the generated style block from\r\n    the document.\r\n  */\r\n  generateStyle () {\r\n    if (!this._styleSheet) {\r\n      this._styleSheet = document.createElement('style')\r\n      document.head.appendChild(this._styleSheet)\r\n    }\r\n\r\n    this._styleSheet.textContent = this.createCssString()\r\n  }\r\n\r\n  /**\r\n    Removes the style block inserted by {@link generateStyle}.\r\n  */\r\n  destroyStyle () {\r\n    if (this._styleSheet) {\r\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\r\n      this._styleSheet = null\r\n    }\r\n  }\r\n\r\n  /**\r\n    Creates the CSS for this animation.\r\n\r\n    This method is used internally by {@link generateStyle}, which is the recommended\r\n    method to use when using this class for animations. However if you would rather\r\n    manage inserting the CSS into the document you can call this method to simply\r\n    get the CSS as a string.\r\n\r\n    @return {String} The CSS for the animation.\r\n  */\r\n  createCssString () {\r\n    const name = this._name\r\n    let css = `.${name} {\r\n  animation-delay: ${this.delay}s;\r\n  animation-direction: ${this.direction};\r\n  animation-duration: ${this._duration}s;\r\n  animation-fill-mode: ${this.fillMode};\r\n  animation-iteration-count: ${this.iterationCount};\r\n  animation-name: ${name};\r\n  animation-timing-function: ${this.timingFunction};\r\n}\r\n@keyframes ${name} {\\n`\r\n\r\n    let runningTime = 0\r\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\r\n      const frame = this._keyframes[i]\r\n      runningTime += frame.duration\r\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\r\n      css += `  ${percentage}% {\\n`\r\n      for (const key in frame.style) {\r\n        if (frame.style.hasOwnProperty(key)) {\r\n          css += `    ${key}: ${frame.style[key]};\\n`\r\n        }\r\n      }\r\n      css += '  }\\n'\r\n    }\r\n\r\n    css += '}'\r\n    return css\r\n  }\r\n}\r\n",
+    "content": "/**\r\n  A helper class for building CSS animations from code\r\n*/\r\nexport class DynamicCssAnimation {\r\n  /**\r\n    Initializes a new animation.\r\n  */\r\n  constructor () {\r\n    this._name = 'seashell-' + Math.random().toString(36).substring(2)\r\n    this._duration = 0\r\n    this._keyframes = []\r\n\r\n    /**\r\n      Sets the animation-delay property of the generated animation.\r\n      @type {Number}\r\n    */\r\n    this.delay = 0\r\n\r\n    /**\r\n      Sets the animation-direction property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.direction = 'normal'\r\n\r\n    /**\r\n      Sets the animation-fill-mode property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.fillMode = 'none'\r\n\r\n    /**\r\n      Sets the animation-timing-function property of the generated animation.\r\n      @type {String}\r\n    */\r\n    this.timingFunction = 'ease'\r\n\r\n    /**\r\n      Sets the animation-iteration-count property of the generated animation.\r\n      @type {Number}\r\n    */\r\n    this.iterationCount = 1\r\n  }\r\n\r\n  /**\r\n    Gets the name of the animation.\r\n\r\n    The name is the CSS class to use with {@link CssAnimationEvent} or to manually\r\n    apply to an element if not using {@link Timeline}.\r\n\r\n    @type {String}\r\n  */\r\n  get name () {\r\n    return this._name\r\n  }\r\n\r\n  /**\r\n    Adds a new keyframe to the animation.\r\n\r\n    @param {Number} duration - The amount of time (in seconds) to animate to this frame.\r\n    @param {Object} style - An object representing CSS style attributes and their values.\r\n    @return {DynamicCssAnimation} The animation, for call chaining.\r\n  */\r\n  addKeyFrame (duration, style) {\r\n    this._keyframes.push({ duration, style })\r\n    this._duration += duration\r\n    return this\r\n  }\r\n\r\n  /**\r\n    Generates the CSS style and appends it to the document head.\r\n\r\n    Generally you should call this method before using the animation so the browser\r\n    has the CSS. Alternatively you can use {@link createCssString} to create the\r\n    CSS and then insert it into the document yourself.\r\n\r\n    If you use this method for an animation you don't plan to re-use, you should at\r\n    some point call {@link destroyStyle} to remove the generated style block from\r\n    the document.\r\n  */\r\n  generateStyle () {\r\n    if (!this._styleSheet) {\r\n      this._styleSheet = document.createElement('style')\r\n      document.head.appendChild(this._styleSheet)\r\n    }\r\n\r\n    this._styleSheet.textContent = this.createCssString()\r\n  }\r\n\r\n  /**\r\n    Removes the style block inserted by {@link generateStyle}.\r\n  */\r\n  destroyStyle () {\r\n    if (this._styleSheet) {\r\n      this._styleSheet.parentNode.removeChild(this._styleSheet)\r\n      this._styleSheet = null\r\n    }\r\n  }\r\n\r\n  /**\r\n    Creates the CSS for this animation.\r\n\r\n    This method is used internally by {@link generateStyle}, which is the recommended\r\n    method to use when using this class for animations. However if you would rather\r\n    manage inserting the CSS into the document you can call this method to simply\r\n    get the CSS as a string.\r\n\r\n    @return {String} The CSS for the animation.\r\n  */\r\n  createCssString () {\r\n    const name = this._name\r\n    let css = `.${name} {\r\n  animation-delay: ${this.delay}s;\r\n  animation-direction: ${this.direction};\r\n  animation-duration: ${this._duration}s;\r\n  animation-fill-mode: ${this.fillMode};\r\n  animation-iteration-count: ${this.iterationCount};\r\n  animation-name: ${name};\r\n  animation-timing-function: ${this.timingFunction};\r\n}\r\n@keyframes ${name} {\\n`\r\n\r\n    let runningTime = 0\r\n    for (let i = 0, len = this._keyframes.length; i < len; ++i) {\r\n      const frame = this._keyframes[i]\r\n      runningTime += frame.duration\r\n      const percentage = runningTime === 0 ? 0 : runningTime / this._duration * 100\r\n      css += `  ${percentage}% {\\n`\r\n      for (const key in frame.style) {\r\n        if (frame.style.hasOwnProperty(key)) {\r\n          css += `    ${key}: ${frame.style[key]};\\n`\r\n        }\r\n      }\r\n      css += '  }\\n'\r\n    }\r\n\r\n    css += '}'\r\n    return css\r\n  }\r\n}\r\n",
     "static": true,
     "longname": "C:/dev/seashell/src/dynamic-css-animation.js",
     "access": "public",
@@ -641,104 +641,114 @@
   {
     "__docId__": 53,
     "kind": "member",
-    "name": "delay",
-    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
-    "static": false,
-    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#delay",
-    "access": "public",
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
-    "type": {
-      "types": [
-        "number"
-      ]
-    }
-  },
-  {
-    "__docId__": 54,
-    "kind": "member",
-    "name": "direction",
-    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
-    "static": false,
-    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#direction",
-    "access": "public",
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 55,
-    "kind": "member",
-    "name": "fillMode",
-    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
-    "static": false,
-    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#fillMode",
-    "access": "public",
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 56,
-    "kind": "member",
-    "name": "timingFunction",
-    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
-    "static": false,
-    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#timingFunction",
-    "access": "public",
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 57,
-    "kind": "member",
-    "name": "iterationCount",
-    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
-    "static": false,
-    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#iterationCount",
-    "access": "public",
-    "description": null,
-    "lineNumber": 15,
-    "undocument": true,
-    "type": {
-      "types": [
-        "number"
-      ]
-    }
-  },
-  {
-    "__docId__": 58,
-    "kind": "member",
     "name": "_keyframes",
     "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
     "static": false,
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_keyframes",
     "access": "private",
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 11,
     "undocument": true,
     "ignore": true,
     "type": {
       "types": [
         "*[]"
       ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "delay",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#delay",
+    "access": "public",
+    "description": "Sets the animation-delay property of the generated animation.",
+    "lineNumber": 17,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "direction",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#direction",
+    "access": "public",
+    "description": "Sets the animation-direction property of the generated animation.",
+    "lineNumber": 23,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "fillMode",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#fillMode",
+    "access": "public",
+    "description": "Sets the animation-fill-mode property of the generated animation.",
+    "lineNumber": 29,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "member",
+    "name": "timingFunction",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#timingFunction",
+    "access": "public",
+    "description": "Sets the animation-timing-function property of the generated animation.",
+    "lineNumber": 35,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "iterationCount",
+    "memberof": "src/dynamic-css-animation.js~DynamicCssAnimation",
+    "static": false,
+    "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#iterationCount",
+    "access": "public",
+    "description": "Sets the animation-iteration-count property of the generated animation.",
+    "lineNumber": 41,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -752,7 +762,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#name",
     "access": "public",
     "description": "Gets the name of the animation.\n\nThe name is the CSS class to use with {@link CssAnimationEvent} or to manually\napply to an element if not using {@link Timeline}.",
-    "lineNumber": 28,
+    "lineNumber": 52,
     "type": {
       "nullable": null,
       "types": [
@@ -773,7 +783,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#addKeyFrame",
     "access": "public",
     "description": "Adds a new keyframe to the animation.",
-    "lineNumber": 39,
+    "lineNumber": 63,
     "params": [
       {
         "nullable": null,
@@ -816,7 +826,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#generateStyle",
     "access": "public",
     "description": "Generates the CSS style and appends it to the document head.\n\nGenerally you should call this method before using the animation so the browser\nhas the CSS. Alternatively you can use {@link createCssString} to create the\nCSS and then insert it into the document yourself.\n\nIf you use this method for an animation you don't plan to re-use, you should at\nsome point call {@link destroyStyle} to remove the generated style block from\nthe document.",
-    "lineNumber": 56,
+    "lineNumber": 80,
     "params": [],
     "return": null
   },
@@ -829,7 +839,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#_styleSheet",
     "access": "private",
     "description": null,
-    "lineNumber": 58,
+    "lineNumber": 82,
     "undocument": true,
     "ignore": true,
     "type": {
@@ -849,7 +859,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#destroyStyle",
     "access": "public",
     "description": "Removes the style block inserted by {@link generateStyle}.",
-    "lineNumber": 68,
+    "lineNumber": 92,
     "params": [],
     "return": null
   },
@@ -864,7 +874,7 @@
     "longname": "src/dynamic-css-animation.js~DynamicCssAnimation#createCssString",
     "access": "public",
     "description": "Creates the CSS for this animation.\n\nThis method is used internally by {@link generateStyle}, which is the recommended\nmethod to use when using this class for animations. However if you would rather\nmanage inserting the CSS into the document you can call this method to simply\nget the CSS as a string.",
-    "lineNumber": 85,
+    "lineNumber": 109,
     "return": {
       "nullable": null,
       "types": [
