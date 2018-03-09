@@ -1,9 +1,13 @@
 import babel from 'rollup-plugin-babel'
+import cleanup from 'rollup-plugin-cleanup'
 
-const babelPlugin = babel({
-  exclude: 'node_modules/**',
-  plugins: ['external-helpers'],
-})
+const plugins = [
+  babel({
+    exclude: 'node_modules/**',
+    plugins: ['external-helpers'],
+  }),
+  cleanup(),
+]
 
 export default [
   {
@@ -18,7 +22,7 @@ export default [
         format: 'cjs',
       },
     ],
-    plugins: [babelPlugin],
+    plugins: plugins,
   },
   {
     input: 'src/index.js',
@@ -29,6 +33,6 @@ export default [
         name: 'Seashell',
       },
     ],
-    plugins: [babelPlugin],
+    plugins: plugins,
   },
 ]
