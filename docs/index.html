@@ -43,155 +43,160 @@
           </svg>
         </a>
       </p>
-
-      <p class="m-0"><a href="./api">API Documentation</a></p>
     </div>
 
     <hr class="my-4">
 
     <div class="row">
-      <p>The heart of Seashell is a <code>Timeline</code> that coordinates a series of events. Events can be any object that implements a simple API and Seashell comes included with premade events for CSS animations, delays, style changes, callbacks, running other timelines, and running a number of events concurrently!</p>
-
-      <p>Here we're using <code>Timeline</code> to sequence some animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a> on this happy green box.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 example">
-        <div id="green-box" class="green box animated"></div>
-      </div>
-      <div class="col-lg-8">
-        <pre><code class="javascript" data-example="green-box"></code></pre>
-      </div>
-      <script data-example="green-box" type="text/javascript">
-(function () {
-  var greenBox = document.getElementById('green-box')
-  new Timeline()
-    .add(new CssAnimationEvent(greenBox, 'bounce'))
-    .add(new DelayEvent(0.2))
-    .add(new CssAnimationEvent(greenBox, 'swing'))
-    .add(new DelayEvent(0.4))
-    .add(new CssAnimationEvent(greenBox, 'tada'))
-    .add(new DelayEvent(0.8))
-    .start({ iterations: Infinity })
-})()
-      </script>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="row">
-      <p>While <code>Timeline</code> can support any event matching the right API to support 3rd party events, it does expose a slightly simpler API for built-in events to reduce typing when making timelines. Here's that same animation using this method. All arguments here are simply forwarded to the matching event constructors, so no functionality is lost.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 example">
-        <div id="blue-box" class="blue box animated"></div>
-      </div>
-      <div class="col-lg-8">
-        <pre><code class="javascript" data-example="blue-box"></code></pre>
-      </div>
-      <script data-example="blue-box" type="text/javascript">
-(function () {
-  var blueBox = document.getElementById('blue-box')
-  new Timeline()
-    .addCssAnimation(blueBox, 'bounce')
-    .addDelay(0.2)
-    .addCssAnimation(blueBox, 'swing')
-    .addDelay(0.4)
-    .addCssAnimation(blueBox, 'tada')
-    .addDelay(0.8)
-    .start({ iterations: Infinity })
-})()
-      </script>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="row">
-      <p>So far this is all well and good, but Seashell goes even further in enabling you to create nice animated sequences, starting with the <code>DynamicCssAnimation</code> class. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by a <code>Timeline</code>.</p>
-
-      <p>Note that the object you pass in is expected to have CSS compatible keys and values. No fancy translation is done, giving you the most control over the end result. This means you must remember units like <code>px</code> or <code>%</code>, but also means you get to use any valid CSS values including using <code>calc</code>.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 example">
-        <div id="pink-box" class="pink box absolute"></div>
+      <div class="col-12 col-lg-4">
+        <h3>Examples</h3>
+        <ul>
+          <li><a href="#" data-example="1">Basic Timeline</a></li>
+          <li><a href="#" data-example="2">Condensed Timeline API</a></li>
+          <li><a href="#" data-example="3">Dynamic CSS Animation</a></li>
+          <li><a href="#" data-example="4">Branching Timelines</a></li>
+        </ul>
       </div>
 
-      <div class="col-lg-8">
-        <pre><code class="javascript" data-example="pink-box"></code></pre>
+      <div class="col" data-example="1">
+        <div class="row">
+          <p>The heart of Seashell is a <code>Timeline</code> that coordinates a series of events. Events can be any object that implements a simple API and Seashell comes included with premade events for CSS animations, delays, style changes, callbacks, running other timelines, and running a number of events concurrently!</p>
+
+          <p>Here we're using <code>Timeline</code> to sequence some animations from <a href="https://daneden.github.io/animate.css/">Animate.css</a> on this happy green box.</p>
+        </div>
+        <div class="row">
+          <div class="col-12 example">
+            <div id="green-box" class="green box animated"></div>
+          </div>
+          <div class="col-12">
+            <pre><code class="javascript" data-sample-code="green-box"></code></pre>
+          </div>
+          <script data-sample-code="green-box" type="text/javascript">
+            (function () {
+              var greenBox = document.getElementById('green-box')
+              new Timeline()
+                .add(new CssAnimationEvent(greenBox, 'bounce'))
+                .add(new DelayEvent(0.2))
+                .add(new CssAnimationEvent(greenBox, 'swing'))
+                .add(new DelayEvent(0.4))
+                .add(new CssAnimationEvent(greenBox, 'tada'))
+                .add(new DelayEvent(0.8))
+                .start({ iterations: Infinity })
+            })()
+          </script>
+        </div>
       </div>
 
-      <script data-example="pink-box" type="text/javascript">
-(function () {
-  var pinkBox = document.getElementById('pink-box')
-
-  var animation = new DynamicCssAnimation()
-    .addKeyFrame(0.0, { transform: `translate(-50px, -50px)` })
-    .addKeyFrame(1.0, { transform: `translate(50px, -50px)` })
-    .addKeyFrame(1.0, { transform: `translate(50px, 50px)` })
-    .addKeyFrame(1.0, { transform: `translate(-50px, 50px)` })
-    .addKeyFrame(1.0, { transform: `translate(-50px, -50px)` })
-  animation.generateStyle()
-
-  new Timeline()
-    .addSetStyle(pinkBox, { transform: `translate(-50px, -50px)` })
-    .addCssAnimation(pinkBox, animation.name)
-    .start({ iterations: Infinity })
-})()
-      </script>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="row">
-      <p>A more advanced event that can be used is the <code>ConcurrentEvent</code> which allows for running events in parallel. Combined with the <code>TimelineEvent</code>, you have a lot of flexibility in defining and choreographing your animations.</p>
-
-      <p><code>Timeline</code> provides a nice <code>branch</code> method that helps by creating a number of new <code>Timelines</code> for you and passing them into your delegate before creating the <code>ConcurrentEvent</code> around them. You can choose if you want to use that or <code>addConcurrent</code> which requires you <code>new</code> up instances of events you want to use.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 example">
-        <div id="orange-box" class="orange box animated"></div>
-        <div id="red-box" class="red box animated"></div>
+      <div class="col" data-example="2">
+        <div class="row">
+          <p>While <code>Timeline</code> can support any event matching the right API to support 3rd party events, it does expose a slightly simpler API for built-in events to reduce typing when making timelines. Here's the same animation as the <a href="#" data-example="1">Basic Timeline</a> using this method. All arguments here are simply forwarded to the matching event constructors, so no functionality is lost.</p>
+        </div>
+        <div class="row">
+          <div class="col-12 example">
+            <div id="blue-box" class="blue box animated"></div>
+          </div>
+          <div class="col-12">
+            <pre><code class="javascript" data-sample-code="blue-box"></code></pre>
+          </div>
+          <script data-sample-code="blue-box" type="text/javascript">
+            (function () {
+              var blueBox = document.getElementById('blue-box')
+              new Timeline()
+                .addCssAnimation(blueBox, 'bounce')
+                .addDelay(0.2)
+                .addCssAnimation(blueBox, 'swing')
+                .addDelay(0.4)
+                .addCssAnimation(blueBox, 'tada')
+                .addDelay(0.8)
+                .start({ iterations: Infinity })
+            })()
+          </script>
+        </div>
       </div>
 
-      <div class="col-lg-8">
-        <pre><code class="javascript" data-example="orange-red-box"></code></pre>
+      <div class="col" data-example="3">
+        <div class="row">
+          <p>Seashell goes even further in enabling you to create nice animated sequences with the <code>DynamicCssAnimation</code> class. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by a <code>Timeline</code>.</p>
+
+          <p>Note that the object you pass in is expected to have CSS compatible keys and values. No fancy translation is done, giving you the most control over the end result. This means you must remember units like <code>px</code> or <code>%</code>, but also means you get to use any valid CSS values including using <code>calc</code>.</p>
+        </div>
+        <div class="row">
+          <div class="col-12 example">
+            <div id="pink-box" class="pink box"></div>
+          </div>
+          <div class="col-12">
+            <pre><code class="javascript" data-sample-code="pink-box"></code></pre>
+          </div>
+          <script data-sample-code="pink-box" type="text/javascript">
+            (function () {
+              var pinkBox = document.getElementById('pink-box')
+
+              var animation = new DynamicCssAnimation()
+                .addKeyFrame(0.0, { transform: `translate(-50px, -50px)` })
+                .addKeyFrame(1.0, { transform: `translate(50px, -50px)` })
+                .addKeyFrame(1.0, { transform: `translate(50px, 50px)` })
+                .addKeyFrame(1.0, { transform: `translate(-50px, 50px)` })
+                .addKeyFrame(1.0, { transform: `translate(-50px, -50px)` })
+              animation.generateStyle()
+
+              new Timeline()
+                .addSetStyle(pinkBox, { transform: `translate(-50px, -50px)` })
+                .addCssAnimation(pinkBox, animation.name)
+                .start({ iterations: Infinity })
+            })()
+          </script>
+        </div>
       </div>
 
-      <script data-example="orange-red-box" type="text/javascript">
-(function () {
-  var orangeBox = document.getElementById('orange-box')
-  var redBox = document.getElementById('red-box')
+      <div class="col" data-example="4">
+        <div class="row">
+          <p>A more advanced event that can be used is the <code>ConcurrentEvent</code> which allows for running events in parallel. Combined with the <code>TimelineEvent</code>, you have a lot of flexibility in defining and choreographing your animations.</p>
 
-  var rotateAnimation = new DynamicCssAnimation()
-    .addKeyFrame(0,    { transform: 'rotate(0)' })
-    .addKeyFrame(0.15, { transform: 'rotate(-45deg)' })
-    .addKeyFrame(0.30, { transform: 'rotate(45deg)' })
-    .addKeyFrame(0.15, { transform: 'rotate(0))' })
-  rotateAnimation.generateStyle()
+          <p><code>Timeline</code> provides a nice <code>branch</code> method that helps by creating a number of new <code>Timelines</code> for you and passing them into your delegate before creating the <code>ConcurrentEvent</code> around them. You can choose if you want to use that or <code>addConcurrent</code> which requires you <code>new</code> up instances of events you want to use.</p>
+        </div>
+        <div class="row">
+          <div class="col-12 example">
+            <div id="orange-box" class="orange box animated"></div>
+            <div id="red-box" class="red box animated"></div>
+          </div>
+          <div class="col-12">
+            <pre><code class="javascript" data-sample-code="orange-red-box"></code></pre>
+          </div>
+          <script data-sample-code="orange-red-box" type="text/javascript">
+            (function () {
+              var orangeBox = document.getElementById('orange-box')
+              var redBox = document.getElementById('red-box')
 
-  var translateAnimation = new DynamicCssAnimation()
-    .addKeyFrame(0,   { transform: 'translateY(0)' })
-    .addKeyFrame(0.5, { transform: 'translateY(50px)' })
-    .addKeyFrame(0.5, { transform: 'translateY(0))' })
-  translateAnimation.generateStyle()
+              var rotateAnimation = new DynamicCssAnimation()
+                .addKeyFrame(0,    { transform: 'rotate(0)' })
+                .addKeyFrame(0.15, { transform: 'rotate(-45deg)' })
+                .addKeyFrame(0.30, { transform: 'rotate(45deg)' })
+                .addKeyFrame(0.15, { transform: 'rotate(0))' })
+              rotateAnimation.generateStyle()
 
-  new Timeline()
-    .addCssAnimation(orangeBox, rotateAnimation.name)
-    .branch((t1, t2) => {
-      t1.addCssAnimation(orangeBox, translateAnimation.name)
+              var translateAnimation = new DynamicCssAnimation()
+                .addKeyFrame(0,   { transform: 'translateY(0)' })
+                .addKeyFrame(0.5, { transform: 'translateY(50px)' })
+                .addKeyFrame(0.5, { transform: 'translateY(0))' })
+              translateAnimation.generateStyle()
 
-      t2.addCssAnimation(redBox, rotateAnimation.name)
-        .addCssAnimation(redBox, 'flash')
-    })
-    .start({ iterations: Infinity })
-})()
-      </script>
+              new Timeline()
+                .addCssAnimation(orangeBox, rotateAnimation.name)
+                .branch((t1, t2) => {
+                  t1.addCssAnimation(orangeBox, translateAnimation.name)
+
+                  t2.addCssAnimation(redBox, rotateAnimation.name)
+                    .addCssAnimation(redBox, 'flash')
+                })
+                .start({ iterations: Infinity })
+            })()
+          </script>
+        </div>
+      </div>
+
     </div>
 
-    <hr class="my-4">
+    <hr class="my-4" />
 
     <div class="row footer my-4">
       <div class="col-12">
@@ -202,19 +207,36 @@
   </div>
 
   <script>
-    (function() {
-      var examples = document.querySelectorAll('script[data-example]')
-      for (var i = 0; i < examples.length; ++i) {
-        var example = examples[i].dataset.example
-        var target = document.querySelector('code[data-example="' + example + '"]')
-        var text = examples[i].innerText.trim()
-        text = text.split('\n')
-        text = text.slice(1, text.length - 1).map(l => l.substring(2))
-        target.innerText = text.join('\n')
+    function changeExample (id) {
+      var examples = document.body.querySelectorAll('div[data-example]')
+      for (var j = 0; j < examples.length; j++) {
+        var example = examples[j]
+        if (parseInt(example.dataset.example) === id) {
+          example.style.removeProperty('display')
+        } else {
+          example.style.display = 'none'
+        }
+      }
+    }
+
+    function hookExampleLink (link) {
+      var linkExample = parseInt(link.dataset.example)
+      link.addEventListener('click', function (e) {
+        changeExample (linkExample)
+        e.preventDefault()
+        return false
+      })
+    }
+
+    (function () {
+      var exampleLinks = document.body.querySelectorAll('a[data-example]')
+      for (var i = 0; i < exampleLinks.length; i++) {
+        hookExampleLink(exampleLinks[i])
       }
 
-      hljs.initHighlightingOnLoad()
+      changeExample(1)
     })()
   </script>
+  <script type="text/javascript" src="./demo.js"></script>
 </body>
 </html>

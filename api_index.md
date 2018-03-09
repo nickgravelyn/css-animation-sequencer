@@ -2,7 +2,7 @@
 
 A lovely library for web animations.
 
-Checkout the [examples](https://nickgravelyn.github.io/seashell) to get an idea of what the library can do.
+Checkout the [examples](../) to get an idea of what the library can do.
 
 ## Get Started
 
