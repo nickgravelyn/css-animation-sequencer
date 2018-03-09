@@ -97,37 +97,30 @@ function applyStyle(element, style) {
     }
   }
 }
+
 var CssTransitionEvent = function () {
-  function CssTransitionEvent(element, duration, from, to) {
+  function CssTransitionEvent(element, duration, style) {
     classCallCheck(this, CssTransitionEvent);
     this._element = element;
-    if (to === void 0) {
-      this._from = null;
-      this._to = from;
-    } else {
-      this._from = from;
-      this._to = to;
-    }
-    this._transition = '' + Object.keys(this._to).map(function (k) {
+    this._style = style;
+    this._transition = '' + Object.keys(this._style).map(function (k) {
       return k + ' ' + duration + 's';
     }).join(', ');
     this._onTransitionEnd = this._onTransitionEnd.bind(this);
+    this._startTransition = this._startTransition.bind(this);
   }
   CssTransitionEvent.prototype.start = function start(complete) {
-    var _this = this;
     this._complete = complete;
-    if (this._from) {
-      applyStyle(this._element, this._from);
-    }
     this._element.addEventListener('transitionend', this._onTransitionEnd);
-    setTimeout(function () {
-      _this._element.style.transition = _this._transition;
-      applyStyle(_this._element, _this._to);
-    });
+    setTimeout(this._startTransition);
   };
   CssTransitionEvent.prototype.stop = function stop() {
     this._element.removeEventListener('transitionend', this._onTransitionEnd);
     this._element.style.removeProperty('transition');
+  };
+  CssTransitionEvent.prototype._startTransition = function _startTransition() {
+    this._element.style.transition = this._transition;
+    applyStyle(this._element, this._style);
   };
   CssTransitionEvent.prototype._onTransitionEnd = function _onTransitionEnd() {
     this.stop();
@@ -159,11 +152,7 @@ var SetStyleEvent = function () {
     this._style = style;
   }
   SetStyleEvent.prototype.start = function start(complete) {
-    for (var key in this._style) {
-      if (this._style.hasOwnProperty(key)) {
-        this._element.style[key] = this._style[key];
-      }
-    }
+    applyStyle(this._element, this._style);
     complete();
   };
   SetStyleEvent.prototype.stop = function stop() {};

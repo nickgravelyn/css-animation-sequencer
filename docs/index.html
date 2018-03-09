@@ -110,7 +110,7 @@
     <div class="row">
       <p>So far this is all well and good, but Seashell goes even further in enabling you to create nice animated sequences, starting with the <code>DynamicCssAnimation</code> class. This utility allows JavaScript to define an animation in code that is then built into a CSS keyframes based animation which can be used by a <code>Timeline</code>.</p>
 
-      <p>Note that the object you pass in is expected to have CSS compatible keys and values. No fancy translation is done, giving you the most control over the end result. This means you must remember units like <code>px</code> or <code>%</code>, but also means you get to use cool things like <code>calc</code>.</p>
+      <p>Note that the object you pass in is expected to have CSS compatible keys and values. No fancy translation is done, giving you the most control over the end result. This means you must remember units like <code>px</code> or <code>%</code>, but also means you get to use any valid CSS values including using <code>calc</code>.</p>
     </div>
 
     <div class="row">
@@ -125,19 +125,17 @@
       <script data-example="pink-box" type="text/javascript">
 (function () {
   var pinkBox = document.getElementById('pink-box')
-  var plus50 = "calc(50% + 50px)"
-  var minus50 = "calc(50% - 50px)"
 
   var animation = new DynamicCssAnimation()
-    .addKeyFrame(0.0, { left: minus50, top: minus50 })
-    .addKeyFrame(1.0, { left: plus50, top: minus50 })
-    .addKeyFrame(1.0, { left: plus50, top: plus50 })
-    .addKeyFrame(1.0, { left: minus50, top: plus50 })
-    .addKeyFrame(1.0, { left: minus50, top: minus50 })
+    .addKeyFrame(0.0, { transform: `translate(-50px, -50px)` })
+    .addKeyFrame(1.0, { transform: `translate(50px, -50px)` })
+    .addKeyFrame(1.0, { transform: `translate(50px, 50px)` })
+    .addKeyFrame(1.0, { transform: `translate(-50px, 50px)` })
+    .addKeyFrame(1.0, { transform: `translate(-50px, -50px)` })
   animation.generateStyle()
 
   new Timeline()
-    .addSetStyle(pinkBox, { left: minus50, top: minus50 })
+    .addSetStyle(pinkBox, { transform: `translate(-50px, -50px)` })
     .addCssAnimation(pinkBox, animation.name)
     .start({ iterations: Infinity })
 })()
