@@ -9,12 +9,24 @@ function makeFakeElem () {
       this.fn = fn
     },
     removeEventListener: jest.fn(),
+    style: {},
     classList: {
       add: jest.fn(),
       remove: jest.fn(),
     },
   }
 }
+
+let getComputedStyle
+
+beforeEach(() => {
+  getComputedStyle = window.getComputedStyle
+  window.getComputedStyle = jest.fn(() => ({ background: 'red' }))
+})
+
+afterEach(() => {
+  window.getComputedStyle = getComputedStyle
+})
 
 test('adds event listener and class on start', () => {
   const elem = makeFakeElem()
@@ -58,4 +70,17 @@ test('removes event listener and class on stop', () => {
 
   expect(elem.removeEventListener).toHaveBeenCalledWith('animationend', elem.fn)
   expect(elem.classList.remove).toHaveBeenCalledWith('anim-class')
+})
+
+test('copies computed style properties if desired after animation ends', () => {
+  const elem = makeFakeElem()
+  const event = new CssAnimationEvent(elem, 'anim-class', { keepComputedStyles: ['background'] })
+
+  event.start(jest.fn())
+
+  // Invoke our animationend listener
+  elem.fn()
+
+  expect(window.getComputedStyle).toHaveBeenCalledWith(elem)
+  expect(elem.style.background).toEqual('red')
 })
