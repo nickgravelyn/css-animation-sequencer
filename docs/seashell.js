@@ -67,12 +67,24 @@ var ConcurrentEvent = function () {
   return ConcurrentEvent;
 }();
 
+function applyStyle(element, style) {
+  for (var key in style) {
+    if (style.hasOwnProperty(key)) {
+      element.style[key] = style[key];
+    }
+  }
+}
+
 var CssAnimationEvent = function () {
   function CssAnimationEvent(element, className) {
+    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+        _ref$keepComputedStyl = _ref.keepComputedStyles,
+        keepComputedStyles = _ref$keepComputedStyl === undefined ? [] : _ref$keepComputedStyl;
     classCallCheck(this, CssAnimationEvent);
     this._element = element;
     this._animation = className;
     this._onAnimationEnd = this._onAnimationEnd.bind(this);
+    this._keepComputedStyles = keepComputedStyles.slice(0);
   }
   CssAnimationEvent.prototype.start = function start(complete) {
     this._complete = complete;
@@ -85,18 +97,18 @@ var CssAnimationEvent = function () {
   };
   CssAnimationEvent.prototype._onAnimationEnd = function _onAnimationEnd() {
     this.stop();
+    if (this._keepComputedStyles.length) {
+      var computedStyles = window.getComputedStyle(this._element);
+      var styleToApply = this._keepComputedStyles.reduce(function (a, b) {
+        a[b] = computedStyles[b];
+        return a;
+      }, {});
+      applyStyle(this._element, styleToApply);
+    }
     setTimeout(this._complete);
   };
   return CssAnimationEvent;
 }();
-
-function applyStyle(element, style) {
-  for (var key in style) {
-    if (style.hasOwnProperty(key)) {
-      element.style[key] = style[key];
-    }
-  }
-}
 
 var CssTransitionEvent = function () {
   function CssTransitionEvent(element, duration, style) {
